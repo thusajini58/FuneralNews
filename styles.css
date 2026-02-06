@@ -1,0 +1,1516 @@
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+    --red:        #ef4444;
+    --red-dark:   #dc2626;
+    --red-light:  #fef2f2;
+    --red-mid:    rgba(239,68,68,0.08);
+    --navy:       #16213e;
+    --navy-mid:   #2d2d44;
+    --navy-light: #3d3d54;
+    --white:      #ffffff;
+    --grey-50:    #f9fafb;
+    --grey-100:   #f3f4f6;
+    --grey-200:   #e5e7eb;
+    --grey-400:   #9ca3af;
+    --grey-500:   #6b7280;
+    --grey-700:   #374151;
+    --text-dark:  #1a1a2e;
+    --green:      #10b981;
+    --green-dark: #059669;
+    --purple:     #8b5cf6;
+    --purple-dark:#7c3aed;
+    --purple-light:#f5f3ff;
+    --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md:  0 4px 12px rgba(0,0,0,0.10);
+    --shadow-lg:  0 8px 24px rgba(0,0,0,0.14);
+    --radius:     10px;
+    --radius-lg:  15px;
+    --radius-pill:25px;
+}
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--grey-100);
+    color: var(--text-dark);
+}
+
+/* ============================================
+   CENTERING WRAPPER (shared by top bars)
+   ============================================ */
+.nav-center-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+/* ============================================
+   TOP NAVIGATION
+   ============================================ */
+.top-navigation {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--navy-light);
+}
+
+.top-left a {
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.92rem;
+    margin-right: 22px;
+    letter-spacing: 0.3px;
+    transition: color 0.25s;
+    position: relative;
+    font-weight: 600;
+}
+
+.top-left a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--red);
+    transition: width 0.25s;
+}
+
+.top-left a:hover {
+    color: var(--red);
+}
+.top-left a:hover::after {
+    width: 100%;
+}
+
+.language-btn {
+    background: var(--navy);
+    border: 1px solid var(--navy-light);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.language-btn:hover {
+    color: var(--white);
+    background:var(--red);
+    border-color: var(--red-dark);
+}
+
+/* ============================================
+   MAIN HEADER
+   ============================================ */
+.main-header {
+    background-color: var(--navy);
+    border-bottom: 1px solid var(--navy-mid);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: var(--shadow-md);
+    margin-top: 15px;
+}
+
+.logo-img {
+    height: 62px;
+    width: auto;
+    margin-bottom: 12px;
+}
+
+/* Search */
+.search-input {
+    width: 100%;
+    padding: 6px 42px 6px 18px;
+    border: 1.5px solid var(--navy-light);
+    border-radius: var(--radius-pill);
+    background: var(--navy-mid);
+    color: #fff;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+}
+.search-input::placeholder { color: var(--grey-400); }
+.search-input:focus {
+    outline: none;
+    border-color: var(--red);
+    background: #1e2a42;
+    box-shadow: 0 0 0 3px rgba(239,68,68,0.18);
+}
+
+.search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grey-400);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+/* Buttons */
+.btn-create,
+.btn-create-mobile {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(239,68,68,0.30);
+}
+.btn-create:hover,
+.btn-create-mobile:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(239,68,68,0.40);
+}
+
+.btn-browse {
+    display: none; /* Hidden as requested */
+}
+
+/* ============================================
+   CONTACT BAR
+============================================ */
+.contact-bar {
+    background-color: var(--navy-mid);
+    border-bottom: 1px solid var(--navy-light);
+    margin: 5px;
+    border-radius: 5px;
+    z-index: 998;
+}
+
+/* Sticky container */
+.center-content-wrapper {
+    position: sticky;
+    top: 160px; /* height of your main header */
+    z-index: 999; /* must be higher than content below */
+}
+
+
+.contact-phone {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+.contact-phone i {
+    color: var(--red);
+    font-size: 1rem;
+}
+
+.badge-24-7 {
+    background: var(--red);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+/* Right group: hours + chat btn */
+.contact-right-group {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.contact-hours-text {
+    font-size: 0.78rem;
+    color: #8a9ab5;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.contact-hours-text i { color: var(--red); font-size: 0.82rem; }
+
+.btn-chat {
+    background: var(--green);
+    color: #fff;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(16,185,129,0.30);
+}
+.btn-chat:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16,185,129,0.40);
+}
+
+/* ============================================
+   HOME CONTACT BAR (Top of Center Content)
+   ============================================ */
+.home-contact-bar {
+    background-color: var(--navy-mid);
+    border-bottom: 1px solid var(--grey-200);
+    display: none;
+}
+
+/* ============================================
+   MAIN LAYOUT  –  three-column wrapper
+   ============================================ */
+.content-wrapper {
+    display: flex;
+    background-color: var(--grey-100);
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: calc(100vh - 160px);
+    gap: 0;
+}
+
+/* ============================================
+   LEFT SIDEBAR  –  Recent Posts (white)
+   ============================================ */
+.left-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    background-color: var(--white);
+    border-right: 1px solid var(--grey-200);
+    position: sticky;
+    top: 154px; /* Adjusted to account for sticky contact bar */
+    height: calc(100vh - 154px);
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar-section { padding: 0; }
+
+/* Sidebar header */
+.sidebar-header {
+    background: var(--navy-mid);
+    color: var(--white);
+    padding: 14px 18px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid var(--grey-200);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 5px;
+    border-radius: 5px;
+}
+.sidebar-header i {
+    color: var(--red);
+    font-size: 0.88rem;
+}
+
+/* Country list */
+.countries-list { padding: 6px 0; }
+
+.country-item { margin-bottom: 2px; }
+
+.country-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--grey-700);
+    border-radius: 0 8px 8px 0;
+    margin-right: 10px;
+}
+.country-header:hover {
+    background-color: var(--red-mid);
+    color: var(--red);
+}
+.country-header.active {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(239,68,68,0.30);
+}
+.country-header.active .country-count { opacity: 0.9; }
+
+.country-name  { font-size: 0.85rem; font-weight: 600; }
+.country-count { font-size: 0.75rem; opacity: 0.6; font-weight: 600; }
+
+.country-posts {
+    display: none;
+    padding-left: 18px;
+    background: var(--grey-50);
+    border-radius: 0 8px 8px 0;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.country-posts.show { display: block; }
+
+.post-item {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    color: var(--grey-500);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+.post-item:hover {
+    background-color: var(--red-light);
+    border-left-color: var(--red);
+    color: var(--red-dark);
+}
+.post-item.active {
+    background-color: var(--red-light);
+    border-left-color: var(--red);
+    color: var(--red);
+    font-weight: 600;
+}
+
+/* ============================================
+   CENTER CONTENT
+   ============================================ */
+.center-content {
+    flex: 1;
+    min-width: 0;
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Breadcrumb */
+.section-header-main {
+    background: var(--white);
+    padding: 12px 22px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--grey-400);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--grey-200);
+    position: sticky;
+    top: 143px; /* Sticks below contact bar */
+    z-index: 997;
+}
+.section-header-main i {
+    font-size: 0.82rem;
+}
+.section-header-main i.chevron-sep {
+    color: var(--grey-400);
+    font-size: 0.7rem;
+    margin: 0 2px;
+}
+
+/* Navigation links in breadcrumb */
+.nav-link-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--grey-400);
+    text-decoration: none;
+    transition: all 0.2s;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+.nav-link-item:hover {
+    color: var(--red);
+    background-color: var(--red-light);
+}
+.nav-link-item.active {
+    color: var(--red);
+    font-weight: 700;
+}
+.nav-link-item i {
+    font-size: 0.82rem;
+}
+.nav-link-item.active i {
+    color: var(--red);
+}
+
+/* Mobile toggles */
+.mobile-section {
+    border-bottom: 1px solid var(--grey-200);
+}
+.mobile-section-toggle {
+    width: 100%;
+    background-color: var(--white);
+    border: none;
+    padding: 13px 20px;
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.mobile-section-toggle:hover { background-color: var(--grey-50); }
+.mobile-section-toggle i.bi:first-child {
+    margin-right: 8px;
+    color: var(--red);
+}
+.toggle-icon {
+    transition: transform 0.3s;
+    color: var(--grey-400);
+}
+.mobile-section-toggle[aria-expanded="true"] .toggle-icon {
+    transform: rotate(180deg);
+}
+.mobile-section-content {
+    padding: 10px 16px;
+    background-color: var(--grey-50);
+}
+
+/* ============================================
+   OBITUARY CARDS
+   ============================================ */
+.obituary-container { padding: 0; }
+
+.obituary-card {
+    background: var(--white);
+    padding: 20px 18px;
+    border-bottom: 1px solid var(--grey-200);
+    cursor: pointer;
+    transition: all 0.28s cubic-bezier(.4,0,.2,1);
+    position: relative;
+    animation: cardFadeIn 0.4s ease both;
+}
+/* staggered entrance */
+.obituary-card:nth-child(1) { animation-delay: .05s; }
+.obituary-card:nth-child(2) { animation-delay: .10s; }
+.obituary-card:nth-child(3) { animation-delay: .15s; }
+.obituary-card:nth-child(4) { animation-delay: .20s; }
+.obituary-card:nth-child(5) { animation-delay: .25s; }
+.obituary-card:nth-child(6) { animation-delay: .30s; }
+.obituary-card:nth-child(7) { animation-delay: .35s; }
+.obituary-card:nth-child(8) { animation-delay: .40s; }
+
+@keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+.obituary-card:hover {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    box-shadow: var(--shadow-md);
+    transform: translateX(3px);
+}
+
+.obituary-card:hover .memorial-name {
+    color: var(--red-dark);
+}
+
+/* Remembrance Card Styling - Different from Obituary */
+.obituary-card[data-type*="Remembrance"] {
+    background: linear-gradient(to right, var(--purple-light) 0%, var(--white) 100%);
+    border-left: 4px solid var(--purple);
+}
+
+.obituary-card[data-type*="Remembrance"]:hover {
+    background: linear-gradient(to right, var(--purple-light) 0%, var(--red-light) 50%);
+    border-left: 4px solid var(--purple-dark);
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25);
+}
+
+.obituary-card[data-type*="Remembrance"] .post-type-badge {
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    box-shadow: 0 2px 6px rgba(139, 92, 246, 0.30);
+}
+
+.obituary-card[data-type*="Remembrance"]:hover .memorial-name {
+    color: var(--purple-dark);
+}
+
+.obituary-card[data-type*="Remembrance"] .tributes-count {
+    color: var(--purple);
+}
+
+.obituary-card[data-type*="Remembrance"] .frame-overlay {
+    filter: hue-rotate(240deg);
+}
+
+/* header row */
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.post-type-badge {
+    background: var(--red);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    box-shadow: 0 2px 6px rgba(239,68,68,0.25);
+}
+
+.time-ago {
+    font-size: 0.78rem;
+    color: var(--grey-400);
+}
+
+/* body */
+.card-body-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.year {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--red);
+}
+
+.profile-image-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+.profile-ring {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame-overlay {
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    width: 144px;
+    height: 144px;
+    background-image: url('memorial7.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.profile-image {
+    width: 108px;
+    height: 126px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.3s;
+}
+
+
+.memorial-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.memorial-details {
+    font-size: 0.82rem;
+    color: var(--grey-500);
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* footer row */
+.card-footer-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--grey-200);
+    flex-wrap: wrap;
+}
+
+.tributes-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--red);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+.tributes-count i { font-size: 0.95rem; }
+
+/* Reaction pills */
+.reaction-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.reaction-btn {
+    background: var(--grey-100);
+    border: 1.5px solid var(--grey-200);
+    color: var(--grey-500);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.22s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.reaction-btn:hover {
+    background: var(--red-light);
+    border-color: var(--red);
+    color: var(--red);
+    box-shadow: 0 2px 6px rgba(239,68,68,0.18);
+}
+.reaction-btn i { font-size: 0.92rem; }
+
+.share-btn {
+    background: var(--grey-100);
+    border: 1.5px solid var(--grey-200);
+    color: var(--grey-500);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.22s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.share-btn:hover {
+    background: rgba(16,185,129,0.08);
+    border-color: var(--green);
+    color: var(--green);
+    box-shadow: 0 2px 6px rgba(16,185,129,0.18);
+}
+.share-btn i { font-size: 0.92rem; }
+
+/* ============================================
+   RIGHT SIDEBAR  –  Recent Tributes (white)
+   ============================================ */
+.right-sidebar {
+    width: 310px;
+    flex-shrink: 0;
+    background-color: var(--white);
+    border-left: 1px solid var(--grey-200);
+    position: sticky;
+    top: 154px; /* Adjusted to account for sticky contact bar */
+    height: calc(100vh - 154px);
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+}
+
+.tributes-list { padding: 4px 0; }
+
+.tribute-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--grey-200);
+    cursor: pointer;
+    transition: all 0.22s;
+    gap: 10px;
+}
+.tribute-item:hover {
+    background-color: var(--red-light);
+    transform: translateX(3px);
+}
+
+.tribute-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--red);
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(239,68,68,0.18);
+}
+
+.tribute-info { flex: 1; min-width: 0; }
+
+.tribute-name {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tribute-location {
+    font-size: 0.73rem;
+    color: var(--grey-400);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tribute-time {
+    font-size: 0.7rem;
+    color: var(--grey-400);
+}
+
+.tribute-more {
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    white-space: nowrap;
+    align-self: flex-start;
+    background: var(--red-light);
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+/* ============================================
+   DETAIL PAGE
+   ============================================ */
+.detail-page {
+    display: none;
+    background: var(--grey-100);
+    min-height: 100vh;
+    padding: 28px 0;
+}
+.detail-page.active { display: block; }
+
+.detail-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 22px;
+    font-size: 0.92rem;
+    transition: all 0.25s;
+}
+.back-button:hover { gap: 14px; color: var(--red-dark); }
+
+.detail-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 22px;
+}
+
+/* Memorial hero card */
+.memorial-card-section {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+    border-radius: 18px;
+    padding: 46px 36px;
+    text-align: center;
+    color: #fff;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--navy-light);
+}
+
+.download-btn {
+    position: absolute;
+    top: 18px; right: 18px;
+    background: rgba(239,68,68,0.18);
+    color: #fff;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    border: 1px solid rgba(239,68,68,0.3);
+}
+.download-btn:hover { background: var(--red); transform: scale(1.08); }
+
+.memorial-type-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 26px;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.memorial-profile-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 32px;
+}
+
+.memorial-date-info { text-align: center; }
+.memorial-date-label { font-size: 1rem; margin-bottom: 8px; opacity: 0.75; }
+.memorial-date-day  { font-size: 2rem; font-weight: 700; color: var(--red); margin-bottom: 4px; }
+.memorial-date-month{ font-size: 1rem; margin-bottom: 4px; }
+.memorial-date-year { font-size: 1.5rem; font-weight: 600; }
+
+.memorial-profile-frame-container {
+    position: relative;
+    width: 240px; 
+    height: 240px;
+}
+
+.memorial-golden-frame {
+    position: absolute;
+    top: -12px; left: -12px;
+    width: 266px; height: 268px;
+    background-image: url('frame.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.memorial-profile-photo {
+    width: 170px; height: 188px;
+    border-radius: 5px;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    margin-left: 8px; margin-top: 29px;
+    box-shadow: 0 0 0 5px rgba(239,68,68,0.18);
+}
+
+.memorial-person-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.memorial-age-info     { font-size: 1rem; margin-bottom: 6px; color: #bbb; border: 1px solid var(--red-dark); padding: 5px 15px; border-radius: 18px; display: inline-block; background: var(--red); color: var(--white); font-weight: 700;}
+.memorial-location-info{ font-size: 0.92rem; opacity: 0.75; margin-bottom: 24px; color: #aaa; }
+
+.memorial-action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.memorial-action-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 3px 10px rgba(239,68,68,0.28);
+}
+.memorial-action-btn:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(239,68,68,0.42);
+}
+
+/* About section */
+.about-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    margin-top: 20px;
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-sm);
+}
+.about-section h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+.about-section h3 i { color: var(--red); }
+.about-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--grey-500);
+}
+
+/* Tributes detail */
+.tributes-detail-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    margin-top: 20px;
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-sm);
+}
+.tributes-detail-section h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tributes-detail-section h3 i { color: var(--red); margin-right: 6px; }
+
+.tribute-count-badge {
+    background: var(--red);
+    color: #fff;
+    padding: 4px 13px;
+    border-radius: 18px;
+    font-size: 0.82rem;
+}
+
+.write-tribute-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(239,68,68,0.25);
+}
+.write-tribute-btn:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(239,68,68,0.38);
+}
+
+.tribute-item-detail {
+    background: var(--grey-50);
+    padding: 18px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    border-left: 4px solid var(--red);
+    transition: background 0.2s;
+}
+.tribute-item-detail:hover { background: var(--red-light); }
+
+.tribute-header-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.tribute-quote-icon {
+    font-size: 1.7rem;
+    color: var(--red);
+    opacity: 0.25;
+}
+.tribute-author-detail { flex: 1; }
+.tribute-author-name   { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+.tribute-author-info   { font-size: 0.8rem; color: var(--grey-400); }
+.tribute-message-detail{ font-size: 0.9rem; line-height: 1.7; color: var(--grey-500); padding-left: 12px; }
+
+/* Detail sidebar */
+.detail-sidebar {
+    position: sticky;
+    top: 130px;
+    height: fit-content;
+}
+
+.detail-main-content {
+    width: 100%;
+}
+
+.summary-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 1px solid var(--grey-200);
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-sm);
+}
+.summary-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--grey-200);
+}
+.summary-item:last-child { border-bottom: none; }
+
+.summary-icon {
+    width: 40px; height: 40px;
+    background: var(--red-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    color: var(--red);
+    flex-shrink: 0;
+}
+
+.summary-info { flex: 1; }
+.summary-label {
+    font-size: 0.7rem;
+    color: var(--grey-400);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+}
+.summary-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Sponsored */
+.sponsored-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-sm);
+}
+.sponsored-card h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--grey-400);
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.sponsored-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.carousel-control-btn {
+    background: var(--grey-100);
+    color: var(--grey-500);
+    border: 1px solid var(--grey-200);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.22s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-control-btn:hover {
+    background: var(--red);
+    color: #fff;
+    border-color: var(--red);
+}
+
+.sponsored-actions { display: flex; gap: 8px; }
+.sponsored-btn {
+    flex: 1;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.22s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.sponsored-btn.contact      { background: #25d366; color: #fff; }
+.sponsored-btn.contact:hover { background: #20bd5a; }
+.sponsored-btn.view-more      { background: var(--red); color: #fff; }
+.sponsored-btn.view-more:hover{ background: var(--red-dark); }
+
+/* ============================================
+   FIXED BUTTONS
+   ============================================ */
+.scroll-top {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--red);
+    color: #fff;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(239,68,68,0.38);
+    transition: all 0.25s;
+    z-index: 1000;
+}
+.scroll-top:hover { background: var(--red-dark); transform: translateY(-4px); }
+
+.chat-button {
+    position: fixed;
+    bottom: 28px; right: 88px;
+    background: var(--green);
+    color: #fff;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(16,185,129,0.38);
+    font-size: 1.4rem;
+    z-index: 1000;
+    transition: all 0.25s;
+}
+.chat-button:hover { background: var(--green-dark); transform: scale(1.08); }
+
+/* ============================================
+   MODAL
+   ============================================ */
+.modal-content {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-light);
+    color: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+}
+.modal-header {
+    background: var(--red);
+    color: #fff;
+    border-bottom: none;
+    padding: 18px 24px;
+}
+.modal-header .btn-close { filter: brightness(0) invert(1); }
+
+.modal-body .form-label { color: #fff; font-weight: 600; font-size: 0.88rem; }
+.modal-body .form-control,
+.modal-body .form-select {
+    background: #fff;
+    border: 1px solid var(--navy-light);
+    color: var(--text-dark);
+    border-radius: 8px;
+}
+.modal-body .form-control:focus,
+.modal-body .form-select:focus {
+    background: var(--red-light);
+    border-color: var(--red);
+    color: var(--text-dark);
+    box-shadow: 0 0 0 3px rgba(239,68,68,0.2);
+}
+.modal-body .form-control::placeholder { color: var(--grey-400); }
+
+.modal-footer { border-top: 1px solid var(--navy-light); }
+
+.btn-modal-create {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    box-shadow: 0 3px 10px rgba(239,68,68,0.28);
+}
+.btn-modal-create:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   SCROLLBARS
+   ============================================ */
+.left-sidebar::-webkit-scrollbar,
+.right-sidebar::-webkit-scrollbar { width: 5px; }
+
+.left-sidebar::-webkit-scrollbar-track,
+.right-sidebar::-webkit-scrollbar-track { background: var(--white); }
+
+.left-sidebar::-webkit-scrollbar-thumb,
+.right-sidebar::-webkit-scrollbar-thumb {
+    background: var(--grey-200);
+    border-radius: 3px;
+}
+.left-sidebar::-webkit-scrollbar-thumb:hover,
+.right-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--red);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1400px) {
+    .nav-center-wrapper,
+    .content-wrapper,
+    .detail-wrapper {
+        max-width: 70%;
+    }
+    
+    .detail-content-wrapper { 
+        grid-template-columns: 1fr; 
+    }
+    .detail-sidebar { position: relative; top: 0; }
+}
+
+@media (max-width: 1200px) {
+    .nav-center-wrapper,
+    .content-wrapper,
+    .detail-wrapper {
+        max-width: 85%;
+    }
+    
+    .right-sidebar { display: none; }
+    .content-wrapper { max-width: 85%; }
+    .home-contact-bar { display: block; }
+}
+
+@media (max-width: 991px) {
+    .nav-center-wrapper,
+    .content-wrapper,
+    .detail-wrapper {
+        max-width: 95%;
+    }
+    
+    .left-sidebar { display: none; }
+    .center-content { max-width: 100%; }
+    .home-contact-bar { display: block; }
+}
+
+@media (max-width: 768px) {
+    .nav-center-wrapper,
+    .content-wrapper,
+    .detail-wrapper {
+        max-width: 100%;
+        padding: 0 14px;
+    }
+    
+    .nav-center-wrapper { padding: 0 14px; }
+    .top-left a { margin-right: 14px; font-size: 0.78rem; }
+    .logo-img { height: 38px; }
+
+    .contact-hours-text { display: none; }
+    .btn-chat { font-size: 0.78rem; padding: 6px 12px; }
+
+    .obituary-card { padding: 16px 12px; }
+    .profile-section { gap: 12px; }
+    .profile-image-container { width: 110px; height: 110px; }
+    .profile-ring { width: 110px; height: 110px; }
+    .frame-overlay { width: 124px; height: 124px; top: -6px; left: -6px; }
+    .profile-image { width: 90px; height: 104px; }
+    .year { font-size: 0.92rem; }
+    .memorial-name { font-size: 1rem; }
+    .memorial-details { font-size: 0.8rem; }
+    .card-footer-row { flex-direction: column; gap: 8px; }
+    .reaction-btn, .share-btn { padding: 5px 11px; font-size: 0.78rem; }
+
+    .detail-wrapper { padding: 0 14px; }
+    .memorial-card-section { padding: 28px 18px; }
+    .memorial-profile-display { flex-direction: column; gap: 24px; }
+    .memorial-date-info { display: none; }
+    .memorial-profile-frame-container { width: 200px; height: 200px; }
+    .memorial-golden-frame { width: 226px; height: 228px; }
+    .memorial-profile-photo { width: 170px; height: 180px; }
+    .memorial-type-title { font-size: 1.3rem; }
+    .memorial-person-name { font-size: 1.6rem; }
+    .memorial-action-buttons { flex-direction: column; width: 100%; }
+    .memorial-action-btn { width: 100%; justify-content: center; }
+
+    .about-section, .tributes-detail-section,
+    .summary-card, .sponsored-card { padding: 20px 16px; }
+    
+    .home-contact-bar { display: block; }
+}
+
+@media (max-width: 480px) {
+    .top-left a { margin-right: 9px; font-size: 0.73rem; }
+    .logo-img { height: 33px; }
+    .btn-create-mobile { font-size: 0.78rem; padding: 7px 13px; }
+    .search-input { font-size: 0.82rem; padding: 8px 34px 8px 14px; }
+    .badge-24-7 { font-size: 0.68rem; padding: 2px 7px; }
+
+    .obituary-card { padding: 12px 8px; }
+    .profile-image-container { width: 95px; height: 95px; }
+    .profile-ring { width: 95px; height: 95px; }
+    .frame-overlay { width: 109px; height: 109px; }
+    .profile-image { width: 70px; height: 80px; }
+    .year { font-size: 0.85rem; }
+    .memorial-name { font-size: 0.92rem; }
+    .memorial-details { font-size: 0.76rem; }
+
+    .memorial-card-section { padding: 22px 14px; }
+    .memorial-profile-frame-container { width: 160px; height: 160px; }
+    .memorial-golden-frame { width: 184px; height: 184px; }
+    .memorial-profile-photo { width: 134px; height: 142px; }
+    .memorial-type-title { font-size: 1.15rem; }
+    .memorial-person-name { font-size: 1.35rem; }
+}
+
+/* ============================================
+   CONTACT / ABOUT / PRICING / SERVICES PAGES
+   ============================================ */
+.contact-hero {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    padding: 70px 0;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 50px;
+}
+.hero-content { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+.hero-title { font-size: 2.6rem; font-weight: 700; margin-bottom: 16px; }
+.hero-subtitle { font-size: 1.15rem; opacity: 0.95; }
+
+.contact-wrapper { padding: 50px 0; background-color: var(--white); }
+.section-heading { font-size: 1.6rem; font-weight: 700; color: #fff; }
+.section-description { color: #aaa; }
+
+.contact-info-section {
+    background: var(--navy-mid);
+    padding: 28px;
+    border-radius: var(--radius);
+    border: 1px solid var(--navy-light);
+}
+.info-card {
+    background: var(--navy);
+    padding: 22px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border-left: 4px solid transparent;
+    transition: border-color 0.25s;
+}
+.info-card:hover { border-left-color: var(--red); }
+.info-icon {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.info-title { color: #fff; }
+.info-text { color: #aaa; }
+.social-title { color: #fff; }
+.social-link { width: 44px; height: 44px; border-radius: 50%; color: #fff; }
+
+.contact-form-section {
+    background: var(--navy-mid);
+    padding: 36px;
+    border-radius: var(--radius);
+    border: 1px solid var(--navy-light);
+}
+.contact-form .form-label { color: #fff; }
+.contact-form .form-control,
+.contact-form .form-select {
+    background: var(--navy);
+    border: 1px solid var(--navy-light);
+    color: #fff;
+}
+.btn-submit {
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff;
+    border: none;
+    padding: 13px 38px;
+    border-radius: var(--radius-pill);
+}
+
+.about-container {
+    background: var(--navy-mid);
+    border-radius: 12px;
+    padding: 46px;
+    border: 1px solid var(--navy-light);
+    border-left: 10px solid var(--red);
+}
+.about-title { color: var(--red); }
+.why-title { color: var(--red); }
+.features-list li { color: #ccc; }
+.features-list li::before { color: var(--red); }
+
+.pricing-hero { background: linear-gradient(135deg, var(--red), var(--red-dark)); }
+.pricing-wrapper { background-color: var(--white); }
+.section-title { color: #fff; }
+.section-subtitle { color: #aaa; }
+.pricing-card { background: var(--navy-mid); border: 1px solid var(--navy-light); }
+.package-title { color: #fff; }
+.package-description { color: #aaa; }
+.price-amount { color: var(--red); }
+.feature-item { color: #ccc; }
+.btn-select { background: linear-gradient(135deg, var(--red), var(--red-dark)); }
+.service-card { background: var(--navy-mid); border: 1px solid var(--navy-light); }
+.service-title { color: #fff; }
+.media-card { background: var(--navy-mid); border: 1px solid var(--navy-light); }
+.media-title { color: #fff; }
+.basket-card { background: var(--navy-mid); border: 2px solid var(--navy-light); }
+.basket-title { color: #fff; }
+.total-label { color: #fff; }
+.total-amount { color: var(--red); }
+
+.services-container { background: var(--white); }
+.main-title { color: #fff; }
+.subtitle { color: #aaa; }
+.card-title { color: #fff; }
+.card-description { color: #aaa; }
+.cta-button { background: linear-gradient(135deg, var(--red), var(--red-dark)); }
