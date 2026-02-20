@@ -2,10 +2,10 @@
    CSS VARIABLES
    ============================================ */
 :root {
-    --red:        #ef4444;
-    --red-dark:   #dc2626;
-    --red-light:  #fef2f2;
-    --red-mid:    rgba(239,68,68,0.08);
+    --red:        #3d3d3d;
+    --red-dark:   #2a2a2a;
+    --red-light:  #f2f2f2;
+    --red-mid:    rgba(61,61,61,0.08);
     --navy:       #16213e;
     --navy-mid:   #2d2d44;
     --navy-light: #3d3d54;
@@ -49,9 +49,8 @@ body {
    CENTERING WRAPPER (shared by top bars)
    ============================================ */
 .nav-center-wrapper {
-    max-width: 1400px;
+    max-width: 70%;
     margin: 0 auto;
-    padding: 0 24px;
     width: 100%;
 }
 
@@ -146,7 +145,7 @@ body {
     outline: none;
     border-color: var(--red);
     background: #1e2a42;
-    box-shadow: 0 0 0 3px rgba(239,68,68,0.18);
+    box-shadow: 0 0 0 3px rgba(61,61,61,0.18);
 }
 
 .search-icon {
@@ -175,13 +174,13 @@ body {
     align-items: center;
     gap: 7px;
     white-space: nowrap;
-    box-shadow: 0 3px 10px rgba(239,68,68,0.30);
+    box-shadow: 0 3px 10px rgba(61,61,61,0.30);
 }
 .btn-create:hover,
 .btn-create-mobile:hover {
     background: var(--red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 16px rgba(239,68,68,0.40);
+    box-shadow: 0 5px 16px rgba(61,61,61,0.40);
 }
 
 .btn-browse {
@@ -197,7 +196,16 @@ body {
     margin: 5px;
     border-radius: 5px;
     z-index: 998;
+    display: flex;
+    justify-content: center;   /* centers wrapper horizontally */
+    padding: 0 10px;
 }
+
+.contact-bar .nav-center-wrapper {
+    width: 100%;
+    max-width: 1100px;  /* professional fixed container width */
+}
+
 
 /* Sticky container */
 .center-content-wrapper {
@@ -216,7 +224,7 @@ body {
     font-weight: 600;
 }
 .contact-phone i {
-    color: var(--red);
+    color: white;
     font-size: 1rem;
 }
 
@@ -281,7 +289,7 @@ body {
 .content-wrapper {
     display: flex;
     background-color: var(--grey-100);
-    max-width: 1400px;
+    max-width: 70%;
     margin: 0 auto;
     min-height: calc(100vh - 160px);
     gap: 0;
@@ -324,7 +332,7 @@ body {
     border-radius: 5px;
 }
 .sidebar-header i {
-    color: var(--red);
+    color: white;
     font-size: 0.88rem;
 }
 
@@ -351,7 +359,7 @@ body {
 .country-header.active {
     background: var(--red);
     color: #fff;
-    box-shadow: 0 2px 8px rgba(239,68,68,0.30);
+    box-shadow: 0 2px 8px rgba(61,61,61,0.30);
 }
 .country-header.active .country-count { opacity: 0.9; }
 
@@ -570,7 +578,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.6px;
-    box-shadow: 0 2px 6px rgba(239,68,68,0.25);
+    box-shadow: 0 2px 6px rgba(61,61,61,0.25);
 }
 
 .time-ago {
@@ -700,7 +708,7 @@ body {
     background: var(--red-light);
     border-color: var(--red);
     color: var(--red);
-    box-shadow: 0 2px 6px rgba(239,68,68,0.18);
+    box-shadow: 0 2px 6px rgba(61,61,61,0.18);
 }
 .reaction-btn i { font-size: 0.92rem; }
 
@@ -763,7 +771,7 @@ body {
     object-fit: cover;
     border: 2px solid var(--red);
     flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(239,68,68,0.18);
+    box-shadow: 0 2px 6px rgba(61,61,61,0.18);
 }
 
 .tribute-info { flex: 1; min-width: 0; }
@@ -813,7 +821,7 @@ body {
 .detail-page.active { display: block; }
 
 .detail-wrapper {
-    max-width: 1400px;
+    max-width: 70%;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -853,7 +861,7 @@ body {
 .download-btn {
     position: absolute;
     top: 18px; right: 18px;
-    background: rgba(239,68,68,0.18);
+    background: rgba(61,61,61,0.18);
     color: #fff;
     width: 42px; height: 42px;
     border-radius: 50%;
@@ -862,7 +870,7 @@ body {
     justify-content: center;
     cursor: pointer;
     transition: all 0.25s;
-    border: 1px solid rgba(239,68,68,0.3);
+    border: 1px solid rgba(61,61,61,0.3);
 }
 .download-btn:hover { background: var(--red); transform: scale(1.08); }
 
@@ -914,7 +922,7 @@ body {
     position: relative;
     z-index: 1;
     margin-left: 8px; margin-top: 29px;
-    box-shadow: 0 0 0 5px rgba(239,68,68,0.18);
+    box-shadow: 0 0 0 5px rgba(61,61,61,0.18);
 }
 
 .memorial-person-name {
@@ -946,12 +954,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    box-shadow: 0 3px 10px rgba(239,68,68,0.28);
+    box-shadow: 0 3px 10px rgba(61,61,61,0.28);
 }
 .memorial-action-btn:hover {
     background: var(--red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 18px rgba(239,68,68,0.42);
+    box-shadow: 0 5px 18px rgba(61,61,61,0.42);
 }
 
 /* About section */
@@ -1021,12 +1029,12 @@ body {
     align-items: center;
     gap: 7px;
     margin-bottom: 20px;
-    box-shadow: 0 3px 10px rgba(239,68,68,0.25);
+    box-shadow: 0 3px 10px rgba(61,61,61,0.25);
 }
 .write-tribute-btn:hover {
     background: var(--red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 16px rgba(239,68,68,0.38);
+    box-shadow: 0 5px 16px rgba(61,61,61,0.38);
 }
 
 .tribute-item-detail {
@@ -1203,7 +1211,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(239,68,68,0.38);
+    box-shadow: 0 4px 14px rgba(61,61,61,0.38);
     transition: all 0.25s;
     z-index: 1000;
 }
@@ -1258,7 +1266,7 @@ body {
     background: var(--red-light);
     border-color: var(--red);
     color: var(--text-dark);
-    box-shadow: 0 0 0 3px rgba(239,68,68,0.2);
+    box-shadow: 0 0 0 3px rgba(61,61,61,0.2);
 }
 .modal-body .form-control::placeholder { color: var(--grey-400); }
 
@@ -1276,7 +1284,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    box-shadow: 0 3px 10px rgba(239,68,68,0.28);
+    box-shadow: 0 3px 10px rgba(61,61,61,0.28);
 }
 .btn-modal-create:hover {
     background: var(--red-dark);
@@ -1322,11 +1330,11 @@ body {
     .nav-center-wrapper,
     .content-wrapper,
     .detail-wrapper {
-        max-width: 85%;
+        max-width: 75%;
     }
     
     .right-sidebar { display: none; }
-    .content-wrapper { max-width: 85%; }
+    .content-wrapper { max-width: 75%; }
     .home-contact-bar { display: block; }
 }
 
@@ -1334,7 +1342,7 @@ body {
     .nav-center-wrapper,
     .content-wrapper,
     .detail-wrapper {
-        max-width: 95%;
+        max-width: 88%;
     }
     
     .left-sidebar { display: none; }
@@ -1350,7 +1358,7 @@ body {
         padding: 0 14px;
     }
     
-    .nav-center-wrapper { padding: 0 14px; }
+    .nav-center-wrapper { padding: 0 2px; }
     .top-left a { margin-right: 14px; font-size: 0.78rem; }
     .logo-img { height: 38px; }
 
