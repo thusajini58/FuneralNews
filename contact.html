@@ -13,45 +13,137 @@
     
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
+    <style>
+       
+.contact-wrapper {
+    padding: 60px 0;
+}
+
+.section-heading {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+.info-card {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.info-icon {
+    font-size: 24px;
+    color: #e11d48;
+}
+
+.info-title {
+    margin: 0;
+    font-size: 18px;
+}
+
+.info-text {
+    margin: 0;
+    color: #4b5563;
+}
+
+.badge-available {
+    background: #22c55e;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.contact-form-section {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+       
+.form-label {
+    color: #000 !important;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #4b5563;
+    color: white;
+    border-radius: 6px;
+}
+
+.success-message {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 6px;
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #e11d48;
+    color: white;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+    </style>
 </head>
 <body>
    
     
     <!-- New Bootstrap Header / Navbar -->
-    <header class="border-bottom header-bg sticky-top">
-        <!-- Top Bar -->
-        <div class="top-bar sticky-top">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-center gap-2 py-1 top-nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="contact.html">Contact Us</a>
+     <header class="main-header">
+        <!-- Top Navigation Bar -->
+        <div class="top-navigation">
+            <div class="nav-center-wrapper">
+                <div class="d-flex justify-content-between align-items-center py-2">
+                    <div class="top-left">
+                        <a href="index.html" onclick="showMainPage(); return false;">Home</a>
+                        <a href="service.html">Services</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="contact.html">Contact Us</a>
+                        
+                    </div>
+                    <div class="top-right">
+                        <button class="language-btn">
+                            <i class="bi bi-globe"></i> English <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container py-3">
-            <div class="row g-3 align-items-center">
-                <!-- Logo and Brand -->
+        <div class="nav-center-wrapper">
+            <div class="row align-items-center g-3 py-3">
+                <!-- Logo -->
                 <div class="col-12 col-lg-auto">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-3">
-                            
-                            <div>
-                                <a class="serif-heading" href="index.html">
-                                    <img src="Logo.png" alt="FuneralNews Logo" class="logo-img me-2">
-                                </a>
-                                <p class="mb-0 small text-muted text-center logo-text" style="color: white !important;">
-                                    Obituaries, tributes &amp; memorials
-                                </p>
-                            </div>
-                        </div>
+                        <a class="logo-link" href="#" onclick="showMainPage(); return false;">
+                            <img src="Logo.png" alt="FuneralNews Logo" class="logo-img">
+                        </a>
                         <!-- Mobile buttons -->
                         <div class="d-flex d-lg-none gap-2">
-                            <button class="btn btn-primary-custom btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
-                                Create Memorial
+                            <button class="btn-create-mobile" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
+                                <i class="bi bi-plus-circle"></i> Create Funeral Notice
                             </button>
                         </div>
                     </div>
@@ -62,22 +154,16 @@
                     <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
                         <!-- Search -->
                         <div class="flex-grow-1 position-relative">
-                            <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <circle cx="11" cy="11" r="6"></circle>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 20L17 17"></path>
-                            </svg>
-                            <input type="search" class="form-control search-input" id="searchInput" placeholder="Search a person">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="search" class="search-input" id="searchInput" placeholder="Search a person...">
                         </div>
                         
                         <!-- Desktop Actions -->
                         <div class="d-flex gap-2 align-items-center">
-                            <button class="btn btn-primary-custom btn-sm rounded-pill d-none d-lg-inline-block" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
-                                Create Memorial
-                            </button>
-                            <button class="btn btn-outline-custom btn-sm rounded-pill d-flex align-items-center gap-2 whatsapp-btn">
-                                <i class="bi bi-whatsapp"></i>
-                                <span>Contact</span>
-                            </button>
+                            <button class="btn-browse">Browse</button>
+                            <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
+                                <i class="bi bi-plus-circle"></i> Create Funeral Notice
+                            </button>  
                         </div>
                     </div>
                 </div>
@@ -96,390 +182,152 @@
     </div> -->
     
     <!-- Main Contact Content -->
-    <div class="contact-wrapper">
-        <div class="container">
-            <div class="row g-4">
-                <!-- Contact Information Cards -->
-                <div class="col-lg-4">
-                    <div class="contact-info-section">
-                        <h2 class="section-heading">Contact Information</h2>
-                        <p class="section-description">Reach out to us through any of these channels</p>
-                        
-                        <!-- Phone Card -->
-                        <div class="info-card">
-                            <div class="info-icon">
-                                <i class="bi bi-telephone-fill"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3 class="info-title">Phone</h3>
-                                <p class="info-text">+44 20 3137 6284</p>
-                                <p class="info-text">+94 11 234 5678</p>
-                                <span class="badge-available">Available 24/7</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Email Card -->
-                        <div class="info-card">
-                            <div class="info-icon">
-                                <i class="bi bi-envelope-fill"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3 class="info-title">Email</h3>
-                                <p class="info-text">info@funeralnews.lk</p>
-                                <p class="info-text">support@funeralnews.lk</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Address Card -->
-                        <div class="info-card">
-                            <div class="info-icon">
-                                <i class="bi bi-geo-alt-fill"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3 class="info-title">Address</h3>
-                                <p class="info-text">123 Memorial Lane<br>Colombo 07, Sri Lanka</p>
-                            </div>
-                        </div>
-                        
-                        <!-- WhatsApp Card -->
-                        <div class="info-card">
-                            <div class="info-icon whatsapp-icon">
-                                <i class="bi bi-whatsapp"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3 class="info-title">WhatsApp</h3>
-                                <p class="info-text">+94 77 123 4567</p>
-                                <a href="#" class="whatsapp-link">
-                                    <i class="bi bi-whatsapp"></i> Chat with us
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Social Media -->
-                        <div class="social-media-section">
-                            <h3 class="social-title">Follow Us</h3>
-                            <div class="social-links">
-                                <a href="#" class="social-link facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="social-link twitter">
-                                    <i class="bi bi-twitter"></i>
-                                </a>
-                                <a href="#" class="social-link instagram">
-                                    <i class="bi bi-instagram"></i>
-                                </a>
-                                <a href="#" class="social-link linkedin">
-                                    <i class="bi bi-linkedin"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div class="col-lg-8">
-                    <div class="contact-form-section">
-                        <h2 class="section-heading">Send us a Message</h2>
-                        <p class="section-description">Fill out the form below and we'll get back to you as soon as possible</p>
-                        
-                        <form id="contactForm" class="contact-form">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="firstName" class="form-label">First Name *</label>
-                                    <input type="text" class="form-control" id="firstName" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="lastName" class="form-label">Last Name *</label>
-                                    <input type="text" class="form-control" id="lastName" required>
-                                </div>
-                            </div>
-                            
-                            <div class="row g-3 mt-2">
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email Address *</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone">
-                                </div>
-                            </div>
-                            
-                            <div class="mt-3">
-                                <label for="subject" class="form-label">Subject *</label>
-                                <select class="form-select" id="subject" required>
-                                    <option value="">Select a subject</option>
-                                    <option value="memorial">Create Memorial</option>
-                                    <option value="support">Technical Support</option>
-                                    <option value="billing">Billing Inquiry</option>
-                                    <option value="partnership">Partnership Opportunity</option>
-                                    <option value="feedback">Feedback</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mt-3">
-                                <label for="message" class="form-label">Message *</label>
-                                <textarea class="form-control" id="message" rows="6" required placeholder="Tell us how we can help you..."></textarea>
-                            </div>
-                            
-                            <div class="mt-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="newsletter">
-                                    <label class="form-check-label" for="newsletter">
-                                        Subscribe to our newsletter for updates and announcements
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-4">
-                                <button type="submit" class="btn-submit">
-                                    <i class="bi bi-send-fill"></i> Send Message
-                                </button>
-                            </div>
-                        </form>
-                        
-                        <!-- Success Message -->
-                        <div id="successMessage" class="success-message" style="display: none;">
-                            <i class="bi bi-check-circle-fill"></i>
-                            <p>Thank you for contacting us! We'll get back to you within 24 hours.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Map Section
-                    <div class="map-section mt-4">
-                        <h3 class="map-title">Find Us Here</h3>
-                        <div class="map-container">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.58690817477!2d79.77380469726562!3d6.921837100000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1643234567890!5m2!1sen!2slk" 
-                                width="100%" 
-                                height="400" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy">
-                            </iframe>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-            
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <h2 class="section-heading text-center mb-4">Frequently Asked Questions</h2>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="faq-item">
-                            <h4 class="faq-question">
-                                <i class="bi bi-question-circle-fill"></i>
-                                How do I create a memorial?
-                            </h4>
-                            <p class="faq-answer">
-                                Click on the "Create Memorial" button in the header, fill out the form with the required details, and submit. Your memorial will be published after review.
-                            </p>
-                        </div>
-                        <div class="faq-item">
-                            <h4 class="faq-question">
-                                <i class="bi bi-question-circle-fill"></i>
-                                Is there a cost to create a memorial?
-                            </h4>
-                            <p class="faq-answer">
-                                We offer both free and premium memorial options. Basic memorials are free, while premium features include enhanced layouts and additional media options.
-                            </p>
-                        </div>
-                        <div class="faq-item">
-                            <h4 class="faq-question">
-                                <i class="bi bi-question-circle-fill"></i>
-                                How long do memorials stay online?
-                            </h4>
-                            <p class="faq-answer">
-                                All memorials remain online permanently at no additional cost. We believe in preserving memories forever.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="faq-item">
-                            <h4 class="faq-question">
-                                <i class="bi bi-question-circle-fill"></i>
-                                Can I edit a memorial after it's published?
-                            </h4>
-                            <p class="faq-answer">
-                                Yes, you can request edits by contacting us through this form or by calling our support line. We'll assist you with any changes needed.
-                            </p>
-                        </div>
-                        <div class="faq-item">
-                            <h4 class="faq-question">
-                                <i class="bi bi-question-circle-fill"></i>
-                                How do I add tributes to a memorial?
-                            </h4>
-                            <p class="faq-answer">
-                                Simply visit the memorial page and click "View / Add" button. You can write your tribute, share memories, and add photos.
-                            </p>
-                        </div>
-                        <div class="faq-item">
-                            <h4 class="faq-question">
-                                <i class="bi bi-question-circle-fill"></i>
-                                Do you offer support in multiple languages?
-                            </h4>
-                            <p class="faq-answer">
-                                Yes, we support English, Tamil, and Sinhala. You can switch languages using the language selector on the main page.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Bottom Footer -->
-    <div class="bottom-footer">
-        <div class="footer-phone">
-            <i class="bi bi-telephone-fill"></i>
-            +94 75 022 0123
-            <span class="badge-24-7">24/7</span>
-        </div>
-        <div class="footer-links">
-            <a href="index.html" class="footer-link">
-                <i class="bi bi-house-fill"></i> Home
-            </a>
-            <a href="#" class="footer-link">
-                <i class="bi bi-award-fill"></i> Terms & Conditions
-            </a>
-            <a href="#" class="footer-link">
-                <i class="bi bi-book-fill"></i> Refund Policy
-            </a>
-        </div>
-    </div>
-    
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="bi bi-arrow-up"></i>
-    </div>
-    
-    <!-- Chat Button -->
-    <div class="chat-button">
-        <i class="bi bi-chat-dots-fill"></i>
-    </div>
-    
-    <!-- Create Memorial Modal -->
-    <div class="modal fade" id="createMemorialModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Full Name *</label>
-                        <input type="text" class="form-control" id="memorialName" placeholder="Enter full name">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Birth Date *</label>
-                            <input type="date" class="form-control" id="birthDate">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Death Date *</label>
-                            <input type="date" class="form-control" id="deathDate">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Country *</label>
-                        <select class="form-control" id="country">
-                            <option value="">Select Country</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Canada">Canada</option>
-                            <option value="China">China</option>
-                            <option value="Germany">Germany</option>
-                            <option value="France">France</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="India">India</option>
-                            <option value="Sri Lanka">Sri Lanka</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Location *</label>
-                        <input type="text" class="form-control" id="location" placeholder="City, Region">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Profile Photo</label>
-                        <input type="file" class="form-control" id="photoUpload" accept="image/*">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Brief Biography (Optional)</label>
-                        <textarea class="form-control" id="biography" rows="4" placeholder="Share memories and details about their life..."></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="createMemorial()">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Validate
-            if (!firstName || !lastName || !email || !subject || !message) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            // Show success message
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form after 3 seconds
-            setTimeout(function() {
-                document.getElementById('contactForm').reset();
-                document.getElementById('contactForm').style.display = 'block';
-                document.getElementById('successMessage').style.display = 'none';
-            }, 3000);
-        });
-        
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+   <!-- Main Contact Content -->
+<div class="contact-wrapper">
+    <div class="container">
+        <div class="row g-4">
 
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollTopBtn = document.querySelector('.scroll-top');
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.style.display = 'flex';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        });
+            <!-- Contact Information -->
+            <div class="col-lg-4">
+                <div class="contact-info-section">
 
-        // Initially hide the button
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.scroll-top').style.display = 'none';
-        });
-        
-        // Memorial creation placeholder
-        function createMemorial() {
-            alert('Memorial creation functionality would be implemented here');
-        }
-    </script>
+                    <h2 class="section-heading">Contact Information</h2>
+                    <p class="section-description">Reach out to us through any of these channels</p>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3 class="info-title">Phone</h3>
+                            <p class="info-text">+44 20 3137 6284</p>
+                            <p class="info-text">+94 11 234 5678</p>
+                            <span class="badge-available">Available 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3 class="info-title">Email</h3>
+                            <p class="info-text">info@funeralnews.lk</p>
+                            <p class="info-text">support@funeralnews.lk</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3 class="info-title">Address</h3>
+                            <p class="info-text">123 Memorial Lane<br>Colombo 07, Sri Lanka</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="contact-form-section">
+
+                    <h2 class="section-heading">Send us a Message</h2>
+                    <p class="section-description">
+                        Fill out the form below and we'll get back to you as soon as possible
+                    </p>
+
+                    <form id="contactForm" class="contact-form">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="form-label">Subject *</label>
+                            <select class="form-select" id="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="memorial">Create Memorial</option>
+                                <option value="support">Technical Support</option>
+                                <option value="billing">Billing Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="form-label">Message *</label>
+                            <textarea class="form-control" id="message" rows="6" required></textarea>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn-submit">
+                                <i class="bi bi-send-fill"></i> Send Message
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div id="successMessage" class="success-message">
+                        Thank you for contacting us! We'll get back to you within 24 hours.
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="scroll-top" onclick="scrollToTop()">
+    <i class="bi bi-arrow-up"></i>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    document.getElementById('successMessage').style.display = 'block';
+
+    setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+        this.reset();
+    }, 3000);
+
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
 </body>
 </html>

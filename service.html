@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About FUNERAL.LK - Memorial Platform</title>
+    <title>Service FUNERAL.LK - Memorial Platform</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="fav.ico" type="image/x-icon">
     
@@ -16,43 +16,381 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <style> 
+      /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Floating Background Shapes */
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 20s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: white;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    background: white;
+    bottom: 15%;
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    background: white;
+    top: 60%;
+    left: 80%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+/* Services Container */
+.services-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Section */
+.header-section {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease;
+}
+
+.decorative-line {
+    width: 100px;
+    height: 5px;
+    margin: 0 auto 30px;
+    border-radius: 10px;
+    animation: expand 2s ease infinite;
+}
+
+@keyframes expand {
+    0%, 100% {
+        width: 100px;
+    }
+    50% {
+        width: 150px;
+    }
+}
+
+.main-title {
+    color: #39548a;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    color: #425a8b;
+    font-size: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Service Cards */
+.service-card {
+    background: #eaecee;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(70deg, #ffffff, black);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Card Icons with unique colors */
+.card-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    transition: all 0.4s ease;
+}
+
+.card-1 .card-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.card-2 .card-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.card-3 .card-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.card-4 .card-icon {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+}
+
+.card-5 .card-icon {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+}
+
+.service-card:hover .card-icon {
+    transform: rotateY(360deg);
+}
+
+/* Card Content */
+.card-content {
+    margin-bottom: 25px;
+}
+
+.card-title {
+    color: #39548a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.card-description {
+    color: #2a2a2a;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+
+
+
+
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation Delays for Cards */
+.card-1 { animation-delay: 0.1s; }
+.card-2 { animation-delay: 0.2s; }
+.card-3 { animation-delay: 0.3s; }
+.card-4 { animation-delay: 0.4s; }
+.card-5 { animation-delay: 0.5s; }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 40px 20px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 30px;
+    }
+    
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+    
+    .card-title {
+        font-size: 1.3rem;
+    }
+    
+    .card-description {
+        font-size: 0.95rem;
+    }
+    
+    .cta-button {
+        padding: 18px 40px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.75rem;
+    }
+    
+    .subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .service-card {
+        padding: 25px;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-description {
+        font-size: 0.9rem;
+    }
+    
+    .learn-more-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+    
+    .cta-button {
+        padding: 16px 35px;
+        font-size: 1rem;
+    }
+}
+    </style>
 </head>
 <body>
 
     <!-- New Bootstrap Header / Navbar -->
-    <header class="border-bottom header-bg sticky-top">
-        <!-- Top Bar -->
-        <div class="top-bar sticky-top">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-center gap-2 py-1 top-nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="contact.html">Contact Us</a>
+     <header class="main-header">
+        <!-- Top Navigation Bar -->
+        <div class="top-navigation">
+            <div class="nav-center-wrapper">
+                <div class="d-flex justify-content-between align-items-center py-2">
+                    <div class="top-left">
+                        <a href="index.html" onclick="showMainPage(); return false;">Home</a>
+                        <a href="service.html">Services</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="contact.html">Contact Us</a>
+                        
+                    </div>
+                    <div class="top-right">
+                        <button class="language-btn">
+                            <i class="bi bi-globe"></i> English <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container py-3">
-            <div class="row g-3 align-items-center">
-                <!-- Logo and Brand -->
+        <div class="nav-center-wrapper">
+            <div class="row align-items-center g-3 py-3">
+                <!-- Logo -->
                 <div class="col-12 col-lg-auto">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-3">
-                            
-                            <div>
-                                <a class="serif-heading" href="index.html">
-                                    <img src="Logo.png" alt="FuneralNews Logo" class="logo-img me-2">
-                                </a>
-                                <p class="mb-0 small text-muted text-center logo-text" style="color: white !important;">
-                                    Obituaries, tributes &amp; memorials
-                                </p>
-                            </div>
-                        </div>
+                        <a class="logo-link" href="#" onclick="showMainPage(); return false;">
+                            <img src="Logo.png" alt="FuneralNews Logo" class="logo-img">
+                        </a>
                         <!-- Mobile buttons -->
                         <div class="d-flex d-lg-none gap-2">
-                            <button class="btn btn-primary-custom btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
-                                Create Memorial
+                            <button class="btn-create-mobile" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
+                                <i class="bi bi-plus-circle"></i> Create Funeral Notice
                             </button>
                         </div>
                     </div>
@@ -63,22 +401,16 @@
                     <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
                         <!-- Search -->
                         <div class="flex-grow-1 position-relative">
-                            <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <circle cx="11" cy="11" r="6"></circle>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 20L17 17"></path>
-                            </svg>
-                            <input type="search" class="form-control search-input" id="searchInput" placeholder="Search a person">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="search" class="search-input" id="searchInput" placeholder="Search a person...">
                         </div>
                         
                         <!-- Desktop Actions -->
                         <div class="d-flex gap-2 align-items-center">
-                            <button class="btn btn-primary-custom btn-sm rounded-pill d-none d-lg-inline-block" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
-                                Create Memorial
-                            </button>
-                            <button class="btn btn-outline-custom btn-sm rounded-pill d-flex align-items-center gap-2 whatsapp-btn">
-                                <i class="bi bi-whatsapp"></i>
-                                <span>Contact</span>
-                            </button>
+                            <button class="btn-browse">Browse</button>
+                            <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
+                                <i class="bi bi-plus-circle"></i> Create Funeral Notice
+                            </button>  
                         </div>
                     </div>
                 </div>
@@ -165,26 +497,7 @@
         <div class="shape shape-3"></div>
     </div>
 
-    <!-- Bottom Footer -->
-    <div class="bottom-footer">
-        <div class="footer-phone">
-            <i class="bi bi-telephone-fill"></i>
-            +94 75 022 0123
-            <span class="badge-24-7">24/7</span>
-        </div>
-        <div class="footer-links">
-            <a href="index.html" class="footer-link">
-                <i class="bi bi-house-fill"></i> Home
-            </a>
-            <a href="#" class="footer-link">
-                <i class="bi bi-award-fill"></i> Terms & Conditions
-            </a>
-            <a href="#" class="footer-link">
-                <i class="bi bi-book-fill"></i> Refund Policy
-            </a>
-        </div>
-    </div>
-
+    
     <!-- Scroll to Top Button -->
     <div class="scroll-top" onclick="scrollToTop()">
         <i class="bi bi-arrow-up"></i>
@@ -257,6 +570,11 @@
         </div>
     </div>
     
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     

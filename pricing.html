@@ -17,39 +17,38 @@
 </head>
 <body>
     <!-- New Bootstrap Header / Navbar -->
-    <header class="border-bottom header-bg sticky-top">
-        <!-- Top Bar -->
-        <div class="top-bar sticky-top">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-center gap-2 py-1 top-nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
-                    <a href="pricing.html">Pricing</a>
-                    <a href="contact.html">Contact Us</a>
+     <header class="main-header">
+        <!-- Top Navigation Bar -->
+        <div class="top-navigation">
+            <div class="nav-center-wrapper">
+                <div class="d-flex justify-content-between align-items-center py-2">
+                    <div class="top-left">
+                        <a href="index.html" onclick="showMainPage(); return false;">Home</a>
+                        <a href="service.html">Services</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="contact.html">Contact Us</a>
+                        
+                    </div>
+                    <div class="top-right">
+                        <button class="language-btn">
+                            <i class="bi bi-globe"></i> English <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container py-3">
-            <div class="row g-3 align-items-center">
-                <!-- Logo and Brand -->
+        <div class="nav-center-wrapper">
+            <div class="row align-items-center g-3 py-3">
+                <!-- Logo -->
                 <div class="col-12 col-lg-auto">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-3">
-                            
-                            <div>
-                                <a class="serif-heading" href="index.html">
-                                    <img src="Logo.png" alt="FuneralNews Logo" class="logo-img me-2">
-                                </a>
-                                <p class="mb-0 small text-muted text-center logo-text" style="color: white !important;">
-                                    Obituaries, tributes &amp; memorials
-                                </p>
-                            </div>
-                        </div>
+                        <a class="logo-link" href="#" onclick="showMainPage(); return false;">
+                            <img src="Logo.png" alt="FuneralNews Logo" class="logo-img">
+                        </a>
                         <!-- Mobile buttons -->
                         <div class="d-flex d-lg-none gap-2">
-                            <button class="btn btn-primary-custom btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
-                                Create Memorial
+                            <button class="btn-create-mobile" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
+                                <i class="bi bi-plus-circle"></i> Create Funeral Notice
                             </button>
                         </div>
                     </div>
@@ -60,22 +59,16 @@
                     <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
                         <!-- Search -->
                         <div class="flex-grow-1 position-relative">
-                            <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <circle cx="11" cy="11" r="6"></circle>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 20L17 17"></path>
-                            </svg>
-                            <input type="search" class="form-control search-input" id="searchInput" placeholder="Search a person">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="search" class="search-input" id="searchInput" placeholder="Search a person...">
                         </div>
                         
                         <!-- Desktop Actions -->
                         <div class="d-flex gap-2 align-items-center">
-                            <button class="btn btn-primary-custom btn-sm rounded-pill d-none d-lg-inline-block" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
-                                Create Memorial
-                            </button>
-                            <button class="btn btn-outline-custom btn-sm rounded-pill d-flex align-items-center gap-2 whatsapp-btn">
-                                <i class="bi bi-whatsapp"></i>
-                                <span>Contact</span>
-                            </button>
+                            <button class="btn-browse">Browse</button>
+                            <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
+                                <i class="bi bi-plus-circle"></i> Create Funeral Notice
+                            </button>  
                         </div>
                     </div>
                 </div>
