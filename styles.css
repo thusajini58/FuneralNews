@@ -1396,17 +1396,19 @@ body {
 }
 
 @media (max-width: 480px) {
-    .top-left a { margin-right: 9px; font-size: 0.73rem; }
-    .logo-img { height: 33px; }
-    .btn-create-mobile { font-size: 0.78rem; padding: 7px 13px; }
+    .top-left a { margin-right: 9px; font-size: 0.73rem; margin-left: 5px; }
+    .top-navigation button { padding: 6px 10px; font-size: 0.72rem; margin-right: 5px; };
+    .logo-img { height: 40px; width:300px; margin-left: 5px;}
+    .btn-create-mobile { font-size: 0.78rem; padding: 7px 13px; margin-right: 5px; }
     .search-input { font-size: 0.82rem; padding: 8px 34px 8px 14px; }
     .badge-24-7 { font-size: 0.68rem; padding: 2px 7px; }
+    .center-content-wrapper{ top: 195px;}
 
     .obituary-card { padding: 12px 8px; }
     .profile-image-container { width: 95px; height: 95px; }
     .profile-ring { width: 95px; height: 95px; }
     .frame-overlay { width: 109px; height: 109px; }
-    .profile-image { width: 70px; height: 80px; }
+    .profile-image { width: 80px; height: 100px; }
     .year { font-size: 0.85rem; }
     .memorial-name { font-size: 0.92rem; }
     .memorial-details { font-size: 0.76rem; }
