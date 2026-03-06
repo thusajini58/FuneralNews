@@ -197,13 +197,13 @@ body {
     border-radius: 5px;
     z-index: 998;
     display: flex;
-    justify-content: center;   /* centers wrapper horizontally */
+    justify-content: center;
     padding: 0 10px;
 }
 
 .contact-bar .nav-center-wrapper {
     width: 100%;
-    max-width: 1200px;  /* professional fixed container width */
+    max-width: 1200px;
 }
 
 
@@ -244,14 +244,6 @@ body {
     align-items: center;
     gap: 18px;
 }
-/*.contact-hours-text {
-    font-size: 0.78rem;
-    color: #8a9ab5;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.contact-hours-text i { color: var(--red); font-size: 0.82rem; }*/
 
 .btn-chat {
     background: var(--green);
@@ -1311,7 +1303,7 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE  ←  overflow fixes live here only
    ============================================ */
 @media (max-width: 1400px) {
     .nav-center-wrapper,
@@ -1332,9 +1324,14 @@ body {
     .detail-wrapper {
         max-width: 75%;
     }
-    
+
+    .center-content-wrapper{ top: 0;}
+    .left-sidebar{top: 0;}
+
+    html, body { overflow-x: hidden; }
+    .content-wrapper { overflow: hidden; }
+
     .right-sidebar { display: none; }
-    .content-wrapper { max-width: 75%; }
     .home-contact-bar { display: block; }
 }
 
@@ -1344,21 +1341,65 @@ body {
     .detail-wrapper {
         max-width: 88%;
     }
-    
+    .center-content-wrapper{ top: 100px;}
+    .content-wrapper { overflow: hidden; }
+    .center-content { min-width: 0; }
     .left-sidebar { display: none; }
-    .center-content { max-width: 100%; }
     .home-contact-bar { display: block; }
 }
 
 @media (max-width: 768px) {
+    html, body { overflow-x: hidden; }
+
     .nav-center-wrapper,
     .content-wrapper,
     .detail-wrapper {
         max-width: 100%;
         padding: 0 14px;
+        overflow: hidden;
+        min-width: 0;
     }
-    
+
     .nav-center-wrapper { padding: 0 2px; }
+    .center-content-wrapper{ top: 100px;}
+
+    /* Prevent flex children blowing out their containers */
+    .center-content,
+    .detail-main-content,
+    .tribute-info,
+    .summary-info,
+    .tribute-author-detail { min-width: 0; }
+
+    /* Long text wraps instead of pushing layout */
+    .memorial-name,
+    .memorial-details,
+    .about-text,
+    .tribute-message-detail,
+    .tribute-author-name,
+    .summary-value {
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Breadcrumb scrolls horizontally (hidden scrollbar) */
+    .section-header-main {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+    }
+    .section-header-main::-webkit-scrollbar { display: none; }
+
+    /* Contact bar */
+    .contact-bar { overflow: hidden; }
+    .contact-phone { flex-wrap: wrap; }
+
+    /* Modal stays on screen */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+
     .top-left a { margin-right: 14px; font-size: 0.78rem; }
     .logo-img { height: 38px; }
 
@@ -1402,7 +1443,18 @@ body {
     .btn-create-mobile { font-size: 0.78rem; padding: 7px 13px; margin-right: 5px; }
     .search-input { font-size: 0.82rem; padding: 8px 34px 8px 14px; }
     .badge-24-7 { font-size: 0.68rem; padding: 2px 7px; }
-    .center-content-wrapper{ top: 195px;}
+    .center-content-wrapper{ top: 100px;}
+
+    /* Top nav links scroll on tiny screens */
+    .top-left {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+    }
+    .top-left::-webkit-scrollbar { display: none; }
+
+    .main-header { overflow: hidden; }
+    .contact-phone span { font-size: 0.8rem; }
 
     .obituary-card { padding: 12px 8px; }
     .profile-image-container { width: 95px; height: 95px; }
