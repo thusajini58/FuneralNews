@@ -211,7 +211,9 @@ body {
 .center-content-wrapper {
     position: sticky;
     top: 160px; /* height of your main header */
-    z-index: 999; /* must be higher than content below */
+    z-index: 998; /* must be higher than content below */
+    background-color: var(--white);
+    box-shadow: 0 -10px 0 10px var(--white);
 }
 
 
