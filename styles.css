@@ -1305,6 +1305,286 @@ body {
 }
 
 /* ============================================
+   REACTION BUTTONS — CARD (append to styles.css)
+   ============================================ */
+
+/* Reaction group container */
+.reaction-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* Individual reaction pill */
+.reaction-btn {
+    background: var(--grey-100);
+    border: 1.5px solid var(--grey-200);
+    color: var(--grey-500);
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(.4,0,.2,1);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.reaction-btn:hover {
+    background: color-mix(in srgb, var(--reaction-color, #f59e0b) 12%, white);
+    border-color: var(--reaction-color, #f59e0b);
+    color: var(--reaction-color, #f59e0b);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--reaction-color, #f59e0b) 30%, transparent);
+}
+
+/* Active (selected) state */
+.reaction-btn.reaction-active {
+    background: color-mix(in srgb, var(--reaction-color, #d97706) 15%, white);
+    border-color: var(--reaction-color, #d97706);
+    border-width: 2px;
+    color: var(--reaction-color, #d97706);
+    font-weight: 700;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--reaction-color, #d97706) 30%, transparent);
+}
+
+.reaction-btn.reaction-active .reaction-emoji {
+    animation: reactionPop 0.35s cubic-bezier(.175,.885,.32,1.275);
+}
+
+.reaction-emoji {
+    font-size: 1rem;
+    line-height: 1;
+    display: inline-block;
+}
+
+.reaction-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.reaction-count {
+    background: var(--reaction-color, #d97706);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1.4;
+    margin-left: 2px;
+}
+
+/* Pop animation when activated */
+@keyframes reactionPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.6) rotate(-8deg); }
+    70%  { transform: scale(0.9) rotate(4deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+/* ============================================
+   FLOATING BURST PARTICLES
+   ============================================ */
+.reaction-burst {
+    position: absolute;
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 9999;
+    animation: burstFly 0.8s ease-out forwards;
+    transform-origin: center center;
+}
+
+@keyframes burstFly {
+    0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+    80%  { opacity: 0.7; }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.5); }
+}
+
+/* ============================================
+   DETAIL PAGE REACTION PANEL
+   ============================================ */
+.detail-reactions-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 24px 30px;
+    margin-top: 20px;
+    border: 1px solid var(--grey-200);
+    box-shadow: var(--shadow-sm);
+}
+
+.detail-reactions-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.detail-reactions-title i { color: var(--red); }
+
+.detail-reaction-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* Large reaction button for detail page */
+.detail-reaction-btn {
+    background: var(--grey-50);
+    border: 2px solid var(--grey-200);
+    border-radius: 14px;
+    padding: 16px 24px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 100px;
+    transition: all 0.25s cubic-bezier(.4,0,.2,1);
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-reaction-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--reaction-color, #f59e0b) 8%, transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.detail-reaction-btn:hover::before { opacity: 1; }
+
+.detail-reaction-btn:hover {
+    border-color: var(--reaction-color, #f59e0b);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--reaction-color, #f59e0b) 25%, transparent);
+}
+
+.detail-reaction-btn.reaction-active {
+    background: color-mix(in srgb, var(--reaction-color, #d97706) 12%, white);
+    border-color: var(--reaction-color, #d97706);
+    border-width: 2.5px;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--reaction-color, #d97706) 35%, transparent);
+}
+
+.detail-reaction-btn.reaction-active .detail-reaction-emoji {
+    animation: reactionPop 0.4s cubic-bezier(.175,.885,.32,1.275);
+}
+
+.detail-reaction-emoji {
+    font-size: 2rem;
+    line-height: 1;
+    display: block;
+}
+
+.detail-reaction-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--grey-600, #4b5563);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.detail-reaction-btn.reaction-active .detail-reaction-label {
+    color: var(--reaction-color, #d97706);
+}
+
+.detail-reaction-count {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1;
+}
+.detail-reaction-btn.reaction-active .detail-reaction-count {
+    color: var(--reaction-color, #d97706);
+}
+
+/* FOOTER — append to styles.css */
+.site-footer {
+    background: var(--navy);
+    border-top: 2px solid var(--red);
+    padding: 18px 0;
+}
+
+.footer-inner {
+    max-width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    height: 36px;
+    width: auto;
+    opacity: 0.85;
+}
+
+.footer-center {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.footer-center a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.footer-center a:hover { color: #fff; }
+
+.footer-right {
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.3);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        max-width: 100%;
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+    }
+    .footer-center { gap: 16px; justify-content: center; }
+}
+
+/* Responsive detail reactions */
+@media (max-width: 768px) {
+    .detail-reaction-group { gap: 10px; }
+    .detail-reaction-btn { min-width: 80px; padding: 12px 16px; }
+    .detail-reaction-emoji { font-size: 1.6rem; }
+    .detail-reaction-count { font-size: 0.95rem; }
+    
+    .reaction-btn { padding: 4px 9px; font-size: 0.76rem; }
+    .reaction-emoji { font-size: 0.9rem; }
+    .reaction-label { font-size: 0.68rem; }
+}
+
+@media (max-width: 480px) {
+    .detail-reaction-btn { min-width: 70px; padding: 10px 12px; }
+    .detail-reaction-emoji { font-size: 1.4rem; }
+}
+
+/* ============================================
    RESPONSIVE  ←  overflow fixes live here only
    ============================================ */
 @media (max-width: 1400px) {
