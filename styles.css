@@ -117,6 +117,7 @@ body {
     z-index: 999;
     box-shadow: var(--shadow-md);
     overflow: hidden;
+    
 }
 .main-header .nav-center-wrapper > .row {
     padding-top: 6px !important;
@@ -201,7 +202,7 @@ body {
 /* Contact bar + breadcrumb wrapper — sticks just below main header */
 .center-content-wrapper {
     position: sticky;
-    top: var(--header-h);   /* 56px — sits flush under main header */
+    top: 95px;   /* 56px — sits flush under main header */
     z-index: 998;
     background-color: var(--white);
     box-shadow: 0 -10px 0 10px var(--white);
