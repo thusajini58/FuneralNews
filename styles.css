@@ -33,9 +33,9 @@
        Main header (~56px) + contact bar inside center (~40px) = ~96px
        Sidebars start right below the main header only → 56px
        Breadcrumb (.section-header-main) stacks below center-content-wrapper → handled inline */
-    --header-h: 56px;        /* main sticky header */
-    --contact-h: 40px;       /* contact bar inside .center-content-wrapper */
-    --bar-total: 96px;       /* header + contact bar (used for breadcrumb top) */
+    --header-h: 95px;        /* main sticky header */
+    --contact-h: 45px;       /* contact bar inside .center-content-wrapper */
+    --bar-total: 140px;       /* header + contact bar (used for breadcrumb top) */
 }
 
 /* ============================================
@@ -186,7 +186,7 @@ body {
 .contact-bar {
     background-color: var(--navy-mid);
     border-bottom: 1px solid var(--navy-light);
-    margin: 5px;
+    margin: 7px;
     border-radius: 5px;
     z-index: 998;
     display: flex;
