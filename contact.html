@@ -3,135 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - FUNERALnews.lk</title>
+    <title>Contact Us — FUNERALnews.lk</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="contact-styles.css">
     <link rel="icon" href="fav.ico" type="image/x-icon">
-    
-    <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+
     <style>
-       
-.contact-wrapper {
-    padding: 60px 0;
-}
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.section-heading {
-    font-weight: 600;
-    margin-bottom: 10px;
-    color:#16213e;
-}
+        :root {
+            --black:     #0a0a0a;
+            --black-80:  rgba(10,10,10,0.8);
+            --black-50:  rgba(10,10,10,0.5);
+            --black-20:  rgba(10,10,10,0.2);
+            --black-08:  rgba(10,10,10,0.06);
+            --white:     #ffffff;
+            --off-white: #f8f8f6;
+            --grey-50:   #fafafa;
+            --grey-100:  #f0f0ee;
+            --grey-200:  #e0e0de;
+            --grey-400:  #9a9a98;
+            --green:     #1a6b40;
+        }
 
-.section-description {
-    color: #6b7280;
-    margin-bottom: 25px;
-}
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--off-white);
+            color: var(--black);
+            -webkit-font-smoothing: antialiased;
+        }
 
-.info-card {
-    display: flex;
-    gap: 15px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
+        /* ── Page wrapper ── */
+        .contact-page {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 60px 32px 120px;
+            margin-top: 25px;
+        }
 
-.info-icon {
-    font-size: 24px;
-    color: #e11d48;
-}
+        /* ── Hero ── */
+        .c-hero {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            align-items: end;
+            gap: 32px;
+            padding-bottom: 48px;
+            margin-bottom: 56px;
+            border-bottom: 1px solid var(--grey-200);
+            animation: fadeUp 0.5s ease both;
+        }
 
-.info-title {
-    margin: 0;
-    font-size: 18px;
-}
+        .c-hero-eyebrow {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.info-text {
-    margin: 0;
-    color: #4b5563;
-}
+        .c-hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 1.5px;
+            background: var(--black);
+        }
 
-.badge-available {
-    background:  #16213e;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 12px;
-}
+        .c-hero h1 {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: clamp(2.6rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
 
-.contact-info-section {
-    margin-bottom: 30px;
-    background-color: #d1d5db;
-    border-left: 4px solid #16213e;
-}
+        .c-hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+        }
 
-.contact-form-section {
-    background: #d1d5db;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(221, 213, 213, 0.08);
-    border-left: 4px solid #16213e;
-}
-       
-.form-label {
-    color: #000 !important;
-}
+        .c-hero-note {
+            font-size: 0.84rem;
+            color: var(--black-50);
+            line-height: 1.7;
+            text-align: right;
+        }
 
-.form-control {
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    background-color: white !important;
-}
+        /* ── Main layout ── */
+        .c-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 48px;
+            align-items: start;
+            animation: fadeUp 0.5s 0.1s ease both;
+        }
 
-.btn-submit {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    background: #16213e;
-    color: white;
-    border-radius: 6px;
-}
+        @media (max-width: 991px) {
+            .c-layout { grid-template-columns: 1fr; }
+            .c-hero    { grid-template-columns: 1fr; }
+            .c-hero-note { display: none; }
+        }
 
-.success-message {
-    display: none;
-    margin-top: 15px;
-    padding: 12px;
-    background: #dcfce7;
-    color: #166534;
-    border-radius: 6px;
-}
+        /* ── Section label ── */
+        .s-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.scroll-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    color: white;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-}
+        .s-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--grey-200);
+        }
 
+        /* ── Info sidebar ── */
+        .info-sidebar {
+            position: sticky;
+            top: 160px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 12px;
+            padding: 20px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: all 0.18s;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+        }
+
+        .info-card:hover {
+            border-color: var(--black-20);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .info-icon-wrap {
+            width: 42px;
+            height: 42px;
+            background: var(--black);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .info-card-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--black-50);
+            margin-bottom: 6px;
+        }
+
+        .info-card-line {
+            font-size: 0.88rem;
+            color: var(--black);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .info-card-badge {
+            display: inline-block;
+            margin-top: 7px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 20px;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* ── Contact Form ── */
+        .form-card {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .form-card-top {
+            background: var(--black);
+            padding: 28px 32px 24px;
+        }
+
+        .form-card-title {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .form-card-sub {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .form-card-body {
+            padding: 32px;
+        }
+
+        .f-label {
+            display: block;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 7px;
+        }
+
+        .f-input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--grey-200);
+            border-radius: 8px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.9rem;
+            color: var(--black);
+            background: var(--off-white);
+            transition: all 0.18s;
+            outline: none;
+        }
+
+        .f-input:focus {
+            border-color: var(--black);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(10,10,10,0.07);
+        }
+
+        textarea.f-input { resize: vertical; min-height: 140px; }
+
+        .f-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .f-group { margin-bottom: 16px; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 13px;
+            border-radius: 8px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #222;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 16px;
+            padding: 14px 18px;
+            background: rgba(26,107,64,0.08);
+            color: var(--green);
+            border: 1px solid rgba(26,107,64,0.2);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* ── Fixed buttons ── */
+        .scroll-top {
+            position: fixed; bottom: 28px; right: 28px;
+            background: var(--black); color: var(--white);
+            width: 42px; height: 42px; border-radius: 50%;
+            display: none; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.2s; z-index: 1000; font-size: 1rem;
+        }
+
+        .scroll-top:hover { transform: translateY(-3px); }
+
+        .chat-button {
+            position: fixed; bottom: 28px; right: 82px;
+            background: #25d366; color: #fff;
+            width: 46px; height: 46px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+            font-size: 1.2rem; z-index: 1000; transition: all 0.2s;
+        }
+
+        .chat-button:hover { background: #20bd5a; transform: scale(1.08); }
+
+        /* ── Animation ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .contact-page { padding: 28px 16px 80px; }
+            .f-row { grid-template-columns: 1fr; }
+            .form-card-body { padding: 20px; }
+        }
     </style>
 </head>
 <body>
-   
-    
-    <!-- Main Header -->
+
+    <!-- ── Header ── -->
     <header class="main-header">
-        <!-- Top Navigation Bar -->
         <div class="top-navigation">
             <div class="nav-center-wrapper">
                 <div class="d-flex justify-content-between align-items-center py-2">
                     <div class="top-left">
-                        <a href="index.html" onclick="showMainPage(); return false;">Home</a>
+                        <a href="index.html">Home</a>
                         <a href="service.html">Service</a>
                         <a href="pricing.html">Pricing</a>
                         <a href="contact.html">Contact Us</a>
@@ -146,13 +370,11 @@
         </div>
         <div class="nav-center-wrapper">
             <div class="row align-items-center g-3 py-3">
-                <!-- Logo -->
                 <div class="col-12 col-lg-auto">
                     <div class="d-flex align-items-center justify-content-between">
-                        <a class="logo-link" href="#" onclick="showMainPage(); return false;">
+                        <a class="logo-link" href="index.html">
                             <img src="Logo.png" alt="FuneralNews Logo" class="logo-img">
                         </a>
-                        <!-- Mobile buttons -->
                         <div class="d-flex d-lg-none gap-2">
                             <button class="btn-create-mobile" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
@@ -160,251 +382,204 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Search and Actions -->
                 <div class="col-12 col-lg">
                     <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
-                        <!-- Search -->
                         <div class="flex-grow-1 position-relative">
                             <i class="bi bi-search search-icon"></i>
-                            <input type="search" class="search-input" id="searchInput" placeholder="Search a person...">
+                            <input type="search" class="search-input" placeholder="Search a person...">
                         </div>
-                        
-                        <!-- Desktop Actions -->
                         <div class="d-flex gap-2 align-items-center">
                             <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
-                            </button>  
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    
-    <!-- Page Header
-    <div class="contact-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Get in Touch</h1>
-                <p class="hero-subtitle">We're here to help you 24/7. Reach out to us anytime.</p>
+
+    <!-- ── Page ── -->
+    <main class="contact-page">
+
+        <!-- Hero -->
+        <div class="c-hero">
+            <div>
+                <div class="c-hero-eyebrow">Get in Touch</div>
+                <h1>We're here to<br><em>help you</em></h1>
+            </div>
+            <div class="c-hero-note">
+                We're available 24/7. Reach out to us through any of the channels below.
             </div>
         </div>
-    </div> -->
-    
-    <!-- Main Contact Content -->
-   <!-- Main Contact Content -->
-<div class="contact-wrapper">
-    <div class="container">
-        <div class="row g-4">
 
-            <!-- Contact Information -->
-            <div class="col-lg-4">
-                <div class="contact-info-section">
+        <!-- Layout -->
+        <div class="c-layout">
 
-                    <h2 class="section-heading">Contact Information</h2>
-                    <p class="section-description">Reach out to us through any of these channels</p>
+            <!-- LEFT — Info cards -->
+            <div class="info-sidebar">
 
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="bi bi-telephone-fill"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3 class="info-title">Phone</h3>
-                            <p class="info-text">+44 20 3137 6284</p>
-                            <p class="info-text">+94 11 234 5678</p>
-                            <span class="badge-available">Available 24/7</span>
-                        </div>
-                    </div>
+                <div class="s-label">Contact Information</div>
 
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="bi bi-envelope-fill"></i>
-                        </div>
-                        <div class="info-content">
-                            <h3 class="info-title">Email</h3>
-                            <p class="info-text">info@funeralnews.lk</p>
-                            <p class="info-text">support@funeralnews.lk</p>
-                        </div>
+                <div class="info-card">
+                    <div class="info-icon-wrap"><i class="bi bi-telephone-fill"></i></div>
+                    <div>
+                        <div class="info-card-title">Phone</div>
+                        <div class="info-card-line">+44 20 3137 6284</div>
+                        <div class="info-card-line">+94 11 234 5678</div>
+                        <span class="info-card-badge">Available 24/7</span>
                     </div>
                 </div>
+
+                <div class="info-card">
+                    <div class="info-icon-wrap"><i class="bi bi-envelope-fill"></i></div>
+                    <div>
+                        <div class="info-card-title">Email</div>
+                        <div class="info-card-line">info@funeralnews.lk</div>
+                        <div class="info-card-line">support@funeralnews.lk</div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon-wrap"><i class="bi bi-whatsapp"></i></div>
+                    <div>
+                        <div class="info-card-title">WhatsApp</div>
+                        <div class="info-card-line">Our team will contact you via WhatsApp after submission.</div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Contact Form -->
-            <div class="col-lg-8">
-                <div class="contact-form-section">
+            <!-- RIGHT — Form -->
+            <div>
+                <div class="form-card">
+                    <div class="form-card-top">
+                        <div class="form-card-title">Send us a Message</div>
+                        <div class="form-card-sub">We'll get back to you within 24 hours</div>
+                    </div>
 
-                    <h2 class="section-heading">Send us a Message</h2>
-                    <p class="section-description">
-                        Fill out the form below and we'll get back to you as soon as possible
-                    </p>
+                    <div class="form-card-body">
+                        <form id="contactForm">
 
-                    <form id="contactForm" class="contact-form">
-
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">First Name </label>
-                                <input type="text" class="form-control" id="firstName" required>
+                            <div class="f-row">
+                                <div>
+                                    <label class="f-label">First Name</label>
+                                    <input type="text" class="f-input" id="firstName" required placeholder="John">
+                                </div>
+                                <div>
+                                    <label class="f-label">Last Name</label>
+                                    <input type="text" class="f-input" id="lastName" required placeholder="Smith">
+                                </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label">Last Name </label>
-                                <input type="text" class="form-control" id="lastName" required>
+                            <div class="f-row">
+                                <div>
+                                    <label class="f-label">Email Address</label>
+                                    <input type="email" class="f-input" id="email" required placeholder="you@email.com">
+                                </div>
+                                <div>
+                                    <label class="f-label">Phone Number</label>
+                                    <input type="tel" class="f-input" id="phone" placeholder="+94 77 000 0000">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row g-3 mt-2">
-                            <div class="col-md-6">
-                                <label class="form-label">Email Address </label>
-                                <input type="email" class="form-control" id="email" required>
+                            <div class="f-group">
+                                <label class="f-label">Message</label>
+                                <textarea class="f-input" id="message" required placeholder="How can we help you?"></textarea>
                             </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone">
-                            </div>
-                        </div>
-
-                        
-
-                        <div class="mt-3">
-                            <label class="form-label">Message </label>
-                            <textarea class="form-control" id="message" rows="6" required></textarea>
-                        </div>
-
-                        <div class="mt-4">
                             <button type="submit" class="btn-submit">
                                 <i class="bi bi-send-fill"></i> Send Message
                             </button>
+
+                        </form>
+
+                        <div id="successMessage" class="success-message">
+                            ✓ Thank you! We'll get back to you within 24 hours.
                         </div>
-
-                    </form>
-
-                    <div id="successMessage" class="success-message">
-                        Thank you for contacting us! We'll get back to you within 24 hours.
                     </div>
-
                 </div>
             </div>
 
         </div>
-    </div>
-</div>
 
-<!-- Create Memorial Modal -->
+    </main>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" onclick="scrollToTop()"><i class="bi bi-arrow-up"></i></div>
+
+    <!-- Chat -->
+    <div class="chat-button"><i class="bi bi-chat-dots-fill"></i></div>
+
+    <!-- Modal -->
     <div class="modal fade" id="createMemorialModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </h5>
+                    <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Create Memorial</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Full Name *</label>
-                        <input type="text" class="form-control" id="memorialName" placeholder="Enter full name">
-                    </div>
+                    <div class="mb-3"><label class="form-label">Full Name *</label><input type="text" class="form-control" placeholder="Enter full name"></div>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Birth Date *</label>
-                            <input type="date" class="form-control" id="birthDate">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Death Date *</label>
-                            <input type="date" class="form-control" id="deathDate">
-                        </div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Birth Date *</label><input type="date" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Death Date *</label><input type="date" class="form-control"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Country *</label>
-                        <select class="form-control" id="country">
-                            <option value="">Select Country</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Canada">Canada</option>
-                            <option value="China">China</option>
-                            <option value="Germany">Germany</option>
-                            <option value="France">France</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="India">India</option>
-                            <option value="Sri Lanka">Sri Lanka</option>
+                        <select class="form-control">
+                            <option>Select Country</option>
+                            <option>Australia</option><option>Canada</option><option>India</option>
+                            <option>Sri Lanka</option><option>United Kingdom</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Location *</label>
-                        <input type="text" class="form-control" id="location" placeholder="City, Region">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Profile Photo</label>
-                        <input type="file" class="form-control" id="photoUpload" accept="image/*">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Brief Biography (Optional)</label>
-                        <textarea class="form-control" id="biography" rows="4" placeholder="Share memories and details about their life..."></textarea>
-                    </div>
+                    <div class="mb-3"><label class="form-label">Location *</label><input type="text" class="form-control" placeholder="City, Region"></div>
+                    <div class="mb-3"><label class="form-label">Profile Photo</label><input type="file" class="form-control" accept="image/*"></div>
+                    <div class="mb-3"><label class="form-label">Brief Biography (Optional)</label><textarea class="form-control" rows="4" placeholder="Share memories..."></textarea></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="createMemorial()">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </button>
+                    <button type="button" class="btn btn-dark"><i class="bi bi-plus-circle"></i> Create Memorial</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="bi bi-arrow-up"></i>
-    </div>
-    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('successMessage');
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; this.reset(); }, 3500);
+        });
 
-<!-- Chat Button -->
-    <div class="chat-button">
-        <i class="bi bi-chat-dots-fill"></i>
-    </div>
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-     <!-- FOOTER — paste just before </body> -->
+        window.addEventListener('scroll', () => {
+            document.querySelector('.scroll-top').style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.scroll-top').style.display = 'none';
+            const fy = document.getElementById('footerYear');
+            if (fy) fy.textContent = new Date().getFullYear();
+        });
+    </script>
+
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <div class="footer-left">
-                <img src="Logo.png" alt="FuneralNews Logo" class="footer-logo">
-            </div>
+            <div class="footer-left"><img src="Logo.png" alt="FuneralNews Logo" class="footer-logo"></div>
             <div class="footer-center">
-                <a href="#" onclick="showMainPage(); return false;">Home</a>
-                <a href="#" onclick="filterByPage('obituary'); return false;">Obituaries</a>
-                <a href="#" onclick="filterByPage('memorial'); return false;">Memorials</a>
+                <a href="index.html">Home</a>
                 <a href="pricing.html">Pricing</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <div class="footer-right">
-                © <span id="footerYear"></span> FUNERALnews.lk
-            </div>
+            <div class="footer-right">© <span id="footerYear"></span> FUNERALnews.lk</div>
         </div>
     </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-
-    e.preventDefault();
-
-    document.getElementById('successMessage').style.display = 'block';
-
-    setTimeout(() => {
-        document.getElementById('successMessage').style.display = 'none';
-        this.reset();
-    }, 3000);
-
-});
-
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
 
 </body>
 </html>

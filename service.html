@@ -3,369 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service FUNERAL.LK - Memorial Platform</title>
+    <title>Service — FUNERALnews.lk</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="fav.ico" type="image/x-icon">
-    
-    <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style> 
-      /* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-/* Floating Background Shapes */
-.floating-shapes {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.1;
-    animation: float 20s infinite ease-in-out;
-}
+        :root {
+            --black:    #0a0a0a;
+            --black-80: rgba(10,10,10,0.8);
+            --black-50: rgba(10,10,10,0.5);
+            --black-20: rgba(10,10,10,0.2);
+            --white:    #ffffff;
+            --off-white:#f8f8f6;
+            --grey-100: #f0f0ee;
+            --grey-200: #e0e0de;
+            --green:    #1a6b40;
+        }
 
-.shape-1 {
-    width: 300px;
-    height: 300px;
-    background: white;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--off-white);
+            color: var(--black);
+            -webkit-font-smoothing: antialiased;
+        }
 
-.shape-2 {
-    width: 200px;
-    height: 200px;
-    background: white;
-    bottom: 15%;
-    right: 15%;
-    animation-delay: 5s;
-}
+        /* ── Page wrapper ── */
+        .service-page {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 60px 32px 120px;
+            margin-top: 25px;
+        }
 
-.shape-3 {
-    width: 150px;
-    height: 150px;
-    background: white;
-    top: 60%;
-    left: 80%;
-    animation-delay: 10s;
-}
+        /* ── Hero ── */
+        .s-hero {
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            align-items: end;
+            gap: 32px;
+            padding-bottom: 48px;
+            margin-bottom: 64px;
+            border-bottom: 1px solid var(--grey-200);
+            animation: fadeUp 0.5s ease both;
+        }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-30px) rotate(180deg);
-    }
-}
+        .s-hero-eyebrow {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* Services Container */
-.services-container {
-    max-width: 1300px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
+        .s-hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 1.5px;
+            background: var(--black);
+        }
 
-/* Header Section */
-.header-section {
-    text-align: center;
-    margin-bottom: 60px;
-    animation: fadeInDown 1s ease;
-}
+        .s-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--black);
+            letter-spacing: -1px;
+        }
 
-.decorative-line {
-    width: 100px;
-    height: 5px;
-    margin: 0 auto 30px;
-    border-radius: 10px;
-    animation: expand 2s ease infinite;
-}
+        .s-hero h1 em {
+            font-style: italic;
+            font-weight: 300;
+        }
 
-@keyframes expand {
-    0%, 100% {
-        width: 100px;
-    }
-    50% {
-        width: 150px;
-    }
-}
+        .s-hero-note {
+            font-size: 0.88rem;
+            color: var(--black-50);
+            line-height: 1.75;
+            text-align: right;
+        }
 
-.main-title {
-    color: #39548a;
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    letter-spacing: -1px;
-}
+        /* ── Section label ── */
+        .sect-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.subtitle {
-    color: #425a8b;
-    font-size: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-weight: 300;
-}
+        .sect-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--grey-200);
+        }
 
-/* Services Grid */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
+        /* ── Service list ── */
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            animation: fadeUp 0.5s 0.1s ease both;
+        }
 
-/* Service Cards */
-.service-card {
-    background: #eaecee;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    animation: fadeInUp 0.8s ease;
-}
+        .service-row {
+            display: grid;
+            grid-template-columns: 56px 1fr auto;
+            align-items: start;
+            gap: 24px;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--grey-200);
+            transition: background 0.18s;
+        }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(70deg,  #31406b,  #16213e);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-}
+        .service-row:first-child { border-top: 1px solid var(--grey-200); }
 
-.service-card:hover::before {
-    transform: scaleX(1);
-}
+        .service-row:hover { background: var(--white); }
+        .service-row:hover { padding-left: 16px; padding-right: 16px; margin: 0 -16px; border-radius: 10px; border-color: transparent; }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-}
+        .svc-num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--black-20);
+            letter-spacing: 1px;
+            padding-top: 4px;
+            font-variant-numeric: tabular-nums;
+        }
 
-/* Card Icons with unique colors */
-.card-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-    font-size: 2rem;
-    transition: all 0.4s ease;
-}
+        .svc-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
 
-.card-1 .card-icon {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
+        .svc-desc {
+            font-size: 0.88rem;
+            color: var(--black-50);
+            line-height: 1.75;
+            max-width: 600px;
+        }
 
-.card-2 .card-icon {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-}
+        .svc-icon-wrap {
+            width: 44px;
+            height: 44px;
+            background: var(--black);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
 
-.card-3 .card-icon {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
-}
+        /* ── Why us block ── */
+        .why-block {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+            animation: fadeUp 0.5s 0.2s ease both;
+        }
 
-.card-4 .card-icon {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    color: white;
-}
+        .why-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--black);
+            line-height: 1.2;
+            margin-bottom: 18px;
+            letter-spacing: -0.5px;
+        }
 
-.card-5 .card-icon {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    color: white;
-}
+        .why-title em { font-style: italic; font-weight: 300; }
 
-.service-card:hover .card-icon {
-    transform: rotateY(360deg);
-}
+        .why-desc {
+            font-size: 0.9rem;
+            color: var(--black-50);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
 
-/* Card Content */
-.card-content {
-    margin-bottom: 25px;
-}
+        .why-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
 
-.card-title {
-    color: #39548a;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    line-height: 1.3;
-}
+        .why-cta:hover {
+            background: #222;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+            color: var(--white);
+        }
 
-.card-description {
-    color: #2a2a2a;
-    font-size: 1rem;
-    line-height: 1.7;
-}
+        .why-right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
+        .why-item {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.18s;
+        }
 
+        .why-item:hover {
+            border-color: var(--black-20);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+            transform: translateX(4px);
+        }
 
+        .why-item-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--black);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
 
+        .why-item-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 3px;
+        }
 
+        .why-item-desc {
+            font-size: 0.8rem;
+            color: var(--black-50);
+            line-height: 1.5;
+        }
 
-/* Animations */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* ── Fixed buttons ── */
+        .scroll-top {
+            position: fixed; bottom: 28px; right: 28px;
+            background: var(--black); color: var(--white);
+            width: 42px; height: 42px; border-radius: 50%;
+            display: none; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.2s; z-index: 1000; font-size: 1rem;
+        }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .scroll-top:hover { transform: translateY(-3px); }
 
-/* Animation Delays for Cards */
-.card-1 { animation-delay: 0.1s; }
-.card-2 { animation-delay: 0.2s; }
-.card-3 { animation-delay: 0.3s; }
-.card-4 { animation-delay: 0.4s; }
-.card-5 { animation-delay: 0.5s; }
+        .chat-button {
+            position: fixed; bottom: 28px; right: 82px;
+            background: #25d366; color: #fff;
+            width: 46px; height: 46px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+            font-size: 1.2rem; z-index: 1000; transition: all 0.2s;
+        }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-    }
-}
+        .chat-button:hover { background: #20bd5a; transform: scale(1.08); }
 
-@media (max-width: 768px) {
-    body {
-        padding: 40px 20px;
-    }
-    
-    .main-title {
-        font-size: 2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .service-card {
-        padding: 30px;
-    }
-    
-    .card-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 1.75rem;
-    }
-    
-    .card-title {
-        font-size: 1.3rem;
-    }
-    
-    .card-description {
-        font-size: 0.95rem;
-    }
-    
-    .cta-button {
-        padding: 18px 40px;
-        font-size: 1.1rem;
-    }
-}
+        /* ── Animation ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-@media (max-width: 480px) {
-    .main-title {
-        font-size: 1.75rem;
-    }
-    
-    .subtitle {
-        font-size: 0.95rem;
-    }
-    
-    .service-card {
-        padding: 25px;
-    }
-    
-    .card-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-        border-radius: 15px;
-    }
-    
-    .card-title {
-        font-size: 1.2rem;
-    }
-    
-    .card-description {
-        font-size: 0.9rem;
-    }
-    
-    .learn-more-btn {
-        padding: 10px 24px;
-        font-size: 0.9rem;
-    }
-    
-    .cta-button {
-        padding: 16px 35px;
-        font-size: 1rem;
-    }
-}
+        /* ── Responsive ── */
+        @media (max-width: 991px) {
+            .why-block { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .s-hero { grid-template-columns: 1fr; }
+            .s-hero-note { display: none; }
+            .service-row { grid-template-columns: 40px 1fr; }
+            .svc-icon-wrap { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .service-page { padding: 28px 16px 80px; }
+            .service-row { gap: 16px; }
+        }
     </style>
 </head>
 <body>
 
-     <!-- Main Header -->
+    <!-- ── Header ── -->
     <header class="main-header">
-        <!-- Top Navigation Bar -->
         <div class="top-navigation">
             <div class="nav-center-wrapper">
                 <div class="d-flex justify-content-between align-items-center py-2">
                     <div class="top-left">
-                        <a href="index.html" onclick="showMainPage(); return false;">Home</a>
+                        <a href="index.html">Home</a>
                         <a href="service.html">Service</a>
                         <a href="pricing.html">Pricing</a>
                         <a href="contact.html">Contact Us</a>
@@ -380,13 +341,11 @@
         </div>
         <div class="nav-center-wrapper">
             <div class="row align-items-center g-3 py-3">
-                <!-- Logo -->
                 <div class="col-12 col-lg-auto">
                     <div class="d-flex align-items-center justify-content-between">
-                        <a class="logo-link" href="#" onclick="showMainPage(); return false;">
+                        <a class="logo-link" href="index.html">
                             <img src="Logo.png" alt="FuneralNews Logo" class="logo-img">
                         </a>
-                        <!-- Mobile buttons -->
                         <div class="d-flex d-lg-none gap-2">
                             <button class="btn-create-mobile" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
@@ -394,21 +353,16 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Search and Actions -->
                 <div class="col-12 col-lg">
                     <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
-                        <!-- Search -->
                         <div class="flex-grow-1 position-relative">
                             <i class="bi bi-search search-icon"></i>
-                            <input type="search" class="search-input" id="searchInput" placeholder="Search a person...">
+                            <input type="search" class="search-input" placeholder="Search a person...">
                         </div>
-                        
-                        <!-- Desktop Actions -->
                         <div class="d-flex gap-2 align-items-center">
                             <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
-                            </button>  
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -416,240 +370,205 @@
         </div>
     </header>
 
-    <div class="services-container">
-        <!-- Header Section -->
-        <div class="header-section">
-            <div class="decorative-line"></div>
-            <h1 class="main-title">Latest Funeral News & Death Updates Service</h1>
-            <p class="subtitle">We provide modern, respectful and easy-to-use digital memorial services to honour your loved ones.</p>
-        </div>
+    <!-- ── Page ── -->
+    <main class="service-page">
 
-        <!-- Services Grid -->
-        <div class="services-grid">
-            <!-- Service Card 1 -->
-            <div class="service-card card-1">
-                <div class="card-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Online Memorial Pages</h3>
-                    <p class="card-description">Create beautiful digital memorial pages with photos, stories, tributes and life history.</p>
-                </div>
-                
+        <!-- Hero -->
+        <div class="s-hero">
+            <div>
+                <div class="s-hero-eyebrow">Our Services</div>
+                <h1>Digital memorials for<br><em>every loved one</em></h1>
             </div>
-
-            <!-- Service Card 2 -->
-            <div class="service-card card-2">
-                <div class="card-icon">
-                    <i class="fas fa-images"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Photo & Video Gallery</h3>
-                    <p class="card-description">Upload cherished moments, albums and important life events in a clean gallery view.</p>
-                </div>
-                
-            </div>
-
-            <!-- Service Card 3 -->
-            <div class="service-card card-3">
-                <div class="card-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Tribute Wall</h3>
-                    <p class="card-description">Family and friends can leave messages, candles, flowers and personalised tributes.</p>
-                </div>
-                
-            </div>
-
-            <!-- Service Card 4 -->
-            <div class="service-card card-4">
-                <div class="card-icon">
-                    <i class="fas fa-share-alt"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Live Obituary Sharing</h3>
-                    <p class="card-description">Share memorial pages instantly through social media, SMS and family groups.</p>
-                </div>
-                
-            </div>
-
-            <!-- Service Card 5 -->
-            <div class="service-card card-5">
-                <div class="card-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Funeral Service Details</h3>
-                    <p class="card-description">Easily publish funeral dates, venues, livestreams, routes and guidance for attendees.</p>
-                </div>
-                
+            <div class="s-hero-note">
+                We provide modern, respectful and easy-to-use digital memorial services to honour your loved ones.
             </div>
         </div>
-    </div>
 
-    <!-- Floating Elements -->
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
+        <!-- Services list -->
+        <div class="sect-label">What We Offer</div>
 
-    
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="bi bi-arrow-up"></i>
-    </div>
-    
-    <!-- Chat Button -->
-    <div class="chat-button">
-        <i class="bi bi-chat-dots-fill"></i>
-    </div>
-    
-    <!-- Create Memorial Modal -->
+        <div class="service-list">
+
+            <div class="service-row">
+                <div class="svc-num">01</div>
+                <div class="svc-body">
+                    <div class="svc-title">Online Memorial Pages</div>
+                    <div class="svc-desc">Create beautiful digital memorial pages with photos, stories, tributes and life history. A permanent place online to remember and celebrate the life of your loved one.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-journal-bookmark-fill"></i></div>
+            </div>
+
+            <div class="service-row">
+                <div class="svc-num">02</div>
+                <div class="svc-body">
+                    <div class="svc-title">Photo &amp; Video Gallery</div>
+                    <div class="svc-desc">Upload cherished moments, albums and important life events in a clean gallery view. Preserve memories visually and share them with family and friends worldwide.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-images"></i></div>
+            </div>
+
+            <div class="service-row">
+                <div class="svc-num">03</div>
+                <div class="svc-body">
+                    <div class="svc-title">Tribute Wall</div>
+                    <div class="svc-desc">Family and friends can leave messages, candles, flowers and personalised tributes. A shared space for the community to come together and express their condolences.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-heart-fill"></i></div>
+            </div>
+
+            <div class="service-row">
+                <div class="svc-num">04</div>
+                <div class="svc-body">
+                    <div class="svc-title">Live Obituary Sharing</div>
+                    <div class="svc-desc">Share memorial pages instantly through social media, SMS and family groups. Reach loved ones across the world within minutes of publishing.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-share-fill"></i></div>
+            </div>
+
+            <div class="service-row">
+                <div class="svc-num">05</div>
+                <div class="svc-body">
+                    <div class="svc-title">Funeral Service Details</div>
+                    <div class="svc-desc">Easily publish funeral dates, venues, livestreams, routes and guidance for attendees. Keep everyone informed and updated in one central place.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
+            </div>
+
+            <div class="service-row">
+                <div class="svc-num">06</div>
+                <div class="svc-body">
+                    <div class="svc-title">Remembrance Live Coverage</div>
+                    <div class="svc-desc">Professional live coverage of funeral proceedings available island-wide. Allow those who cannot attend in person to be present through a live stream.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-camera-video-fill"></i></div>
+            </div>
+
+            <div class="service-row">
+                <div class="svc-num">07</div>
+                <div class="svc-body">
+                    <div class="svc-title">Social Media &amp; Media Publishing</div>
+                    <div class="svc-desc">Publish the obituary across Facebook, Instagram, newspapers and partner media websites. Ensure the announcement reaches the widest possible audience.</div>
+                </div>
+                <div class="svc-icon-wrap"><i class="bi bi-newspaper"></i></div>
+            </div>
+
+        </div>
+
+        <!-- Why us -->
+        <div class="why-block">
+            <div class="why-left">
+                <div class="sect-label">Why Choose Us</div>
+                <div class="why-title">Respectful,<br><em>reliable</em> &amp; always<br>available</div>
+                <p class="why-desc">
+                    FUNERALnews.lk is Sri Lanka's dedicated digital memorial platform. We are committed to providing families with a dignified, easy-to-use space to honour their loved ones — at any time, from anywhere in the world.
+                </p>
+                <a href="pricing.html" class="why-cta">
+                    <i class="bi bi-arrow-right"></i> View Pricing
+                </a>
+            </div>
+            <div class="why-right">
+                <div class="why-item">
+                    <div class="why-item-icon"><i class="bi bi-clock-fill"></i></div>
+                    <div>
+                        <div class="why-item-title">Available 24/7</div>
+                        <div class="why-item-desc">Our support team is reachable around the clock to assist during difficult times.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-item-icon"><i class="bi bi-shield-check"></i></div>
+                    <div>
+                        <div class="why-item-title">Secure &amp; Private</div>
+                        <div class="why-item-desc">Memorial pages are securely hosted and your family's data is always protected.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-item-icon"><i class="bi bi-globe2"></i></div>
+                    <div>
+                        <div class="why-item-title">Reach Family Worldwide</div>
+                        <div class="why-item-desc">Share with relatives across the globe instantly via social media or direct links.</div>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-item-icon"><i class="bi bi-people-fill"></i></div>
+                    <div>
+                        <div class="why-item-title">Trusted by Families</div>
+                        <div class="why-item-desc">Hundreds of Sri Lankan families have used our platform to honour their loved ones.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scroll Top -->
+    <div class="scroll-top" onclick="scrollToTop()"><i class="bi bi-arrow-up"></i></div>
+
+    <!-- Chat -->
+    <div class="chat-button"><i class="bi bi-chat-dots-fill"></i></div>
+
+    <!-- Modal -->
     <div class="modal fade" id="createMemorialModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </h5>
+                    <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Create Memorial</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Full Name *</label>
-                        <input type="text" class="form-control" id="memorialName" placeholder="Enter full name">
-                    </div>
+                    <div class="mb-3"><label class="form-label">Full Name *</label><input type="text" class="form-control" placeholder="Enter full name"></div>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Birth Date *</label>
-                            <input type="date" class="form-control" id="birthDate">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Death Date *</label>
-                            <input type="date" class="form-control" id="deathDate">
-                        </div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Birth Date *</label><input type="date" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Death Date *</label><input type="date" class="form-control"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Country *</label>
-                        <select class="form-control" id="country">
-                            <option value="">Select Country</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Canada">Canada</option>
-                            <option value="China">China</option>
-                            <option value="Germany">Germany</option>
-                            <option value="France">France</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="India">India</option>
-                            <option value="Sri Lanka">Sri Lanka</option>
+                        <select class="form-control">
+                            <option>Select Country</option>
+                            <option>Australia</option><option>Canada</option><option>India</option>
+                            <option>Sri Lanka</option><option>United Kingdom</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Location *</label>
-                        <input type="text" class="form-control" id="location" placeholder="City, Region">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Profile Photo</label>
-                        <input type="file" class="form-control" id="photoUpload" accept="image/*">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Brief Biography (Optional)</label>
-                        <textarea class="form-control" id="biography" rows="4" placeholder="Share memories and details about their life..."></textarea>
-                    </div>
+                    <div class="mb-3"><label class="form-label">Location *</label><input type="text" class="form-control" placeholder="City, Region"></div>
+                    <div class="mb-3"><label class="form-label">Profile Photo</label><input type="file" class="form-control" accept="image/*"></div>
+                    <div class="mb-3"><label class="form-label">Brief Biography (Optional)</label><textarea class="form-control" rows="4" placeholder="Share memories..."></textarea></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="createMemorial()">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </button>
+                    <button type="button" class="btn btn-dark"><i class="bi bi-plus-circle"></i> Create Memorial</button>
                 </div>
             </div>
         </div>
     </div>
 
-     <!-- FOOTER — paste just before </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('.scroll-top').style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.scroll-top').style.display = 'none';
+            const fy = document.getElementById('footerYear');
+            if (fy) fy.textContent = new Date().getFullYear();
+        });
+    </script>
+
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <div class="footer-left">
-                <img src="Logo.png" alt="FuneralNews Logo" class="footer-logo">
-            </div>
+            <div class="footer-left"><img src="Logo.png" alt="FuneralNews Logo" class="footer-logo"></div>
             <div class="footer-center">
-                <a href="#" onclick="showMainPage(); return false;">Home</a>
-                <a href="#" onclick="filterByPage('obituary'); return false;">Obituaries</a>
-                <a href="#" onclick="filterByPage('memorial'); return false;">Memorials</a>
+                <a href="index.html">Home</a>
+                <a href="service.html">Service</a>
                 <a href="pricing.html">Pricing</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <div class="footer-right">
-                © <span id="footerYear"></span> FUNERALnews.lk
-            </div>
+            <div class="footer-right">© <span id="footerYear"></span> FUNERALnews.lk</div>
         </div>
     </footer>
-    
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="bi bi-arrow-up"></i>
-    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Validate
-            if (!firstName || !lastName || !email || !subject || !message) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            // Show success message
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form after 3 seconds
-            setTimeout(function() {
-                document.getElementById('contactForm').reset();
-                document.getElementById('contactForm').style.display = 'block';
-                document.getElementById('successMessage').style.display = 'none';
-            }, 3000);
-        });
-        
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollTopBtn = document.querySelector('.scroll-top');
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.style.display = 'flex';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        });
-
-        // Initially hide the button
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.scroll-top').style.display = 'none';
-        });
-        
-        // Memorial creation placeholder
-        function createMemorial() {
-            alert('Memorial creation functionality would be implemented here');
-        }
-    </script>
 </body>
 </html>

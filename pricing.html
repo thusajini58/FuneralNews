@@ -3,101 +3,654 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - FUNERALnews.lk</title>
+    <title>Pricing — FUNERALnews.lk</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pricing-styles.css">
     <link rel="icon" href="fav.ico" type="image/x-icon">
-    
-    <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-     
-     <style>
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-         }
+    
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black:     #0a0a0a;
+            --black-80:  rgba(10,10,10,0.8);
+            --black-50:  rgba(10,10,10,0.5);
+            --black-20:  rgba(10,10,10,0.2);
+            --black-08:  rgba(10,10,10,0.06);
+            --white:     #ffffff;
+            --off-white: #f8f8f6;
+            --grey-50:   #fafafa;
+            --grey-100:  #f0f0ee;
+            --grey-200:  #e0e0de;
+            --grey-400:  #9a9a98;
+            --green:     #1a6b40;
         }
 
-        .section-title {
-           
-            color: #39548a;
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-            letter-spacing: -1px;
-        }
-                .section-subtitle {
-            color: #425a8b;
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--off-white);
+            color: var(--black);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .grid {
+        /* ── Page wrapper ── */
+        .pricing-page {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 60px 32px 120px;
+            margin-top: 25px;
+        }
+
+        /* ── Hero ── */
+        .p-hero {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr 260px;
+            align-items: end;
+            gap: 32px;
+            padding-bottom: 48px;
+            margin-bottom: 56px;
+            border-bottom: 1px solid var(--grey-200);
+            animation: fadeUp 0.5s ease both;
         }
 
-        .pricing-card {
-            background: #eaecee;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-top: #16213e 5px solid;
+        .p-hero-eyebrow {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .price {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 20px 0;
+        .p-hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 1.5px;
+            background: var(--black);
         }
 
-        .features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 20px;
+        .p-hero h1 {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: clamp(2.6rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--black);
+            letter-spacing: -0.5px;
         }
 
-        .features li {
-            padding: 6px 0;
-            color: #555;
+        .p-hero h1 em {
+            font-style: italic;
+            font-weight: 400;
         }
 
-        .btn-select {
-            background: #16213e;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 6px;
+        .p-hero-note {
+            font-size: 0.84rem;
+            color: var(--black-50);
+            line-height: 1.7;
+            text-align: right;
+        }
+
+        /* ── Main two-col layout ── */
+        .p-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 48px;
+            align-items: start;
+            animation: fadeUp 0.5s 0.1s ease both;
+        }
+
+        @media (max-width: 991px) {
+            .p-layout { grid-template-columns: 1fr; }
+        }
+
+        /* ── Section label ── */
+        .s-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .s-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--grey-200);
+        }
+
+        /* ── Duration list ── */
+        .dur-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 52px;
+        }
+
+        .dur-item {
+            display: grid;
+            grid-template-columns: 24px 1fr auto auto;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.18s;
+            user-select: none;
+        }
+
+        .dur-item:hover {
+            border-color: var(--black-20);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .dur-item.active {
+            background: var(--black);
+            border-color: var(--black);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+        }
+
+        .dur-radio { display: none; }
+
+        .dur-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--grey-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s;
+            flex-shrink: 0;
+        }
+
+        .dur-item.active .dur-dot {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .dur-item.active .dur-dot::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--white);
+        }
+
+        .dur-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+            transition: color 0.18s;
+        }
+
+        .dur-item.active .dur-name { color: var(--white); }
+
+        .dur-desc {
+            font-size: 0.76rem;
+            color: var(--black-50);
+            margin-top: 1px;
+            transition: color 0.18s;
+        }
+
+        .dur-item.active .dur-desc { color: rgba(255,255,255,0.5); }
+
+        .dur-badge {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 20px;
+            background: var(--grey-100);
+            color: var(--black-50);
+            white-space: nowrap;
+            transition: all 0.18s;
+        }
+
+        .dur-item.active .dur-badge {
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .dur-badge.free-badge {
+            background: rgba(26,107,64,0.1);
+            color: var(--green);
+        }
+
+        .dur-item.active .dur-badge.free-badge {
+            background: rgba(110,224,160,0.15);
+            color: #6ee0a0;
+        }
+
+        .dur-price {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--black);
+            white-space: nowrap;
+            transition: color 0.18s;
+            text-align: right;
+            min-width: 90px;
+        }
+
+        .dur-item.active .dur-price { color: var(--white); }
+
+        .dur-price.free-price {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .dur-item.active .dur-price.free-price { color: #6ee0a0; }
+
+        /* ── Addon groups ── */
+        .addon-group { margin-bottom: 36px; }
+
+        .addon-group-title {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--black-80);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .addon-group-title i { font-size: 0.9rem; }
+
+        .addon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px;
+        }
+
+        .addon-card {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 10px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+
+        .addon-card:hover {
+            border-color: var(--black-20);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .addon-card.addon-on {
+            background: var(--black);
+            border-color: var(--black);
+        }
+
+        .addon-cb {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--black);
+            margin-top: 2px;
+            flex-shrink: 0;
             cursor: pointer;
         }
 
-        .btn-select:hover {
-            background: #304987;
+        .addon-name {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 2px;
+            line-height: 1.3;
+            transition: color 0.18s;
         }
 
-    
-     </style>
-     
+        .addon-card.addon-on .addon-name { color: var(--white); }
+
+        .addon-desc {
+            font-size: 0.73rem;
+            color: var(--black-50);
+            margin-bottom: 6px;
+            transition: color 0.18s;
+        }
+
+        .addon-card.addon-on .addon-desc { color: rgba(255,255,255,0.45); }
+
+        .addon-price {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--black);
+            transition: color 0.18s;
+        }
+
+        .addon-card.addon-on .addon-price { color: rgba(255,255,255,0.8); }
+
+        .addon-price.free { color: var(--green); }
+        .addon-card.addon-on .addon-price.free { color: #6ee0a0; }
+
+        /* ── Basket ── */
+        .basket-wrap {
+            position: sticky;
+            top: 160px;
+        }
+
+        .basket {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .basket-top {
+            background: var(--black);
+            padding: 22px 22px 18px;
+        }
+
+        .basket-top-title {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .basket-top-sub {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .basket-body { padding: 20px 22px; }
+
+        .b-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 0;
+            font-size: 0.84rem;
+            border-bottom: 1px solid var(--grey-100);
+        }
+
+        .b-row:last-child { border-bottom: none; }
+
+        .b-label { color: var(--black-50); }
+        .b-value { color: var(--black); font-weight: 600; }
+
+        .basket-addons { min-height: 2px; }
+
+        .basket-total-block {
+            background: var(--grey-50);
+            border-top: 1px solid var(--grey-200);
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .basket-total-lbl {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--black-50);
+        }
+
+        .basket-total-val {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.7rem;
+            color: var(--black);
+        }
+
+        .basket-submit-block { padding: 16px 22px 20px; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 13px;
+            border-radius: 8px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #222;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .basket-notes { padding: 0 22px 20px; }
+
+        .basket-notes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .basket-notes ul li {
+            font-size: 0.76rem;
+            color: var(--black-50);
+            padding: 3px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            line-height: 1.5;
+        }
+
+        .basket-notes ul li::before {
+            content: '✓';
+            color: var(--green);
+            font-size: 0.7rem;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+
+        /* ── Info section ── */
+        .info-section {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 48px;
+            align-items: start;
+            animation: fadeUp 0.5s 0.2s ease both;
+        }
+
+        @media (max-width: 768px) {
+            .info-section { grid-template-columns: 1fr; }
+            .p-hero { grid-template-columns: 1fr; }
+            .p-hero-note { display: none; }
+        }
+
+        .info-nav { position: sticky; top: 160px; }
+
+        .info-nav-lbl {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--black-50);
+            margin-bottom: 12px;
+            padding-left: 12px;
+        }
+
+        .i-tab {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--black-50);
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-bottom: 2px;
+        }
+
+        .i-tab:hover { background: var(--grey-100); color: var(--black); }
+
+        .i-tab.active {
+            background: var(--black);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .info-panel { display: none; }
+        .info-panel.active { display: block; animation: fadeUp 0.3s ease both; }
+
+        .info-panel-h {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.9rem;
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .info-panel p {
+            font-size: 0.88rem;
+            color: var(--black-80);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .info-panel ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .info-panel ul li {
+            font-size: 0.86rem;
+            color: var(--black-80);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--grey-100);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+
+        .info-panel ul li::before {
+            content: '—';
+            color: var(--black-20);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .info-callout {
+            background: var(--black);
+            color: rgba(255,255,255,0.75);
+            border-radius: 10px;
+            padding: 18px 20px;
+            font-size: 0.84rem;
+            line-height: 1.75;
+            margin: 16px 0;
+        }
+
+        .info-callout strong { color: var(--white); }
+
+        .bank-card {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+        }
+
+        .bank-icon {
+            width: 46px;
+            height: 46px;
+            background: var(--black);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .bank-name { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 3px; }
+        .bank-acc  { font-size: 0.82rem; color: var(--black-50); }
+        .bank-acc strong { color: var(--black); font-size: 0.95rem; }
+
+        /* ── Fixed buttons ── */
+        .scroll-top {
+            position: fixed; bottom: 28px; right: 28px;
+            background: var(--black); color: var(--white);
+            width: 42px; height: 42px; border-radius: 50%;
+            display: none; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.2s; z-index: 1000; font-size: 1rem;
+        }
+
+        .scroll-top:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+        .chat-button {
+            position: fixed; bottom: 28px; right: 82px;
+            background: #25d366; color: #fff;
+            width: 46px; height: 46px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+            font-size: 1.2rem; z-index: 1000; transition: all 0.2s;
+        }
+
+        .chat-button:hover { background: #20bd5a; transform: scale(1.08); }
+
+        /* ── Animation ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .pricing-page { padding: 28px 16px 80px; }
+            .dur-item { grid-template-columns: 24px 1fr auto; }
+            .dur-badge { display: none; }
+            .addon-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Main Header -->
+
+    <!-- ── Header ────────────────────────────────── -->
     <header class="main-header">
-        <!-- Top Navigation Bar -->
         <div class="top-navigation">
             <div class="nav-center-wrapper">
                 <div class="d-flex justify-content-between align-items-center py-2">
                     <div class="top-left">
-                        <a href="index.html" onclick="showMainPage(); return false;">Home</a>
+                        <a href="index.html">Home</a>
                         <a href="service.html">Service</a>
                         <a href="pricing.html">Pricing</a>
                         <a href="contact.html">Contact Us</a>
@@ -112,13 +665,11 @@
         </div>
         <div class="nav-center-wrapper">
             <div class="row align-items-center g-3 py-3">
-                <!-- Logo -->
                 <div class="col-12 col-lg-auto">
                     <div class="d-flex align-items-center justify-content-between">
-                        <a class="logo-link" href="#" onclick="showMainPage(); return false;">
+                        <a class="logo-link" href="index.html">
                             <img src="Logo.png" alt="FuneralNews Logo" class="logo-img">
                         </a>
-                        <!-- Mobile buttons -->
                         <div class="d-flex d-lg-none gap-2">
                             <button class="btn-create-mobile" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
@@ -126,464 +677,438 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Search and Actions -->
                 <div class="col-12 col-lg">
                     <div class="d-flex flex-column flex-lg-row gap-2 align-items-lg-center">
-                        <!-- Search -->
                         <div class="flex-grow-1 position-relative">
                             <i class="bi bi-search search-icon"></i>
-                            <input type="search" class="search-input" id="searchInput" placeholder="Search a person...">
+                            <input type="search" class="search-input" placeholder="Search a person...">
                         </div>
-                        
-                        <!-- Desktop Actions -->
                         <div class="d-flex gap-2 align-items-center">
                             <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
-                            </button>  
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    
-    <!-- Page Header
-    <div class="pricing-hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Services & Pricing</h1>
-                <p class="hero-subtitle">Choose the perfect memorial package for your loved one</p>
+
+    <!-- ── Page ──────────────────────────────────── -->
+    <main class="pricing-page">
+
+        <!-- Hero -->
+        <div class="p-hero">
+            <div>
+                <div class="p-hero-eyebrow">Services &amp; Prices</div>
+                <h1>Choose a plan<br>for your <em>loved one</em></h1>
+            </div>
+            <div class="p-hero-note">
+                This post will be published and visible on our website for the duration you select below.
             </div>
         </div>
-    </div> -->
-    
-     <!-- Pricing Content -->
-   <div class="pricing-wrapper">
-    <div class="container">
 
-        <!-- Duration Packages -->
-        <div class="section-header"><br>
-            <h2 class="section-title">Memorial Duration Packages</h2>
-            <p class="section-subtitle">
-                Select how long you want the memorial to be visible on our website
-            </p>
+        <!-- Layout -->
+        <div class="p-layout">
+
+            <!-- LEFT -->
+            <div>
+
+                <!-- Duration -->
+                <div class="s-label">Duration</div>
+                <div class="dur-list">
+
+                    <div class="dur-item active" id="d-14" onclick="selectDur('14 Days', 0, '14')">
+                        <input type="radio" name="dur" class="dur-radio" checked>
+                        <div class="dur-dot"></div>
+                        <div class="dur-info">
+                            <div class="dur-name">14 Days</div>
+                            <div class="dur-desc">Memorial visible for 14 days</div>
+                        </div>
+                        <div class="dur-badge free-badge">Free</div>
+                        <div class="dur-price free-price">LKR 0</div>
+                    </div>
+
+                    <div class="dur-item" id="d-30" onclick="selectDur('30 Days', 1500, '30')">
+                        <input type="radio" name="dur" class="dur-radio">
+                        <div class="dur-dot"></div>
+                        <div class="dur-info">
+                            <div class="dur-name">30 Days</div>
+                            <div class="dur-desc">Memorial visible for 30 days</div>
+                        </div>
+                        <div class="dur-badge">Popular</div>
+                        <div class="dur-price">LKR 1,500</div>
+                    </div>
+
+                    <div class="dur-item" id="d-60" onclick="selectDur('60 Days', 2500, '60')">
+                        <input type="radio" name="dur" class="dur-radio">
+                        <div class="dur-dot"></div>
+                        <div class="dur-info">
+                            <div class="dur-name">60 Days</div>
+                            <div class="dur-desc">Memorial visible for 60 days</div>
+                        </div>
+                        <div class="dur-badge"></div>
+                        <div class="dur-price">LKR 2,500</div>
+                    </div>
+
+                    <div class="dur-item" id="d-90" onclick="selectDur('90 Days', 4000, '90')">
+                        <input type="radio" name="dur" class="dur-radio">
+                        <div class="dur-dot"></div>
+                        <div class="dur-info">
+                            <div class="dur-name">90 Days</div>
+                            <div class="dur-desc">Memorial visible for 90 days</div>
+                        </div>
+                        <div class="dur-badge"></div>
+                        <div class="dur-price">LKR 4,000</div>
+                    </div>
+
+                    <div class="dur-item" id="d-120" onclick="selectDur('120 Days', 5500, '120')">
+                        <input type="radio" name="dur" class="dur-radio">
+                        <div class="dur-dot"></div>
+                        <div class="dur-info">
+                            <div class="dur-name">120 Days</div>
+                            <div class="dur-desc">Memorial visible for 120 days</div>
+                        </div>
+                        <div class="dur-badge"></div>
+                        <div class="dur-price">LKR 5,500</div>
+                    </div>
+
+                    <div class="dur-item" id="d-lifetime" onclick="selectDur('Lifetime', 25000, 'lifetime')">
+                        <input type="radio" name="dur" class="dur-radio">
+                        <div class="dur-dot"></div>
+                        <div class="dur-info">
+                            <div class="dur-name">Lifetime</div>
+                            <div class="dur-desc">Memorial visible permanently</div>
+                        </div>
+                        <div class="dur-badge">Best Value</div>
+                        <div class="dur-price">LKR 25,000</div>
+                    </div>
+
+                </div>
+
+                <!-- Live Coverage -->
+                <div class="addon-group">
+                    <div class="s-label">Live Coverage</div>
+                    <div class="addon-grid">
+                        <label class="addon-card" id="ac-live" for="liveCoverage">
+                            <input type="checkbox" class="addon-cb" id="liveCoverage" onchange="updateBasket()">
+                            <div>
+                                <div class="addon-name">Remembrance Live Arrangement</div>
+                                <div class="addon-desc">Live coverage for the funeral — All Island</div>
+                                <div class="addon-price">LKR 30,000</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="addon-group">
+                    <div class="s-label">Social Media</div>
+                    <div class="addon-grid">
+                        <label class="addon-card" id="ac-social" for="socialMedia">
+                            <input type="checkbox" class="addon-cb" id="socialMedia" onchange="updateBasket()">
+                            <div>
+                                <div class="addon-name">Social Media Publish</div>
+                                <div class="addon-desc">Post on Facebook &amp; Instagram</div>
+                                <div class="addon-price">LKR 10,000</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Media -->
+                <div class="addon-group">
+                    <div class="s-label">Media Details</div>
+                    <div class="addon-grid">
+
+                        <label class="addon-card" id="ac-media" for="mediaWebsite">
+                            <input type="checkbox" class="addon-cb" id="mediaWebsite" onchange="updateBasket()">
+                            <div>
+                                <div class="addon-name">Media Website</div>
+                                <div class="addon-desc">Publish on external media website</div>
+                                <div class="addon-price">LKR 10,000</div>
+                            </div>
+                        </label>
+
+                        <label class="addon-card" id="ac-news" for="newspaper">
+                            <input type="checkbox" class="addon-cb" id="newspaper" onchange="updateBasket()">
+                            <div>
+                                <div class="addon-name">News Paper</div>
+                                <div class="addon-desc">Publish on newspaper</div>
+                                <div class="addon-price">LKR 10,000</div>
+                            </div>
+                        </label>
+
+                        <label class="addon-card addon-on" id="ac-fn" for="funeralNews">
+                            <input type="checkbox" class="addon-cb" id="funeralNews" onchange="updateBasket()" checked>
+                            <div>
+                                <div class="addon-name">FuneralNews.lk</div>
+                                <div class="addon-desc">Publish on FuneralNews.lk</div>
+                                <div class="addon-price free">Free</div>
+                            </div>
+                        </label>
+
+                        <label class="addon-card addon-on" id="ac-notice" for="funeralNotice">
+                            <input type="checkbox" class="addon-cb" id="funeralNotice" onchange="updateBasket()" checked>
+                            <div>
+                                <div class="addon-name">FuneralNotice.lk</div>
+                                <div class="addon-desc">Publish on FuneralNotice.lk</div>
+                                <div class="addon-price free">Free</div>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+            </div><!-- end left -->
+
+            <!-- RIGHT ── Basket -->
+            <div class="basket-wrap">
+                <div class="basket">
+                    <div class="basket-top">
+                        <div class="basket-top-title">Your Basket</div>
+                        <div class="basket-top-sub">Billing Summary</div>
+                    </div>
+
+                    <div class="basket-body">
+                        <div class="b-row">
+                            <span class="b-label">Duration</span>
+                            <span class="b-value" id="bDuration">14 Days</span>
+                        </div>
+                        <div class="basket-addons" id="bAddons"></div>
+                    </div>
+
+                    <div class="basket-total-block">
+                        <div class="basket-total-lbl">Total Estimated</div>
+                        <div class="basket-total-val" id="bTotal">LKR 0</div>
+                    </div>
+
+                    <div class="basket-submit-block">
+                        <button class="btn-submit" onclick="submitOrder()">
+                            <i class="bi bi-send-fill"></i> Submit Order
+                        </button>
+                    </div>
+
+                    <div class="basket-notes">
+                        <ul>
+                            <li>Secure memorial hosting during the selected period.</li>
+                            <li>Basic technical support from the SoulSpace team.</li>
+                            <li>Final amount confirmed by an administrator.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end p-layout -->
+
+        <!-- ── Info Section ──────────────────────── -->
+        <div class="info-section">
+
+            <div class="info-nav">
+                <div class="info-nav-lbl">Information</div>
+                <button class="i-tab active" onclick="switchInfo('tamil', this)">மரண அறிவித்தல்</button>
+                <button class="i-tab" onclick="switchInfo('payment', this)">Payment Methods</button>
+                <button class="i-tab" onclick="switchInfo('contact', this)">Contact &amp; Support</button>
+                <button class="i-tab" onclick="switchInfo('bank', this)">Bank Details</button>
+            </div>
+
+            <div>
+
+                <div class="info-panel active" id="ip-tamil">
+                    <div class="info-panel-h">மரண அறிவித்தல்</div>
+                    <p>உங்கள் உறவினர், நண்பர், சுற்றத்தார் ஆகியோரின் இறப்பு செய்தியை உலகமெங்கும் பரந்து வாழும் உங்கள் உறவுகளுக்கு எளிதாக சென்றடைய RipNews.lk மூலம் மரண அறிவித்தலை பிரசுரிக்கலாம்.</p>
+                    <div class="info-callout">
+                        <strong>குறிப்பு:</strong> பணம் செலுத்தப்பட்டு அதற்கான உறுதிப்படுத்தல் செய்யப்பட்ட பின்னரே அறிவித்தல் பணிகள் ஆரம்பிக்கப்படும்.
+                    </div>
+                    <p><strong>தேவையானவை</strong></p>
+                    <ul>
+                        <li>உங்கள் வீட்டு தொலைபேசி இலக்கம்</li>
+                        <li>உங்கள் முழுப் பெயர்</li>
+                        <li>இறந்தவரின் புகைப்படம்</li>
+                        <li>முழுவடிவ மரண அறிவித்தல் தகவல்கள்</li>
+                        <li>பணம் செலுத்திய பின் பெறப்பட்ட ரசீது / Reference இலக்கம்</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="ip-payment">
+                    <div class="info-panel-h">Payment Methods</div>
+                    <div class="info-callout">
+                        🔹 Currently bank transfer only<br>
+                        🔹 Our team will contact you via WhatsApp after submission<br>
+                        🔹 Confirm payment with your receipt / reference number
+                    </div>
+                    <ul>
+                        <li>Only Bank Transfer is accepted at this time.</li>
+                        <li>Card Payment will be available in the future.</li>
+                        <li>After submitting, the Support Team will contact you.</li>
+                        <li>Payments are non-refundable once confirmed.</li>
+                    </ul>
+                </div>
+
+                <div class="info-panel" id="ip-contact">
+                    <div class="info-panel-h">Contact &amp; Support</div>
+                    <ul>
+                        <li>A contact fee of LKR 150 applies via Communication Center / Agent. (Agents side only)</li>
+                        <li>Our team will prepare and publish the obituary on your behalf.</li>
+                    </ul>
+                    <div class="info-callout">நன்றி — Thank you for choosing FUNERALnews.lk.</div>
+                </div>
+
+                <div class="info-panel" id="ip-bank">
+                    <div class="info-panel-h">Bank Details</div>
+                    <p>Transfer the payment to the account below and send the receipt via WhatsApp.</p>
+                    <div class="bank-card">
+                        <div class="bank-icon"><i class="bi bi-bank2"></i></div>
+                        <div>
+                            <div class="bank-name">Commercial Bank</div>
+                            <div class="bank-acc">Account No: <strong>8007628081</strong></div>
+                        </div>
+                    </div>
+                    <div class="info-callout" style="margin-top:16px;">
+                        After transferring, please send your receipt / reference number to our team via WhatsApp for confirmation.
+                    </div>
+                </div>
+
+            </div>
         </div>
 
-        <div class="grid">
+    </main>
 
-            <!-- 14 Days -->
-            <div class="pricing-card">
+    <!-- Scroll Top -->
+    <div class="scroll-top" onclick="scrollToTop()"><i class="bi bi-arrow-up"></i></div>
 
-                <div class="package-header">
-                    
-                    <h3>14 Days</h3>
-                    <p>Memorial visible for 14 days</p>
-                </div>
+    <!-- Chat -->
+    <div class="chat-button"><i class="bi bi-chat-dots-fill"></i></div>
 
-                <div class="price">LKR 0</div>
-
-                <ul class="features">
-                    <li>Basic memorial page</li>
-                    <li>Photo upload</li>
-                    <li>Unlimited tributes</li>
-                    <li>Basic support</li>
-                </ul>
-
-                <button class="btn-select">Select Package</button>
-            </div>
-
-
-            <!-- 30 Days -->
-            <div class="pricing-card">
-                <div class="package-header">
-                    
-                    <h3>30 Days</h3>
-                    <p>Memorial visible for 30 days</p>
-                </div>
-
-                <div class="price">LKR 1,500</div>
-
-                <ul class="features">
-                    <li>All free features</li>
-                    <li>Extended visibility</li>
-                    <li>Priority listing</li>
-                    <li>Email notifications</li>
-                </ul>
-
-                <button class="btn-select">Select Package</button>
-            </div>
-
-              
-             
-
-            <!-- 60 Days -->
-            <div class="pricing-card">
-
-                <div class="package-header">
-                    
-                    <h3>60 Days</h3>
-                    <p>Memorial visible for 60 days</p>
-                </div>
-
-                <div class="price">LKR 2500</div>
-
-                <ul class="features">
-                    <li> All 30-day features</li>
-                    <li>Enhanced memorial page</li>
-                    <li>Gallery support</li>
-                    <li>Premium support</li>
-                </ul>
-
-                <button class="btn-select ">Select Package</button>
-            </div>
-
-        </div>
-
-        <!-- Duration Packages -->
-        <div class="section-header">
-            
-        </div>
-
-        <div class="grid">
-
-            <!-- 90 Days -->
-            <div class="pricing-card">
-
-                <div class="package-header">
-                    
-                    <h3>90 Days</h3>
-                    <p>Memorial visible for 90 days</p>
-                </div>
-
-                <div class="price">LKR 4000</div>
-
-                <ul class="features">
-                    <li>All 60-day features</li>
-                    <li>Video tribute support</li>
-                    <li>Custom memorial URL</li>
-                    <li>Dedicated support</li>
-                </ul>
-
-                <button class="btn-select">Select Package</button>
-            </div>
-
-
-            <!-- 120 Days -->
-            <div class="pricing-card">
-                <div class="package-header">
-                   
-                    <h3>120 Days</h3>
-                    <p>Memorial visible for 120 days</p>
-                </div>
-
-                <div class="price">LKR 5500</div>
-
-                <ul class="features">
-                    <li>All 90-day features</li>
-                    <li>Premium memorial design</li>
-                    <li>Advanced analytics</li>
-                    <li>24/7 priority support</li>
-                </ul>
-
-                <button class="btn-select">Select Package</button>
-            </div>
-
-              
-             
-
-            <!-- Lifetime -->
-            <div class="pricing-card">
-
-                <div class="package-header">
-                    
-                    <h3>Lifetime</h3>
-                    <p>Memorial visible for lifetime</p>
-                </div>
-
-                <div class="price">LKR 25,000</div>
-
-                <ul class="features">
-                    <li>All premium features</li>
-                    <li>Permanent memorial page</li>
-                    <li>Unlimited media uploads</li>
-                    <li>Legacy preservation</li>
-                </ul>
-
-                <button class="btn-select ">Select Package</button>
-            </div>
-
-        </div>
-
-   
-
-         <!-- FOOTER — paste just before </body> -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <img src="Logo.png" alt="FuneralNews Logo" class="footer-logo">
-            </div>
-            <div class="footer-center">
-                <a href="#" onclick="showMainPage(); return false;">Home</a>
-                <a href="#" onclick="filterByPage('obituary'); return false;">Obituaries</a>
-                <a href="#" onclick="filterByPage('memorial'); return false;">Memorials</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-right">
-                © <span id="footerYear"></span> FUNERALnews.lk
-            </div>
-        </div>
-    </footer>
-
-        
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="bi bi-arrow-up"></i>
-    </div>
-    
-    
-    
-    <!-- Create Memorial Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="createMemorialModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </h5>
+                    <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Create Memorial</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Full Name *</label>
-                        <input type="text" class="form-control" id="memorialName" placeholder="Enter full name">
-                    </div>
+                    <div class="mb-3"><label class="form-label">Full Name *</label><input type="text" class="form-control" placeholder="Enter full name"></div>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Birth Date *</label>
-                            <input type="date" class="form-control" id="birthDate">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Death Date *</label>
-                            <input type="date" class="form-control" id="deathDate">
-                        </div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Birth Date *</label><input type="date" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Death Date *</label><input type="date" class="form-control"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Country *</label>
-                        <select class="form-control" id="country">
-                            <option value="">Select Country</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Canada">Canada</option>
-                            <option value="China">China</option>
-                            <option value="Germany">Germany</option>
-                            <option value="France">France</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="India">India</option>
-                            <option value="Sri Lanka">Sri Lanka</option>
+                        <select class="form-control">
+                            <option>Select Country</option>
+                            <option>Australia</option><option>Canada</option><option>India</option><option>Sri Lanka</option><option>United Kingdom</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Location *</label>
-                        <input type="text" class="form-control" id="location" placeholder="City, Region">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Profile Photo</label>
-                        <input type="file" class="form-control" id="photoUpload" accept="image/*">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Brief Biography (Optional)</label>
-                        <textarea class="form-control" id="biography" rows="4" placeholder="Share memories and details about their life..."></textarea>
-                    </div>
+                    <div class="mb-3"><label class="form-label">Location *</label><input type="text" class="form-control" placeholder="City, Region"></div>
+                    <div class="mb-3"><label class="form-label">Profile Photo</label><input type="file" class="form-control" accept="image/*"></div>
+                    <div class="mb-3"><label class="form-label">Brief Biography (Optional)</label><textarea class="form-control" rows="4" placeholder="Share memories..."></textarea></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" onclick="createMemorial()">
-                        <i class="bi bi-plus-circle"></i> Create Memorial
-                    </button>
+                    <button type="button" class="btn btn-dark"><i class="bi bi-plus-circle"></i> Create Memorial</button>
                 </div>
             </div>
         </div>
     </div>
-    
-     <!-- Chat Button -->
-    <div class="chat-button">
-        <i class="bi bi-chat-dots-fill"></i>
-    </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
-        // Pricing state
-        let selectedPackage = {
-            name: '',
-            price: 0
+        let pkg = { name: '14 Days', price: 0 };
+
+        const addons = {
+            liveCoverage:  { price: 30000, name: 'Live Arrangement' },
+            socialMedia:   { price: 10000, name: 'Social Media (FB & Insta)' },
+            mediaWebsite:  { price: 10000, name: 'Media Website' },
+            newspaper:     { price: 10000, name: 'Newspaper' },
+            funeralNews:   { price: 0,     name: 'FuneralNews.lk' },
+            funeralNotice: { price: 0,     name: 'FuneralNotice.lk' }
         };
-        
-        let additionalServices = {
-            liveCoverage: { selected: false, price: 30000, name: 'Remembrance Live Arrangement' },
-            socialMedia: { selected: false, price: 10000, name: 'Social Media Publish (FB & Insta)' },
-            mediaWebsite: { selected: false, price: 10000, name: 'Media Website Publishing' },
-            newspaper: { selected: false, price: 10000, name: 'Newspaper Publishing' }
-        };
-        
-        // Select package
-        function selectPackage(name, price) {
-            selectedPackage = { name, price };
-            
-            // Update UI
-            document.querySelectorAll('.pricing-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            event.target.closest('.pricing-card').classList.add('selected');
-            
+
+        function selectDur(name, price, id) {
+            pkg = { name, price };
+            document.querySelectorAll('.dur-item').forEach(el => el.classList.remove('active'));
+            document.getElementById('d-' + id).classList.add('active');
             updateBasket();
-            
-            // Scroll to basket
-            document.querySelector('.basket-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-        
-        // Update basket
+
+        document.querySelectorAll('.addon-card').forEach(card => {
+            card.addEventListener('change', () => {
+                const cb = card.querySelector('input[type="checkbox"]');
+                card.classList.toggle('addon-on', cb.checked);
+            });
+        });
+
         function updateBasket() {
-            // Update duration
-            document.getElementById('selectedDuration').textContent = 
-                selectedPackage.name || 'Not selected';
-            
-            // Update additional services
-            const servicesContainer = document.getElementById('additionalServices');
-            servicesContainer.innerHTML = '';
-            
-            // Live Coverage
-            if (document.getElementById('liveCoverage').checked) {
-                additionalServices.liveCoverage.selected = true;
-                servicesContainer.innerHTML += `
-                    <div class="basket-item">
-                        <span class="item-label">${additionalServices.liveCoverage.name}:</span>
-                        <span class="item-value">LKR ${additionalServices.liveCoverage.price.toLocaleString()}</span>
-                    </div>
-                `;
-            } else {
-                additionalServices.liveCoverage.selected = false;
-            }
-            
-            // Social Media
-            if (document.getElementById('socialMedia').checked) {
-                additionalServices.socialMedia.selected = true;
-                servicesContainer.innerHTML += `
-                    <div class="basket-item">
-                        <span class="item-label">${additionalServices.socialMedia.name}:</span>
-                        <span class="item-value">LKR ${additionalServices.socialMedia.price.toLocaleString()}</span>
-                    </div>
-                `;
-            } else {
-                additionalServices.socialMedia.selected = false;
-            }
-            
-            // Media Website
-            if (document.getElementById('mediaWebsite').checked) {
-                additionalServices.mediaWebsite.selected = true;
-                servicesContainer.innerHTML += `
-                    <div class="basket-item">
-                        <span class="item-label">${additionalServices.mediaWebsite.name}:</span>
-                        <span class="item-value">LKR ${additionalServices.mediaWebsite.price.toLocaleString()}</span>
-                    </div>
-                `;
-            } else {
-                additionalServices.mediaWebsite.selected = false;
-            }
-            
-            // Newspaper
-            if (document.getElementById('newspaper').checked) {
-                additionalServices.newspaper.selected = true;
-                servicesContainer.innerHTML += `
-                    <div class="basket-item">
-                        <span class="item-label">${additionalServices.newspaper.name}:</span>
-                        <span class="item-value">LKR ${additionalServices.newspaper.price.toLocaleString()}</span>
-                    </div>
-                `;
-            } else {
-                additionalServices.newspaper.selected = false;
-            }
-            
-            // Calculate total
-            let total = selectedPackage.price;
-            Object.values(additionalServices).forEach(service => {
-                if (service.selected) {
-                    total += service.price;
+            document.getElementById('bDuration').textContent = pkg.name;
+            const container = document.getElementById('bAddons');
+            container.innerHTML = '';
+            let total = pkg.price;
+
+            Object.entries(addons).forEach(([id, svc]) => {
+                const cb = document.getElementById(id);
+                if (cb && cb.checked) {
+                    total += svc.price;
+                    const val = svc.price === 0 ? 'Free' : `LKR ${svc.price.toLocaleString()}`;
+                    container.innerHTML += `
+                        <div class="b-row">
+                            <span class="b-label">${svc.name}</span>
+                            <span class="b-value">${val}</span>
+                        </div>`;
                 }
             });
-            
-            document.getElementById('totalAmount').textContent = `LKR ${total.toLocaleString()}`;
+
+            document.getElementById('bTotal').textContent = `LKR ${total.toLocaleString()}`;
         }
-        
-        // Submit order
+
         function submitOrder() {
-            if (!selectedPackage.name) {
-                alert('Please select a memorial duration package first');
-                return;
-            }
-            
-            let orderSummary = `Order Summary:\n\n`;
-            orderSummary += `Duration: ${selectedPackage.name} - LKR ${selectedPackage.price.toLocaleString()}\n\n`;
-            
-            if (additionalServices.liveCoverage.selected || 
-                additionalServices.socialMedia.selected || 
-                additionalServices.mediaWebsite.selected || 
-                additionalServices.newspaper.selected) {
-                orderSummary += `Additional Services:\n`;
-                
-                if (additionalServices.liveCoverage.selected) {
-                    orderSummary += `- ${additionalServices.liveCoverage.name}: LKR ${additionalServices.liveCoverage.price.toLocaleString()}\n`;
-                }
-                if (additionalServices.socialMedia.selected) {
-                    orderSummary += `- ${additionalServices.socialMedia.name}: LKR ${additionalServices.socialMedia.price.toLocaleString()}\n`;
-                }
-                if (additionalServices.mediaWebsite.selected) {
-                    orderSummary += `- ${additionalServices.mediaWebsite.name}: LKR ${additionalServices.mediaWebsite.price.toLocaleString()}\n`;
-                }
-                if (additionalServices.newspaper.selected) {
-                    orderSummary += `- ${additionalServices.newspaper.name}: LKR ${additionalServices.newspaper.price.toLocaleString()}\n`;
-                }
-            }
-            
-            let total = selectedPackage.price;
-            Object.values(additionalServices).forEach(service => {
-                if (service.selected) {
-                    total += service.price;
+            let total = pkg.price;
+            let extras = '';
+            Object.entries(addons).forEach(([id, svc]) => {
+                const cb = document.getElementById(id);
+                if (cb && cb.checked) {
+                    total += svc.price;
+                    extras += `\n  • ${svc.name}: LKR ${svc.price.toLocaleString()}`;
                 }
             });
-            
-            orderSummary += `\nTotal: LKR ${total.toLocaleString()}`;
-            orderSummary += `\n\nOur team will contact you via WhatsApp to proceed with the payment.`;
-            
-            alert(orderSummary);
-        }
-        
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            alert(`Order Summary\n\nDuration: ${pkg.name} — LKR ${pkg.price.toLocaleString()}${extras ? '\n\nAdd-ons:' + extras : ''}\n\nTotal: LKR ${total.toLocaleString()}\n\nOur team will contact you via WhatsApp.`);
         }
 
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollTopBtn = document.querySelector('.scroll-top');
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.style.display = 'flex';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
+        function switchInfo(id, btn) {
+            document.querySelectorAll('.info-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.i-tab').forEach(b => b.classList.remove('active'));
+            document.getElementById('ip-' + id).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('.scroll-top').style.display = window.pageYOffset > 300 ? 'flex' : 'none';
         });
 
-        // Initially hide the button
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.scroll-top').style.display = 'none';
+            const fy = document.getElementById('footerYear');
+            if (fy) fy.textContent = new Date().getFullYear();
+            updateBasket(); // reflect pre-checked items on load
         });
-        
-        // Memorial creation placeholder
-        function createMemorial() {
-            alert('Memorial creation functionality would be implemented here');
-        }
     </script>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-left"><img src="Logo.png" alt="FuneralNews Logo" class="footer-logo"></div>
+            <div class="footer-center">
+                <a href="index.html">Home</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-right">© <span id="footerYear"></span> FUNERALnews.lk</div>
+        </div>
+    </footer>
+
 </body>
 </html>

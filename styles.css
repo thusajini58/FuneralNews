@@ -1027,6 +1027,7 @@ body {
         right: 0;
         width: 100%;
         z-index: 1000;
+        margin-bottom: 15px !important;
     }
 
     /* Push page content below the fixed header */
@@ -1062,7 +1063,7 @@ body {
     .main-header .nav-center-wrapper > .row {
         padding-top: 8px !important;
         padding-bottom: 8px !important;
-        gap: 8px !important;
+        gap: 15px !important;
     }
     .btn-create-mobile { font-size: 0.75rem; padding: 6px 12px; }
     .search-input { font-size: 0.82rem; padding: 6px 34px 6px 14px; }
@@ -1131,6 +1132,7 @@ body {
     .main-header .nav-center-wrapper > .row {
         padding-top: 6px !important;
         padding-bottom: 6px !important;
+        gap: 15px !important;
     }
     .contact-phone span { font-size: 0.8rem; }
     .obituary-card { padding: 12px 8px; }
