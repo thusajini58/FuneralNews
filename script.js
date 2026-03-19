@@ -1,4 +1,6 @@
-// Obituary data
+// ============================================
+// DATA
+// ============================================
 const obituaries = [
     { id: 1, name: "Mrs Vijayalatha Vijayaratnam", birth: "1952", death: "2026", location: "Mullaitivu, Sri Lanka<br>Batticaloa, Canada", tributes: 15, avatar: "https://i.pravatar.cc/150?img=1", time: "13 hours ago", country: "Sri Lanka", postType: "Obituary", religion: "Hinduism", age: 74, biography: "A beloved mother and grandmother who touched the lives of everyone she met. She was known for her kindness, wisdom, and unwavering faith." },
     { id: 2, name: "Mrs Kannatammal Ponnusamy", birth: "1939", death: "2026", location: "Manipay East, Sri Lanka<br>Jaffna, Sri Lanka", tributes: 5, avatar: "https://i.pravatar.cc/150?img=5", time: "1 day ago", country: "Sri Lanka", postType: "Obituary", religion: "Hinduism", age: 87, biography: "A respected community leader who dedicated her life to helping others. Her legacy of compassion will live on forever." },
@@ -14,7 +16,6 @@ const obituaries = [
     { id: 12, name: "Mr Suthusan Sivasalan", birth: "1960", death: "2026", location: "Puthukkudiyiruppu, United Kingdom", tributes: 18, avatar: "https://i.pravatar.cc/150?img=52", time: "2 days ago", country: "United Kingdom", postType: "1st Year Remembrance", religion: "Hinduism", age: 66, biography: "A dedicated professional who always put family first." }
 ];
 
-// Recent tributes data
 const recentTributes = [
     { name: "Mrs Vijayalatha Vijayaratnam", location: "Batticaloa, Canada", time: "2 days ago", tributes: 15663, avatar: "https://i.pravatar.cc/150?img=1" },
     { name: "Mr Suthusan Sivasalan", location: "Puthukkudiyiruppu, United Kingdom", time: "3 days ago", tributes: 15663, avatar: "https://i.pravatar.cc/150?img=52" },
@@ -26,17 +27,8 @@ const recentTributes = [
     { name: "Mr Sockalingam Sri Rajalingam", location: "Colombo, Sri Lanka", time: "4 months ago", tributes: 7668, avatar: "https://i.pravatar.cc/150?img=33" }
 ];
 
-// Sample tributes for obituaries
-const obituaryTributes = {
-    default: [
-        { name: "John Smith", location: "London, UK", time: "2 hours ago", message: "Such a wonderful person. Will be deeply missed by all who knew them.", avatar: "https://i.pravatar.cc/150?img=15" },
-        { name: "Sarah Johnson", location: "New York, USA", time: "5 hours ago", message: "Their kindness and compassion touched so many lives. Rest in peace.", avatar: "https://i.pravatar.cc/150?img=16" },
-        { name: "Michael Brown", location: "Toronto, Canada", time: "1 day ago", message: "A true inspiration to everyone. Your legacy will live on forever.", avatar: "https://i.pravatar.cc/150?img=17" },
-        { name: "Emma Wilson", location: "Sydney, Australia", time: "2 days ago", message: "We will cherish the beautiful memories we shared together.", avatar: "https://i.pravatar.cc/150?img=18" }
-    ]
-};
+const tributeComments = {};
 
-// Countries data
 const countries = [
     { name: "Australia", count: 2, posts: ["James Anderson", "Sophie Martin"] },
     { name: "Canada", count: 2, posts: ["Mr Subramaniam Ramasamy", "Mrs Selvakurani Kanagaratnam"] },
@@ -46,67 +38,102 @@ const countries = [
 ];
 
 // ============================================
+// TRIBUTE TYPES — for "Share Your Feeling" modal
+// ============================================
+const TRIBUTE_TYPES = {
+    cards: {
+        icon: '💌',
+        name: 'Cards',
+        desc: 'Send a tribute card.',
+        fields: [
+            { id: 'sfmTributeName', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+            { id: 'sfmCardMessage', label: 'Card Message', type: 'textarea', placeholder: 'Write your message on the tribute card...' },
+        ]
+    },
+    candle: {
+        icon: '🕯️',
+        name: 'Lighting of Candle',
+        desc: 'Mark your condolences.',
+        fields: [
+            { id: 'sfmTributeName', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+            { id: 'sfmCandleMsg', label: 'Your Prayer / Message', type: 'textarea', placeholder: 'Share a prayer or message while lighting a virtual candle...' },
+        ]
+    },
+    wreath: {
+        icon: '💐',
+        name: 'Wreath of Love',
+        desc: 'Show your last respect.',
+        fields: [
+            { id: 'sfmTributeName', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+            { id: 'sfmWreathMsg', label: 'Dedication Message', type: 'textarea', placeholder: 'Dedicate this wreath with your words of respect...' },
+        ]
+    },
+    letter: {
+        icon: '✍️',
+        name: 'Letter',
+        desc: 'Say the words you missed.',
+        fields: [
+            { id: 'sfmTributeName', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+            { id: 'sfmLetterBody', label: 'Your Letter', type: 'textarea', placeholder: 'Write your heartfelt letter here...' },
+        ]
+    },
+    moments: {
+        icon: '📸',
+        name: 'Treasured Moments',
+        desc: 'Share memorable photos.',
+        fields: [
+            { id: 'sfmTributeName', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+            { id: 'sfmMomentsCaption', label: 'Caption / Memory', type: 'textarea', placeholder: 'Share a memory or describe this moment...' },
+            { id: 'sfmMomentsPhoto', label: 'Upload Photo', type: 'file', placeholder: '' },
+        ]
+    },
+    message: {
+        icon: '💬',
+        name: 'Message',
+        desc: 'Send a heartfelt message.',
+        fields: [
+            { id: 'sfmTributeName', label: 'Your Name', type: 'text', placeholder: 'Enter your name' },
+            { id: 'sfmMessageBody', label: 'Your Message', type: 'textarea', placeholder: 'Write your heartfelt condolence message...' },
+        ]
+    }
+};
+
+// ============================================
 // REACTIONS SYSTEM
 // ============================================
-
-// Reaction definitions
 const REACTIONS = {
     pray:   { emoji: '🙏', label: 'Pray',   color: '#f59e0b', activeColor: '#d97706' },
     candle: { emoji: '🕯️', label: 'Candle', color: '#f97316', activeColor: '#ea580c' },
     flower: { emoji: '🌸', label: 'Flower', color: '#ec4899', activeColor: '#db2777' }
 };
-
-// Per-post reaction counts & user's own reaction state
-// reactions[id] = { pray: 0, candle: 0, flower: 0 }
-// userReactions[id] = 'pray' | 'candle' | 'flower' | null
 const reactions = {};
 const userReactions = {};
 
 function initReactions(id) {
-    if (!reactions[id]) {
-        reactions[id] = { pray: Math.floor(Math.random() * 12), candle: Math.floor(Math.random() * 8), flower: Math.floor(Math.random() * 6) };
-    }
-    if (userReactions[id] === undefined) {
-        userReactions[id] = null;
-    }
+    if (!reactions[id]) reactions[id] = { pray: Math.floor(Math.random() * 12), candle: Math.floor(Math.random() * 8), flower: Math.floor(Math.random() * 6) };
+    if (userReactions[id] === undefined) userReactions[id] = null;
 }
 
-// Handle a reaction click
 function reactToPost(id, type, event) {
     if (event) event.stopPropagation();
     initReactions(id);
-
     const prev = userReactions[id];
-
-    if (prev === type) {
-        // Toggle off
-        reactions[id][type] = Math.max(0, reactions[id][type] - 1);
-        userReactions[id] = null;
-    } else {
-        // Remove previous if any
-        if (prev) {
-            reactions[id][prev] = Math.max(0, reactions[id][prev] - 1);
-        }
-        reactions[id][type]++;
-        userReactions[id] = type;
-
-        // Burst animation
+    if (prev === type) { reactions[id][type] = Math.max(0, reactions[id][type] - 1); userReactions[id] = null; }
+    else {
+        if (prev) reactions[id][prev] = Math.max(0, reactions[id][prev] - 1);
+        reactions[id][type]++; userReactions[id] = type;
         if (event) spawnBurst(event.currentTarget, REACTIONS[type].emoji);
     }
-
-    // Update all cards with this id on the page
     updateReactionButtons(id);
 }
 
-// Spawn floating emoji burst
 function spawnBurst(btn, emoji) {
     for (let i = 0; i < 6; i++) {
         const el = document.createElement('span');
-        el.className = 'reaction-burst';
-        el.textContent = emoji;
+        el.className = 'reaction-burst'; el.textContent = emoji;
         const rect = btn.getBoundingClientRect();
         el.style.left = (rect.left + rect.width / 2 + window.scrollX) + 'px';
-        el.style.top  = (rect.top  + window.scrollY) + 'px';
+        el.style.top  = (rect.top + window.scrollY) + 'px';
         el.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
         el.style.setProperty('--dy', -(30 + Math.random() * 60) + 'px');
         el.style.animationDelay = (i * 60) + 'ms';
@@ -115,117 +142,33 @@ function spawnBurst(btn, emoji) {
     }
 }
 
-// Update all reaction button groups for a given id
 function updateReactionButtons(id) {
-    document.querySelectorAll(`.reaction-group[data-id="${id}"]`).forEach(group => {
-        renderReactionGroup(group, id);
-    });
+    document.querySelectorAll(`.reaction-group[data-id="${id}"]`).forEach(group => renderReactionGroup(group, id));
 }
 
-// Build the inner HTML of a reaction group
 function renderReactionGroup(group, id) {
     initReactions(id);
     const active = userReactions[id];
     group.innerHTML = Object.entries(REACTIONS).map(([type, def]) => {
-        const count = reactions[id][type];
-        const isActive = active === type;
-        return `
-            <button
-                class="reaction-btn ${isActive ? 'reaction-active' : ''}"
-                data-type="${type}"
-                style="${isActive ? `--reaction-color:${def.activeColor}` : `--reaction-color:${def.color}`}"
-                onclick="reactToPost(${id}, '${type}', event)"
-                title="${def.label}"
-            >
-                <span class="reaction-emoji">${def.emoji}</span>
-                <span class="reaction-label">${def.label}</span>
-                ${count > 0 ? `<span class="reaction-count">${count}</span>` : ''}
-            </button>
-        `;
+        const count = reactions[id][type]; const isActive = active === type;
+        return `<button class="reaction-btn ${isActive ? 'reaction-active' : ''}" data-type="${type}"
+            style="--reaction-color:${isActive ? def.activeColor : def.color}"
+            onclick="reactToPost(${id}, '${type}', event)" title="${def.label}">
+            <span class="reaction-emoji">${def.emoji}</span>
+            <span class="reaction-label">${def.label}</span>
+            ${count > 0 ? `<span class="reaction-count">${count}</span>` : ''}
+        </button>`;
     }).join('');
-}
-
-// Build a reaction group element
-function buildReactionGroup(id) {
-    initReactions(id);
-    const div = document.createElement('div');
-    div.className = 'reaction-group';
-    div.dataset.id = id;
-    renderReactionGroup(div, id);
-    return div.outerHTML;
-}
-
-// ============================================
-// DETAIL PAGE REACTION PANEL
-// ============================================
-function buildDetailReactions(id) {
-    initReactions(id);
-    return `
-        <div class="detail-reactions-section">
-            <h4 class="detail-reactions-title"><i class="bi bi-emoji-smile"></i> Reactions</h4>
-            <div class="detail-reaction-group" data-id="${id}">
-                ${buildDetailReactionButtons(id)}
-            </div>
-        </div>
-    `;
-}
-
-function buildDetailReactionButtons(id) {
-    initReactions(id);
-    const active = userReactions[id];
-    return Object.entries(REACTIONS).map(([type, def]) => {
-        const count = reactions[id][type];
-        const isActive = active === type;
-        return `
-            <button
-                class="detail-reaction-btn ${isActive ? 'reaction-active' : ''}"
-                data-type="${type}"
-                style="--reaction-color:${isActive ? def.activeColor : def.color}"
-                onclick="reactToPostDetail(${id}, '${type}', event)"
-                title="${def.label}"
-            >
-                <span class="detail-reaction-emoji">${def.emoji}</span>
-                <span class="detail-reaction-label">${def.label}</span>
-                <span class="detail-reaction-count">${count}</span>
-            </button>
-        `;
-    }).join('');
-}
-
-function reactToPostDetail(id, type, event) {
-    if (event) event.stopPropagation();
-    initReactions(id);
-
-    const prev = userReactions[id];
-    if (prev === type) {
-        reactions[id][type] = Math.max(0, reactions[id][type] - 1);
-        userReactions[id] = null;
-    } else {
-        if (prev) reactions[id][prev] = Math.max(0, reactions[id][prev] - 1);
-        reactions[id][type]++;
-        userReactions[id] = type;
-        if (event) spawnBurst(event.currentTarget, REACTIONS[type].emoji);
-    }
-
-    // Update detail panel
-    document.querySelectorAll(`.detail-reaction-group[data-id="${id}"]`).forEach(group => {
-        group.innerHTML = buildDetailReactionButtons(id);
-    });
-
-    // Also sync card reaction groups if visible
-    updateReactionButtons(id);
 }
 
 // ============================================
 // STATE
 // ============================================
-let selectedCountry = null;
-let selectedPost = null;
-let expandedCountry = null;
-let currentPage = 'home';
+let selectedCountry = null, selectedPost = null, expandedCountry = null, currentPage = 'home';
+let currentDetailId = null;
 
 // ============================================
-// SHOW MAIN PAGE
+// NAVIGATION
 // ============================================
 function showMainPage() {
     document.getElementById('mainPage').style.display = 'block';
@@ -234,209 +177,324 @@ function showMainPage() {
     filterByPage('home');
 }
 
-// ============================================
-// FILTER BY PAGE
-// ============================================
 function filterByPage(page) {
-    currentPage = page;
-    selectedCountry = null;
-    selectedPost = null;
-    expandedCountry = null;
-
-    document.querySelectorAll('.nav-link-item').forEach(link => link.classList.remove('active'));
-    const navId = 'nav' + page.charAt(0).toUpperCase() + page.slice(1);
-    const activeNav = document.getElementById(navId);
+    currentPage = page; selectedCountry = null; selectedPost = null; expandedCountry = null;
+    document.querySelectorAll('.nav-link-item').forEach(l => l.classList.remove('active'));
+    const activeNav = document.getElementById('nav' + page.charAt(0).toUpperCase() + page.slice(1));
     if (activeNav) activeNav.classList.add('active');
-
     let filtered = obituaries;
     if (page === 'obituary') filtered = obituaries.filter(o => o.postType === 'Obituary');
     else if (page === 'memorial') filtered = obituaries.filter(o => o.postType !== 'Obituary');
-
-    renderObituaries(filtered);
-    renderCountries();
+    renderObituaries(filtered); renderCountries();
 }
 
 // ============================================
-// SHOW DETAIL PAGE
+// DETAIL PAGE
 // ============================================
 function showDetailPage(id) {
     const obit = obituaries.find(o => o.id === id);
     if (!obit) return;
+    currentDetailId = id;
+    if (!tributeComments[id]) tributeComments[id] = [];
 
-    const tributes = obituaryTributes[id] || obituaryTributes.default;
-
-    const birthDate = new Date(obit.birth, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
-    const deathDate = new Date(obit.death, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
-
-    const birthDay   = birthDate.getDate().toString().padStart(2, '0');
+    const birthDate = new Date(parseInt(obit.birth), Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
+    const deathDate = new Date(parseInt(obit.death), Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
+    const birthDay = birthDate.getDate().toString().padStart(2, '0');
     const birthMonth = birthDate.toLocaleString('default', { month: 'short' });
-    const deathDay   = deathDate.getDate().toString().padStart(2, '0');
+    const deathDay = deathDate.getDate().toString().padStart(2, '0');
     const deathMonth = deathDate.toLocaleString('default', { month: 'short' });
 
+    const locationClean = obit.location.replace(/<br>/g, ', ');
+    const locationParts = obit.location.split('<br>');
+    const bornIn = locationParts[0] || locationClean;
+    const residedIn = locationParts[1] ? locationParts[1].split(',')[0].trim() : obit.country;
+
     const detailHTML = `
-        <div class="memorial-card-section">
-            <button class="download-btn" onclick="downloadMemorial(${obit.id})">
-                <i class="bi bi-download"></i>
-            </button>
-
-            <h2 class="memorial-type-title">${obit.postType}</h2>
-
-            <div class="memorial-profile-display">
-                <div class="memorial-date-info">
-                    <div class="memorial-date-label">Born</div>
-                    <div class="memorial-date-day">${birthDay}</div>
-                    <div class="memorial-date-month">${birthMonth}</div>
-                    <div class="memorial-date-year">${obit.birth}</div>
+        <div class="new-memorial-hero">
+            <button class="new-download-btn" onclick="downloadMemorial(${obit.id})"><i class="bi bi-download"></i></button>
+            <h2 class="new-hero-title">கண்ணீர் அஞ்சலி</h2>
+            <div class="new-hero-body">
+                <div class="new-date-col">
+                    <div class="new-date-label">தோற்றம்</div>
+                    <div class="new-date-day">${birthDay}</div>
+                    <div class="new-date-month">${birthMonth}</div>
+                    <div class="new-date-year">${obit.birth}</div>
                 </div>
-
-                <div class="memorial-profile-frame-container">
-                    <div class="memorial-golden-frame"></div>
-                    <img src="${obit.avatar}" alt="${obit.name}" class="memorial-profile-photo">
+                <div class="new-frame-wrap">
+                    <div class="new-golden-frame"></div>
+                    <img src="${obit.avatar}" alt="${obit.name}" class="new-hero-photo">
                 </div>
-
-                <div class="memorial-date-info">
-                    <div class="memorial-date-label">Passed</div>
-                    <div class="memorial-date-day">${deathDay}</div>
-                    <div class="memorial-date-month">${deathMonth}</div>
-                    <div class="memorial-date-year">${obit.death}</div>
+                <div class="new-date-col">
+                    <div class="new-date-label">மறைவு</div>
+                    <div class="new-date-day">${deathDay}</div>
+                    <div class="new-date-month">${deathMonth}</div>
+                    <div class="new-date-year">${obit.death}</div>
                 </div>
             </div>
-
-            <h1 class="memorial-person-name">${obit.name}</h1>
-            <div class="memorial-age-info">Age ${obit.age}</div>
-            <div class="memorial-location-info">${obit.location.replace(/<br>/g, ', ')}</div>
-
-            <div class="memorial-action-buttons">
-                <button class="memorial-action-btn" onclick="tributeNow(${obit.id})">
-                    <i class="bi bi-heart-fill"></i> Tribute Now
+            <h1 class="new-hero-name">${obit.name}</h1>
+            <div class="new-age-badge">Age ${obit.age}</div>
+            <div class="new-hero-location">${locationClean}</div>
+            <div class="new-action-buttons">
+                <button class="new-action-btn" onclick="openShareFeeling(${obit.id})">
+                    <i class="bi bi-heart-fill"></i> Share Your Feeling Now
                 </button>
-                <button class="memorial-action-btn">
+                <button class="new-action-btn" onclick="openSendFlowers(${obit.id})">
                     <i class="bi bi-flower1"></i> Send Flowers
                 </button>
-                <button class="memorial-action-btn">
-                    <i class="bi bi-currency-dollar"></i> Donate
+                <button class="new-action-btn" onclick="openDonate(${obit.id})">
+                    <i class="bi bi-coin"></i> Donate
                 </button>
-                <button class="memorial-action-btn">
+                <button class="new-action-btn" onclick="sharePost(${obit.id})">
                     <i class="bi bi-share-fill"></i> Share
                 </button>
             </div>
         </div>
 
-        ${buildDetailReactions(obit.id)}
-
-        <div class="about-section">
-            <h3><i class="bi bi-person-circle"></i> About</h3>
-            <p class="about-text">${obit.biography}</p>
-        </div>
-
-        <div class="tributes-detail-section">
-            <h3>
-                <span><i class="bi bi-heart-fill"></i> Tributes &amp; Condolences</span>
-                <span class="tribute-count-badge">${tributes.length}</span>
-            </h3>
-
-            <button class="write-tribute-btn" onclick="writeTribute(${obit.id})">
-                <i class="bi bi-pencil-fill"></i> Write a Tribute
-            </button>
-
-            <div class="tributes-list">
-                ${tributes.map(tribute => `
-                    <div class="tribute-item-detail">
-                        <div class="tribute-header-detail">
-                            <i class="bi bi-chat-quote-fill tribute-quote-icon"></i>
-                            <div class="tribute-author-detail">
-                                <div class="tribute-author-name">${tribute.name}</div>
-                                <div class="tribute-author-info">${tribute.location} • ${tribute.time}</div>
-                            </div>
-                        </div>
-                        <div class="tribute-message-detail">${tribute.message}</div>
+        <div class="new-detail-grid">
+            <div class="new-detail-left">
+                <div class="new-about-card">
+                    <h3 class="new-card-section-title">About</h3>
+                    <p class="new-about-text">${obit.biography}</p>
+                </div>
+                <div class="new-comments-card" id="commentsSection-${id}">
+                    <div class="new-comments-header">
+                        <span><i class="bi bi-heart-fill" style="color:var(--red);margin-right:6px;"></i>Comments &amp; Condolences</span>
+                        <span class="new-comment-count-badge">
+                            <i class="bi bi-heart-fill"></i>
+                            <span id="commentCountBadge-${id}">${tributeComments[id].length}</span>
+                        </span>
                     </div>
-                `).join('')}
+                    <div class="new-comments-list" id="commentsList-${id}">${renderCommentsList(id)}</div>
+                    <div class="new-tribute-form">
+                        <h4 class="new-form-title">Share Your Feelings</h4>
+                        <div class="new-form-group">
+                            <label class="new-form-label">Your Name</label>
+                            <input type="text" class="new-form-input" id="tributeName-${id}">
+                        </div>
+                        <div class="new-form-group">
+                            <label class="new-form-label">Message</label>
+                            <textarea class="new-form-textarea" id="tributeMsg-${id}" placeholder="Share your memories, prayers or condolences"></textarea>
+                        </div>
+                        <div style="display:flex;justify-content:flex-end;margin-top:12px;">
+                            <button class="new-post-tribute-btn" onclick="postTribute(${id})">Post Tribute</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    `;
 
-    const sidebarHTML = `
-        <div class="summary-card">
-            <h4>Summary</h4>
-            <div class="summary-item">
-                <div class="summary-icon"><i class="bi bi-geo-alt-fill"></i></div>
-                <div class="summary-info">
-                    <div class="summary-label">Born In</div>
-                    <div class="summary-value">${obit.location.split('<br>')[0]}</div>
+            <div class="new-detail-sidebar">
+                <div class="new-summary-card">
+                    <h4 class="new-summary-title">SUMMARY</h4>
+                    <div class="new-summary-row">
+                        <div class="new-summary-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                        <div><div class="new-summary-label">பிறந்த இடம்</div><div class="new-summary-value">${bornIn}</div></div>
+                    </div>
+                    <div class="new-summary-row">
+                        <div class="new-summary-icon"><i class="bi bi-house-fill"></i></div>
+                        <div><div class="new-summary-label">வாழ்ந்த இடம்</div><div class="new-summary-value">${residedIn}</div></div>
+                    </div>
+                    <div class="new-summary-row">
+                        <div class="new-summary-icon"><i class="bi bi-person-fill"></i></div>
+                        <div><div class="new-summary-label">Religion</div><div class="new-summary-value">${obit.religion}</div></div>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-icon"><i class="bi bi-flag-fill"></i></div>
-                <div class="summary-info">
-                    <div class="summary-label">Resided In</div>
-                    <div class="summary-value">${obit.country}</div>
+                <div class="new-sponsored-card">
+                    <div class="new-sponsored-header">
+                        <span class="new-sponsored-label">SPONSORED</span>
+                        <button class="new-add-ad-btn">+ ADD YOUR AD</button>
+                    </div>
+                    <img src="https://picsum.photos/300/220?random=42" alt="Sponsored" class="new-sponsored-img">
+                    <div class="new-carousel-dots">
+                        <span class="new-dot active"></span>
+                        <span class="new-dot"></span>
+                        <span class="new-dot"></span>
+                    </div>
+                    <div class="new-sponsored-btns">
+                        <button class="new-sponsored-contact-btn"><i class="bi bi-whatsapp"></i> Contact</button>
+                        <button class="new-sponsored-view-btn">View more</button>
+                    </div>
                 </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-icon"><i class="bi bi-house-heart-fill"></i></div>
-                <div class="summary-info">
-                    <div class="summary-label">Religion</div>
-                    <div class="summary-value">${obit.religion}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="sponsored-card">
-            <h4>Sponsored</h4>
-            <div class="sponsored-carousel">
-                <img src="https://picsum.photos/300/250?random=1" alt="Sponsored" class="sponsored-image">
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-control-btn"><i class="bi bi-chevron-left"></i></button>
-                <button class="carousel-control-btn"><i class="bi bi-chevron-right"></i></button>
-            </div>
-            <div class="sponsored-actions">
-                <button class="sponsored-btn contact"><i class="bi bi-whatsapp"></i> Contact</button>
-                <button class="sponsored-btn view-more">View more</button>
             </div>
         </div>
     `;
 
     document.getElementById('detailContent').innerHTML = detailHTML;
-    document.getElementById('detailSidebar').innerHTML = sidebarHTML;
+    document.getElementById('detailSidebar').innerHTML = '';
     document.getElementById('mainPage').style.display = 'none';
     document.getElementById('detailPage').classList.add('active');
     window.scrollTo(0, 0);
 }
 
+function renderCommentsList(id) {
+    const comments = tributeComments[id] || [];
+    if (!comments.length) return '';
+    return comments.map(c => `
+        <div class="new-comment-item">
+            <div class="new-comment-author">${c.name}</div>
+            <div class="new-comment-msg">${c.message}</div>
+            <div class="new-comment-time">${c.time}</div>
+        </div>`).join('');
+}
+
+function postTribute(id) {
+    const nameEl = document.getElementById(`tributeName-${id}`);
+    const msgEl  = document.getElementById(`tributeMsg-${id}`);
+    if (!nameEl || !msgEl) return;
+    const name = nameEl.value.trim(), message = msgEl.value.trim();
+    if (!name || !message) { alert('Please enter your name and message.'); return; }
+    if (!tributeComments[id]) tributeComments[id] = [];
+    tributeComments[id].unshift({ name, message, time: 'Just now' });
+    const obit = obituaries.find(o => o.id === id);
+    if (obit) obit.tributes++;
+    nameEl.value = ''; msgEl.value = '';
+    const listEl = document.getElementById(`commentsList-${id}`);
+    if (listEl) listEl.innerHTML = renderCommentsList(id);
+    const countEl = document.getElementById(`commentCountBadge-${id}`);
+    if (countEl) countEl.textContent = tributeComments[id].length;
+}
+
 // ============================================
-// TOGGLE COUNTRY
+// SHARE YOUR FEELING MODAL
+// ============================================
+let currentTributePostId = null;
+
+function openShareFeeling(id) {
+    currentTributePostId = id;
+    // Reset to step 1
+    document.getElementById('sfmStep1').style.display = '';
+    document.getElementById('sfmStep2').style.display = 'none';
+    document.getElementById('sfmFooter').style.display = '';
+    const modal = new bootstrap.Modal(document.getElementById('shareFeelingModal'));
+    modal.show();
+}
+
+function selectTributeType(type) {
+    const def = TRIBUTE_TYPES[type];
+    if (!def) return;
+    // Build header
+    document.getElementById('sfmFormHeader').innerHTML = `
+        <span class="sfm-form-header-icon">${def.icon}</span>
+        <div class="sfm-form-header-text">
+            <h5>${def.name}</h5>
+            <p>${def.desc}</p>
+        </div>`;
+    // Build fields
+    document.getElementById('sfmFormBody').innerHTML =
+        def.fields.map(f => {
+            if (f.type === 'textarea') return `
+                <div class="sfm-field-group">
+                    <label class="sfm-field-label">${f.label}</label>
+                    <textarea class="sfm-field-textarea" id="${f.id}" placeholder="${f.placeholder}"></textarea>
+                </div>`;
+            if (f.type === 'file') return `
+                <div class="sfm-field-group">
+                    <label class="sfm-field-label">${f.label}</label>
+                    <input type="file" class="sfm-file-input" id="${f.id}" accept="image/*">
+                </div>`;
+            return `
+                <div class="sfm-field-group">
+                    <label class="sfm-field-label">${f.label}</label>
+                    <input type="text" class="sfm-field-input" id="${f.id}" placeholder="${f.placeholder}">
+                </div>`;
+        }).join('') +
+        `<div style="display:flex;justify-content:flex-end;margin-top:8px;">
+            <button class="sfm-submit-btn" onclick="submitTribute('${type}')">
+                ${def.icon} Submit ${def.name}
+            </button>
+        </div>`;
+    document.getElementById('sfmStep1').style.display = 'none';
+    document.getElementById('sfmStep2').style.display = '';
+    document.getElementById('sfmFooter').style.display = 'none';
+}
+
+function sfmGoBack() {
+    document.getElementById('sfmStep1').style.display = '';
+    document.getElementById('sfmStep2').style.display = 'none';
+    document.getElementById('sfmFooter').style.display = '';
+}
+
+function submitTribute(type) {
+    const nameEl = document.getElementById('sfmTributeName');
+    const name = nameEl ? nameEl.value.trim() : '';
+    if (!name) { alert('Please enter your name.'); return; }
+    const def = TRIBUTE_TYPES[type];
+    // Add to comments if we have a post id
+    const id = currentTributePostId;
+    if (id) {
+        if (!tributeComments[id]) tributeComments[id] = [];
+        tributeComments[id].unshift({ name, message: `${def.icon} ${def.name}`, time: 'Just now' });
+        const obit = obituaries.find(o => o.id === id);
+        if (obit) obit.tributes++;
+        const listEl = document.getElementById(`commentsList-${id}`);
+        if (listEl) listEl.innerHTML = renderCommentsList(id);
+        const countEl = document.getElementById(`commentCountBadge-${id}`);
+        if (countEl) countEl.textContent = tributeComments[id].length;
+    }
+    bootstrap.Modal.getInstance(document.getElementById('shareFeelingModal')).hide();
+    alert(`Thank you! Your ${def.name} has been submitted.`);
+}
+
+// ============================================
+// SEND FLOWERS MODAL
+// ============================================
+function openSendFlowers(id) {
+    currentTributePostId = id;
+    // Clear form
+    ['flowersName','flowersEmail','flowersPhone','flowersCountry','flowersMessage'].forEach(fid => {
+        const el = document.getElementById(fid); if (el) el.value = '';
+    });
+    new bootstrap.Modal(document.getElementById('sendFlowersModal')).show();
+}
+
+function submitFlowersRequest() {
+    const name = document.getElementById('flowersName').value.trim();
+    const email = document.getElementById('flowersEmail').value.trim();
+    const phone = document.getElementById('flowersPhone').value.trim();
+    const country = document.getElementById('flowersCountry').value.trim();
+    if (!name || !email || !phone || !country) { alert('Please fill in all required fields.'); return; }
+    bootstrap.Modal.getInstance(document.getElementById('sendFlowersModal')).hide();
+    alert('Your flower request has been submitted! Our team will contact you shortly.');
+}
+
+// ============================================
+// DONATE MODAL
+// ============================================
+function openDonate(id) {
+    currentTributePostId = id;
+    ['donateName','donateEmail','donatePhone','donateCountry','donateAmount','donateNotes'].forEach(fid => {
+        const el = document.getElementById(fid); if (el) el.value = '';
+    });
+    new bootstrap.Modal(document.getElementById('donateModal')).show();
+}
+
+function submitDonateRequest() {
+    const name = document.getElementById('donateName').value.trim();
+    const email = document.getElementById('donateEmail').value.trim();
+    const phone = document.getElementById('donatePhone').value.trim();
+    const country = document.getElementById('donateCountry').value.trim();
+    if (!name || !email || !phone || !country) { alert('Please fill in all required fields.'); return; }
+    bootstrap.Modal.getInstance(document.getElementById('donateModal')).hide();
+    alert('Thank you for your generous donation! Our team will contact you with bank account details shortly.');
+}
+
+// ============================================
+// SIDEBAR COUNTRY / POST
 // ============================================
 function toggleCountry(country) {
-    if (expandedCountry === country) {
-        expandedCountry = null;
-        selectedCountry = null;
-        selectedPost = null;
-        filterByPage(currentPage);
-    } else {
-        expandedCountry = country;
-        selectedCountry = country;
-        selectedPost = null;
-
-        let filtered = obituaries.filter(obit => obit.country === country);
+    if (expandedCountry === country) { expandedCountry = null; selectedCountry = null; selectedPost = null; filterByPage(currentPage); }
+    else {
+        expandedCountry = country; selectedCountry = country; selectedPost = null;
+        let filtered = obituaries.filter(o => o.country === country);
         if (currentPage === 'obituary') filtered = filtered.filter(o => o.postType === 'Obituary');
         else if (currentPage === 'memorial') filtered = filtered.filter(o => o.postType !== 'Obituary');
-
         renderObituaries(filtered);
     }
     renderCountries();
 }
 
-// ============================================
-// SELECT POST
-// ============================================
 function selectPost(postName, country) {
-    selectedPost = postName;
-    selectedCountry = country;
-    expandedCountry = country;
-    const filtered = obituaries.filter(o => o.name === postName);
-    renderObituaries(filtered);
+    selectedPost = postName; selectedCountry = country; expandedCountry = country;
+    renderObituaries(obituaries.filter(o => o.name === postName));
     renderCountries();
 }
 
@@ -444,28 +502,18 @@ function selectPost(postName, country) {
 // RENDER COUNTRIES
 // ============================================
 function renderCountries() {
-    const container = document.getElementById('countriesList');
-    const mobileContainer = document.getElementById('countriesListMobile');
-
-    const html = countries.map(country => `
+    const html = countries.map(c => `
         <div class="country-item">
-            <div class="country-header ${expandedCountry === country.name ? 'active' : ''}"
-                 onclick="toggleCountry('${country.name}')">
-                <span class="country-name">${country.name}</span>
-                <span class="country-count">${country.count} Posts</span>
+            <div class="country-header ${expandedCountry === c.name ? 'active' : ''}" onclick="toggleCountry('${c.name}')">
+                <span class="country-name">${c.name}</span>
+                <span class="country-count">${c.count} Posts</span>
             </div>
-            <div class="country-posts ${expandedCountry === country.name ? 'show' : ''}">
-                ${country.posts.map(post => `
-                    <div class="post-item ${selectedPost === post ? 'active' : ''}" onclick="selectPost('${post}', '${country.name}')">
-                        ${post}
-                    </div>
-                `).join('')}
+            <div class="country-posts ${expandedCountry === c.name ? 'show' : ''}">
+                ${c.posts.map(p => `<div class="post-item ${selectedPost === p ? 'active' : ''}" onclick="selectPost('${p}', '${c.name}')">${p}</div>`).join('')}
             </div>
-        </div>
-    `).join('');
-
-    if (container) container.innerHTML = html;
-    if (mobileContainer) mobileContainer.innerHTML = html;
+        </div>`).join('');
+    const cl = document.getElementById('countriesList'); if (cl) cl.innerHTML = html;
+    const cm = document.getElementById('countriesListMobile'); if (cm) cm.innerHTML = html;
 }
 
 // ============================================
@@ -473,41 +521,26 @@ function renderCountries() {
 // ============================================
 function renderObituaries(data = obituaries) {
     const container = document.getElementById('obituaryContainer');
-
-    if (data.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:50px;color:#999;">No obituaries found</div>';
-        return;
-    }
-
+    if (!data.length) { container.innerHTML = '<div style="text-align:center;padding:50px;color:#999;">No obituaries found</div>'; return; }
     container.innerHTML = data.map(obit => {
         initReactions(obit.id);
         const active = userReactions[obit.id];
-
         const reactionBtns = Object.entries(REACTIONS).map(([type, def]) => {
-            const count = reactions[obit.id][type];
-            const isActive = active === type;
-            return `
-                <button
-                    class="reaction-btn ${isActive ? 'reaction-active' : ''}"
-                    data-type="${type}"
-                    style="--reaction-color:${isActive ? def.activeColor : def.color}"
-                    onclick="reactToPost(${obit.id}, '${type}', event)"
-                    title="${def.label}"
-                >
-                    <span class="reaction-emoji">${def.emoji}</span>
-                    <span class="reaction-label">${def.label}</span>
-                    ${count > 0 ? `<span class="reaction-count">${count}</span>` : ''}
-                </button>
-            `;
+            const count = reactions[obit.id][type]; const isActive = active === type;
+            return `<button class="reaction-btn ${isActive ? 'reaction-active' : ''}" data-type="${type}"
+                style="--reaction-color:${isActive ? def.activeColor : def.color}"
+                onclick="reactToPost(${obit.id}, '${type}', event)" title="${def.label}">
+                <span class="reaction-emoji">${def.emoji}</span>
+                <span class="reaction-label">${def.label}</span>
+                ${count > 0 ? `<span class="reaction-count">${count}</span>` : ''}
+            </button>`;
         }).join('');
-
         return `
-            <div class="obituary-card" onclick="showDetailPage(${obit.id})">
+            <div class="obituary-card" data-type="${obit.postType}" onclick="showDetailPage(${obit.id})">
                 <div class="card-header-row">
                     <div class="post-type-badge">${obit.postType}</div>
                     <div class="time-ago">${obit.time}</div>
                 </div>
-
                 <div class="card-body-content">
                     <div class="profile-section">
                         <span class="year">${obit.birth}</span>
@@ -519,25 +552,17 @@ function renderObituaries(data = obituaries) {
                         </div>
                         <span class="year">${obit.death}</span>
                     </div>
-
                     <div class="memorial-name">${obit.name}</div>
                     <div class="memorial-details">${obit.location}</div>
-
                     <div class="card-footer-row">
-                        <div class="tributes-count">
-                            <i class="bi bi-heart-fill"></i>
-                            <span>${obit.tributes} Tributes</span>
-                        </div>
-                        <div class="reaction-group" data-id="${obit.id}">
-                            ${reactionBtns}
-                        </div>
+                        <div class="tributes-count"><i class="bi bi-heart-fill"></i><span>${obit.tributes} Tributes</span></div>
+                        <div class="reaction-group" data-id="${obit.id}">${reactionBtns}</div>
                         <button class="share-btn" onclick="event.stopPropagation(); sharePost(${obit.id})">
                             <i class="bi bi-share-fill"></i> Share
                         </button>
                     </div>
                 </div>
-            </div>
-        `;
+            </div>`;
     }).join('');
 }
 
@@ -545,88 +570,57 @@ function renderObituaries(data = obituaries) {
 // RENDER TRIBUTES
 // ============================================
 function renderTributes() {
-    const container = document.getElementById('tributesList');
-    const mobileContainer = document.getElementById('tributesListMobile');
-
-    const html = recentTributes.map(tribute => `
+    const html = recentTributes.map(t => `
         <div class="tribute-item">
-            <img src="${tribute.avatar}" alt="${tribute.name}" class="tribute-avatar">
+            <img src="${t.avatar}" alt="${t.name}" class="tribute-avatar">
             <div class="tribute-info">
-                <div class="tribute-name">${tribute.name}</div>
-                <div class="tribute-location">${tribute.location}</div>
-                <div class="tribute-time">${tribute.time}</div>
+                <div class="tribute-name">${t.name}</div>
+                <div class="tribute-location">${t.location}</div>
+                <div class="tribute-time">${t.time}</div>
             </div>
-            <div class="tribute-more">+ ${Math.round(tribute.tributes / 1000)}K MORE</div>
-        </div>
-    `).join('');
-
-    if (container) container.innerHTML = html;
-    if (mobileContainer) mobileContainer.innerHTML = html;
+            <div class="tribute-more">+ ${Math.round(t.tributes / 1000)}K MORE</div>
+        </div>`).join('');
+    const c = document.getElementById('tributesList'); if (c) c.innerHTML = html;
+    const m = document.getElementById('tributesListMobile'); if (m) m.innerHTML = html;
 }
 
 // ============================================
 // CREATE MEMORIAL
 // ============================================
 function createMemorial() {
-    const postType  = document.getElementById('postType').value.trim();
-    const name      = document.getElementById('memorialName').value;
+    const postType = document.getElementById('postType').value.trim();
+    const name = document.getElementById('memorialName').value;
     const birthDate = document.getElementById('birthDate').value;
     const deathDate = document.getElementById('deathDate').value;
-    const country   = document.getElementById('country').value;
-    const location  = document.getElementById('location').value;
-    const religion  = document.getElementById('religion').value || 'Not specified';
+    const country = document.getElementById('country').value;
+    const location = document.getElementById('location').value;
+    const religion = document.getElementById('religion').value || 'Not specified';
     const biography = document.getElementById('biography').value;
-
-    if (!postType || !name || !birthDate || !deathDate || !country || !location) {
-        alert('Please fill in all required fields');
-        return;
-    }
-
+    if (!postType || !name || !birthDate || !deathDate || !country || !location) { alert('Please fill in all required fields'); return; }
     const birthYear = new Date(birthDate).getFullYear();
     const deathYear = new Date(deathDate).getFullYear();
-    const age = deathYear - birthYear;
-
     const newMemorial = {
-        id: obituaries.length + 1,
-        name, birth: birthYear.toString(), death: deathYear.toString(),
+        id: obituaries.length + 1, name, birth: birthYear.toString(), death: deathYear.toString(),
         location: location + ', ' + country, tributes: 0,
         avatar: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`,
-        time: "Just now", country, postType, religion, age,
+        time: "Just now", country, postType, religion, age: deathYear - birthYear,
         biography: biography || "A beloved individual who will be deeply missed."
     };
-
     obituaries.unshift(newMemorial);
-
-    const countryObj = countries.find(c => c.name === country);
-    if (countryObj) { countryObj.count++; countryObj.posts.unshift(name); }
+    const co = countries.find(c => c.name === country);
+    if (co) { co.count++; co.posts.unshift(name); }
     else countries.push({ name: country, count: 1, posts: [name] });
-
-    filterByPage(currentPage);
-    renderCountries();
-
-    const modal = bootstrap.Modal.getInstance(document.getElementById('createMemorialModal'));
-    modal.hide();
-
-    ['postType','memorialName','birthDate','deathDate','country','location','religion','biography']
-        .forEach(id => document.getElementById(id).value = '');
-
+    filterByPage(currentPage); renderCountries();
+    bootstrap.Modal.getInstance(document.getElementById('createMemorialModal')).hide();
+    ['postType','memorialName','birthDate','deathDate','country','location','religion','biography'].forEach(id => document.getElementById(id).value = '');
     alert('Memorial created successfully!');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ============================================
-// MISC ACTIONS
+// MISC
 // ============================================
 function downloadMemorial(id) { alert('Memorial card download feature coming soon!'); }
-function tributeNow(id) { writeTribute(id); }
-
-function writeTribute(id) {
-    const message = prompt('Write your tribute message:');
-    if (message && message.trim()) {
-        const obit = obituaries.find(o => o.id === id);
-        if (obit) { obit.tributes++; alert('Thank you for your tribute!'); showDetailPage(id); }
-    }
-}
 
 function sharePost(id) {
     const obit = obituaries.find(o => o.id === id);
@@ -634,26 +628,27 @@ function sharePost(id) {
     if (navigator.share) {
         navigator.share({ title: obit.name, text: `In memory of ${obit.name} (${obit.birth} - ${obit.death})`, url: window.location.href }).catch(() => {});
     } else {
-        const tmp = document.createElement('input');
-        tmp.value = window.location.href;
-        document.body.appendChild(tmp);
-        tmp.select();
-        document.execCommand('copy');
-        document.body.removeChild(tmp);
+        const tmp = document.createElement('input'); tmp.value = window.location.href;
+        document.body.appendChild(tmp); tmp.select(); document.execCommand('copy'); document.body.removeChild(tmp);
         alert('Link copied to clipboard!');
     }
 }
 
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+window.addEventListener('scroll', () => {
+    const btn = document.querySelector('.scroll-top');
+    if (btn) btn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
+});
+
 // ============================================
 // SEARCH
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
+document.addEventListener('DOMContentLoaded', () => {
+    const si = document.getElementById('searchInput');
+    if (si) {
+        si.addEventListener('input', e => {
             const term = e.target.value.toLowerCase();
             let filtered = obituaries;
-
             if (term) {
                 selectedCountry = null; selectedPost = null; expandedCountry = null;
                 filtered = filtered.filter(o =>
@@ -666,26 +661,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (currentPage === 'obituary') filtered = filtered.filter(o => o.postType === 'Obituary');
                 else if (currentPage === 'memorial') filtered = filtered.filter(o => o.postType !== 'Obituary');
             }
-            renderObituaries(filtered);
-            renderCountries();
+            renderObituaries(filtered); renderCountries();
         });
     }
 });
 
 // ============================================
-// SCROLL
-// ============================================
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-window.addEventListener('scroll', function() {
-    const btn = document.querySelector('.scroll-top');
-    if (btn) btn.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
-});
-
-// ============================================
 // INIT
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     renderCountries();
     renderObituaries();
     renderTributes();
