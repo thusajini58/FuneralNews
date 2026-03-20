@@ -223,7 +223,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--g
 .new-date-month { font-size: 1.05rem; margin-bottom: 4px; opacity: 0.85; }
 .new-date-year { font-size: 1.5rem; font-weight: 600; color: #fff; }
 .new-frame-wrap { position: relative; width: 260px; height: 260px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.new-golden-frame { position: absolute; margin-top: 22px; top: -12px; left: -12px; width: 264px; height: 264px; background-image: url('frame1.png'); background-size: contain; background-position: center; background-repeat: no-repeat; pointer-events: none; z-index: 2; }
+.new-golden-frame { position: absolute; margin-top: 22px; top: -12px; left: -12px; width: 294px; height: 264px; background-image: url('frame1.png'); background-size: contain; background-position: center; background-repeat: no-repeat; pointer-events: none; z-index: 2; }
 .new-hero-photo { width: 185px; height: 205px; border-radius: 6px; object-fit: cover; position: relative; z-index: 1; margin-top: 26px; box-shadow: 0 0 0 5px rgba(255,255,255,0.08); }
 .new-hero-name { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 10px; margin-top: 4px; }
 .new-age-badge { display: inline-block; background: var(--navy-mid); border: 1px solid var(--navy-light); color: #fff; padding: 4px 18px; border-radius: 20px; font-size: 0.88rem; font-weight: 600; margin-bottom: 8px; }
