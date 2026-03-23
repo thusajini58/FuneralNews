@@ -22,14 +22,24 @@
                         <a href="pricing.html">Pricing</a>
                         <a href="contact.html">Contact Us</a>
                     </div>
-                    <div class="top-right">
-                        <button class="language-btn">
-                            <i class="bi bi-globe"></i> English <i class="bi bi-chevron-down"></i>
+
+                    <!-- Language Dropdown -->
+                    <div class="top-right" style="position: relative;">
+                        <button class="language-btn" id="langBtn">
+                            <i class="bi bi-globe"></i>
+                            <span id="langLabel">English</span>
+                            <i class="bi bi-chevron-down"></i>
                         </button>
+                        <div class="lang-dropdown-menu" id="langMenu">
+                            <div class="lang-dropdown-item active" data-lang="en" data-label="English">English</div>
+                            <div class="lang-dropdown-item" data-lang="ta" data-label="Tamil">Tamil</div>
+                            <div class="lang-dropdown-item" data-lang="si" data-label="Sinhala">Sinhala</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="nav-center-wrapper">
             <div class="row align-items-center g-3 py-3">
                 <div class="col-12 col-lg-auto">
@@ -160,9 +170,8 @@
     </div>
 
     <!-- ========== SCROLL TOP & CHAT ========== -->
-     <div class="chat-button"><i class="bi bi-chat-dots-fill"></i></div>
+    <div class="chat-button"><i class="bi bi-chat-dots-fill"></i></div>
     <div class="scroll-top" onclick="scrollToTop()"><i class="bi bi-arrow-up"></i></div>
-    
 
     <!-- ========== CREATE MEMORIAL MODAL ========== -->
     <div class="modal fade" id="createMemorialModal" tabindex="-1">
@@ -246,55 +255,40 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body sfm-body" id="sfmBody">
-                    <!-- Step 1: Select tribute type -->
                     <div id="sfmStep1">
                         <div class="sfm-grid">
                             <div class="sfm-card" onclick="selectTributeType('cards')">
-                                <div class="sfm-card-img-wrap">
-                                    <div class="sfm-card-icon-big">💌</div>
-                                </div>
+                                <div class="sfm-card-img-wrap"><div class="sfm-card-icon-big">💌</div></div>
                                 <div class="sfm-card-name">Cards</div>
                                 <div class="sfm-card-desc">Send a tribute card.</div>
                             </div>
                             <div class="sfm-card" onclick="selectTributeType('candle')">
-                                <div class="sfm-card-img-wrap">
-                                    <div class="sfm-card-icon-big">🕯️</div>
-                                </div>
+                                <div class="sfm-card-img-wrap"><div class="sfm-card-icon-big">🕯️</div></div>
                                 <div class="sfm-card-name">Lighting of Candle</div>
                                 <div class="sfm-card-desc">Mark your condolences.</div>
                             </div>
                             <div class="sfm-card" onclick="selectTributeType('wreath')">
-                                <div class="sfm-card-img-wrap">
-                                    <div class="sfm-card-icon-big">💐</div>
-                                </div>
+                                <div class="sfm-card-img-wrap"><div class="sfm-card-icon-big">💐</div></div>
                                 <div class="sfm-card-name">Wreath of Love</div>
                                 <div class="sfm-card-desc">Show your last respect.</div>
                             </div>
                             <div class="sfm-card" onclick="selectTributeType('letter')">
-                                <div class="sfm-card-img-wrap">
-                                    <div class="sfm-card-icon-big">✍️</div>
-                                </div>
+                                <div class="sfm-card-img-wrap"><div class="sfm-card-icon-big">✍️</div></div>
                                 <div class="sfm-card-name">Letter</div>
                                 <div class="sfm-card-desc">Say the words you missed.</div>
                             </div>
                             <div class="sfm-card" onclick="selectTributeType('moments')">
-                                <div class="sfm-card-img-wrap">
-                                    <div class="sfm-card-icon-big">📸</div>
-                                </div>
+                                <div class="sfm-card-img-wrap"><div class="sfm-card-icon-big">📸</div></div>
                                 <div class="sfm-card-name">Treasured Moments</div>
                                 <div class="sfm-card-desc">Share memorable photos.</div>
                             </div>
                             <div class="sfm-card" onclick="selectTributeType('message')">
-                                <div class="sfm-card-img-wrap">
-                                    <div class="sfm-card-icon-big">💬</div>
-                                </div>
+                                <div class="sfm-card-img-wrap"><div class="sfm-card-icon-big">💬</div></div>
                                 <div class="sfm-card-name">Message</div>
                                 <div class="sfm-card-desc">Send a heartfelt message.</div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Step 2: Tribute form -->
                     <div id="sfmStep2" style="display:none;">
                         <button class="sfm-back-btn" onclick="sfmGoBack()">
                             <i class="bi bi-arrow-left"></i> Back
@@ -321,7 +315,6 @@
                 </div>
                 <div class="modal-body p-0">
                     <div class="flowers-modal-layout">
-                        <!-- Left panel -->
                         <div class="flowers-left-panel">
                             <div class="flowers-hotline-label">HOTLINE NUMBER</div>
                             <div class="flowers-hotline-number">+94 75 022 0123 , 071 55 40 123</div>
@@ -330,16 +323,15 @@
                                 <i class="bi bi-info-circle-fill"></i> We will not display your contact details in public.
                             </div>
                         </div>
-                        <!-- Right panel: form -->
                         <div class="flowers-right-panel">
                             <h4 class="flowers-form-title">Send Flowers Request</h4>
                             <div class="flowers-form-group">
                                 <label class="flowers-label">Your Name</label>
-                                <input type="text" class="flowers-input" id="flowersName" placeholder="">
+                                <input type="text" class="flowers-input" id="flowersName">
                             </div>
                             <div class="flowers-form-group">
                                 <label class="flowers-label">Your Email</label>
-                                <input type="email" class="flowers-input" id="flowersEmail" placeholder="">
+                                <input type="email" class="flowers-input" id="flowersEmail">
                             </div>
                             <div class="flowers-form-group">
                                 <label class="flowers-label">Your Phone</label>
@@ -356,7 +348,7 @@
                             </div>
                             <div class="flowers-form-group">
                                 <label class="flowers-label">Country</label>
-                                <input type="text" class="flowers-input" id="flowersCountry" placeholder="">
+                                <input type="text" class="flowers-input" id="flowersCountry">
                             </div>
                             <div class="flowers-form-group">
                                 <label class="flowers-label">Message (Optional)</label>
@@ -384,7 +376,6 @@
                 </div>
                 <div class="modal-body p-0">
                     <div class="donate-modal-layout">
-                        <!-- Left panel -->
                         <div class="donate-left-panel">
                             <div class="donate-support-title">SUPPORT THE FAMILY</div>
                             <p class="donate-support-desc">Please share your details below. Our admin team will contact you with bank account information and will manage sending the donation to the family mentioned in this memorial.</p>
@@ -394,16 +385,15 @@
                                 <i class="bi bi-info-circle-fill"></i> We will not display your contact details in public.
                             </div>
                         </div>
-                        <!-- Right panel: form -->
                         <div class="donate-right-panel">
                             <h4 class="donate-form-title">Donation Request</h4>
                             <div class="donate-form-group">
                                 <label class="donate-label">Your Name</label>
-                                <input type="text" class="donate-input" id="donateName" placeholder="">
+                                <input type="text" class="donate-input" id="donateName">
                             </div>
                             <div class="donate-form-group">
                                 <label class="donate-label">Your Email</label>
-                                <input type="email" class="donate-input" id="donateEmail" placeholder="">
+                                <input type="email" class="donate-input" id="donateEmail">
                             </div>
                             <div class="donate-form-group">
                                 <label class="donate-label">Your Phone</label>
@@ -420,7 +410,7 @@
                             </div>
                             <div class="donate-form-group">
                                 <label class="donate-label">Country</label>
-                                <input type="text" class="donate-input" id="donateCountry" placeholder="">
+                                <input type="text" class="donate-input" id="donateCountry">
                             </div>
                             <div class="donate-form-group">
                                 <label class="donate-label">Planned Donation Amount (Optional)</label>
@@ -436,7 +426,7 @@
                                 </div>
                             </div>
                             <div class="donate-form-group">
-                                <label class="donate-label">Preferred donation method / notes to organiser (Optional)</label>
+                                <label class="donate-label">Preferred donation method / notes (Optional)</label>
                                 <textarea class="donate-textarea" id="donateNotes" placeholder="Share any notes..."></textarea>
                             </div>
                         </div>
@@ -468,9 +458,105 @@
             <div class="footer-right">© <span id="footerYear"></span> FUNERALnews.lk</div>
         </div>
     </footer>
-    <script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
+
+    <!-- ========== GOOGLE TRANSLATE (hidden) ========== -->
+    <div id="google_translate_element" style="display:none;"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+
+    <script>
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- ========== GOOGLE TRANSLATE INIT ========== -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- ========== LANGUAGE DROPDOWN SCRIPT ========== -->
+    <script>
+        (function () {
+            const langBtn  = document.getElementById('langBtn');
+            const langMenu = document.getElementById('langMenu');
+            const langLabel = document.getElementById('langLabel');
+
+            // Toggle open/close
+            langBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                langMenu.classList.toggle('open');
+                langBtn.classList.toggle('open');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', function () {
+                langMenu.classList.remove('open');
+                langBtn.classList.remove('open');
+            });
+
+            // Prevent menu click from closing itself
+            langMenu.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+
+            // Handle language selection
+            document.querySelectorAll('.lang-dropdown-item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    const langCode  = item.getAttribute('data-lang');
+                    const langText  = item.getAttribute('data-label');
+
+                    // Update active state
+                    document.querySelectorAll('.lang-dropdown-item').forEach(function (i) {
+                        i.classList.remove('active');
+                    });
+                    item.classList.add('active');
+
+                    // Update button label
+                    langLabel.textContent = langText;
+
+                    // Close dropdown
+                    langMenu.classList.remove('open');
+                    langBtn.classList.remove('open');
+
+                    // Trigger Google Translate
+                    translatePage(langCode);
+                });
+            });
+
+            function translatePage(langCode) {
+                // Set cookie (works on real domains)
+                const host = location.hostname;
+                document.cookie = 'googtrans=/en/' + langCode + '; path=/; domain=' + host;
+                document.cookie = 'googtrans=/en/' + langCode + '; path=/';
+
+                // Try triggering the hidden Google Translate combo select
+                var trySelect = function () {
+                    var select = document.querySelector('.goog-te-combo');
+                    if (select) {
+                        select.value = langCode;
+                        select.dispatchEvent(new Event('change'));
+                        return true;
+                    }
+                    return false;
+                };
+
+                if (!trySelect()) {
+                    var attempts = 0;
+                    var interval = setInterval(function () {
+                        if (trySelect() || attempts++ > 30) {
+                            clearInterval(interval);
+                        }
+                    }, 200);
+                }
+            }
+        })();
+    </script>
+
 </body>
 </html>

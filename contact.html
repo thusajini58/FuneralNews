@@ -8,7 +8,6 @@
     <link rel="icon" href="fav.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,6 +33,73 @@
             color: var(--black);
             -webkit-font-smoothing: antialiased;
         }
+
+        /* ── Google Translate suppression ── */
+        .goog-te-banner-frame, .skiptranslate { display: none !important; }
+        body { top: 0 !important; }
+        .goog-te-gadget { display: none !important; }
+
+        /* ── Header overflow fix ── */
+        .main-header    { overflow: visible !important; }
+        .top-navigation { overflow: visible !important; position: relative; z-index: 1002; }
+
+        /* ── Language button ── */
+        .language-btn {
+            background: #16213e;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-size: 0.76rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .language-btn:hover { background: #3d3d3d; }
+        .language-btn .bi-chevron-down {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            transition: transform 0.22s cubic-bezier(.4,0,.2,1);
+        }
+        .language-btn.open .bi-chevron-down { transform: rotate(180deg); color: #fff; }
+
+        /* ── Dropdown ── */
+        .lang-dropdown-menu {
+            position: fixed;
+            min-width: 185px;
+            background: #fff;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.14);
+            padding: 5px 0;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-6px) scale(0.98);
+            transform-origin: top right;
+            transition: opacity 0.18s, transform 0.2s cubic-bezier(.4,0,.2,1);
+        }
+        .lang-dropdown-menu.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0) scale(1);
+        }
+        .lang-dropdown-item {
+            padding: 10px 16px;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+            border-radius: 6px;
+            margin: 2px 4px;
+            transition: background 0.13s;
+            display: block;
+            white-space: nowrap;
+        }
+        .lang-dropdown-item:hover  { background: #f3f3f3; color: #111; }
+        .lang-dropdown-item.active { background: #eef0ff; font-weight: 700; color: #1a1aff; }
 
         /* ── Page wrapper ── */
         .contact-page {
@@ -337,10 +403,17 @@
                         <a href="pricing.html">Pricing</a>
                         <a href="contact.html">Contact Us</a>
                     </div>
-                    <div class="top-right">
-                        <button class="language-btn">
-                            <i class="bi bi-globe"></i> English <i class="bi bi-chevron-down"></i>
+                    <div class="top-right" style="position: relative; z-index: 1002;">
+                        <button class="language-btn" id="langBtn">
+                            <i class="bi bi-globe"></i>
+                            <span id="langLabel">English</span>
+                            <i class="bi bi-chevron-down"></i>
                         </button>
+                        <div class="lang-dropdown-menu" id="langMenu">
+                            <div class="lang-dropdown-item active" data-lang="en" data-label="English">English</div>
+                            <div class="lang-dropdown-item" data-lang="ta" data-label="Sri Lankan Tamil">Tamil</div>
+                            <div class="lang-dropdown-item" data-lang="si" data-label="Sinhala">Sinhala</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -368,7 +441,7 @@
                         <div class="d-flex gap-2 align-items-center">
                             <button class="btn-create d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#createMemorialModal">
                                 <i class="bi bi-plus-circle"></i> Create Funeral Notice
-                            </button>
+                            </button>     
                         </div>
                     </div>
                 </div>
@@ -522,8 +595,25 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-left"><img src="Logo.png" alt="FuneralNews Logo" class="footer-logo"></div>
+            <div class="footer-center">
+                <a href="index.html">Home</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-right">© <span id="footerYear"></span> FUNERALnews.lk</div>
+        </div>
+    </footer>
+
+    <!-- Google Translate (hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Page scripts -->
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -545,18 +635,67 @@
         });
     </script>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-left"><img src="Logo.png" alt="FuneralNews Logo" class="footer-logo"></div>
-            <div class="footer-center">
-                <a href="index.html">Home</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-right">© <span id="footerYear"></span> FUNERALnews.lk</div>
-        </div>
-    </footer>
+    <!-- Google Translate init -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Language dropdown -->
+    <script>
+        (function () {
+            const langBtn   = document.getElementById('langBtn');
+            const langMenu  = document.getElementById('langMenu');
+            const langLabel = document.getElementById('langLabel');
+
+            langBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const isOpen = langMenu.classList.contains('open');
+                if (!isOpen) {
+                    const rect = langBtn.getBoundingClientRect();
+                    langMenu.style.top   = (rect.bottom + 6) + 'px';
+                    langMenu.style.right = (window.innerWidth - rect.right) + 'px';
+                    langMenu.style.left  = 'auto';
+                }
+                langMenu.classList.toggle('open', !isOpen);
+                langBtn.classList.toggle('open', !isOpen);
+            });
+
+            document.addEventListener('click', function () {
+                langMenu.classList.remove('open');
+                langBtn.classList.remove('open');
+            });
+
+            langMenu.addEventListener('click', function (e) { e.stopPropagation(); });
+
+            document.querySelectorAll('.lang-dropdown-item').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    document.querySelectorAll('.lang-dropdown-item').forEach(function (i) { i.classList.remove('active'); });
+                    item.classList.add('active');
+                    langLabel.textContent = item.getAttribute('data-label');
+                    langMenu.classList.remove('open');
+                    langBtn.classList.remove('open');
+                    translatePage(item.getAttribute('data-lang'));
+                });
+            });
+
+            function translatePage(langCode) {
+                document.cookie = 'googtrans=/en/' + langCode + '; path=/; domain=' + location.hostname;
+                document.cookie = 'googtrans=/en/' + langCode + '; path=/';
+                var trySelect = function () {
+                    var select = document.querySelector('.goog-te-combo');
+                    if (select) { select.value = langCode; select.dispatchEvent(new Event('change')); return true; }
+                    return false;
+                };
+                if (!trySelect()) {
+                    var i = 0;
+                    var t = setInterval(function () { if (trySelect() || i++ > 30) clearInterval(t); }, 200);
+                }
+            }
+        })();
+    </script>
 
 </body>
 </html>
